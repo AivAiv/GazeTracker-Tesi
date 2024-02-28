@@ -11,10 +11,11 @@ function login(email, password) {
     formData.append('password', password);
     axios.post('php/api-login.php', formData).then(response => {
 		if(response.data["loginSuccess"]) {
-            console.log("Success");
-			//window.location.pathname = './ProgettoWeb-WeFit/src/profile-redirector.php';
-		} else {
-            console.log("not found?");
-        }
+            if(response.data["userType"] === "C") {
+                window.location.href = './php/redirector/creatorHome-redirector.php';
+            } else {
+                window.location.href = './php/redirector/testerHome-redirector.php';
+            }
+		}
     });
 }

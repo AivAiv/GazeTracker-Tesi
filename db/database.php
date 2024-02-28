@@ -10,7 +10,7 @@
         }
 
         public function login($email, $password) {
-			$query = "SELECT email, password FROM user WHERE email = ? AND password = ?";
+			$query = "SELECT email, password, type FROM user WHERE email = ? AND password = ?";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('ss',$email, $password);
 			$stmt->execute();
