@@ -1,15 +1,15 @@
 <div>
     <form action="#" method="POST" name="Access">
         <fieldset>
-            <label>Email<br/>
-                <input type="text" name="txtEmail" required autofocus/><br/>
+            <label>Email
+                <input type="text" name="txtEmail" required autofocus/>
             </label>
-            <label>Password<br/>
-                <input type="password" name="txtPassword" required/><br/>
+            <label>Password
+                <input type="password" name="txtPassword" required/>
             </label>
         </fieldset>
-        <input type="submit" value="Accedi"/>
+        <input type="submit" name="btnLogin" value="Accedi"/>
     </form>
-    <label>Non sei registrato?</label>
-    <a href="#"><button>Registrati</button></a>
+    <div>Non sei registrato?</div>
+    <button id="btnSwitchToRegister">Registrati</button>
 </div>

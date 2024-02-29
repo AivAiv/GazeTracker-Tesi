@@ -19,3 +19,8 @@ function login(email, password) {
 		}
     });
 }
+
+document.querySelector("#btnSwitchToRegister").addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.href = './php/redirector/register-redirector.php';
+});
