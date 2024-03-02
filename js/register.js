@@ -17,7 +17,7 @@ function register(email, password, passwordRepeat, userType) {
     formData.append('email', email);
     formData.append('password', hex_sha512(password));
     formData.append('userType', userType);
-    axios.post('../api-register.php', formData).then(response => {
+    axios.post('../api/api-register.php', formData).then(response => {
         if (response.data["registrationSuccess"]) {
             window.location.href = '../../index.php';
         } else {

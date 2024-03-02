@@ -9,7 +9,7 @@ function login(email, password) {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', hex_sha512(password));
-    axios.post('php/api-login.php', formData).then(response => {
+    axios.post('php/api/api-login.php', formData).then(response => {
 		if(response.data["loginSuccess"]) {
             if(response.data["userType"] === "C") {
                 window.location.href = './php/redirector/creatorHome-redirector.php';
