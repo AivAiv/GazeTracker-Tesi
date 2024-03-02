@@ -12,10 +12,10 @@
         <fieldset>
             <legend>Tipo di utente</legend>
             <label>Creator
-                <input type="radio" name="rdbUserType" id="rdbCreator" value="Creator" required/>
+                <input type="radio" name="rdbUserType" id="rdbCreator" value="C" required/>
             </label>
             </label>Tester
-                <input type="radio" name="rdbUserType" id="rdbTester" value="Tester" required/>
+                <input type="radio" name="rdbUserType" id="rdbTester" value="T" required/>
             </label>
         </fieldset>
     </fieldset>

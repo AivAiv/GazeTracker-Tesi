@@ -26,14 +26,14 @@
 			$stmt->bind_param('s', $email);
 			$stmt->execute();
 			if (count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) != 0) {
-				return true;
+				return false;
 			}
 
             // Insert new user
             $stmt = $this->db->prepare("INSERT INTO `user` (`email`, `password`, `type`) VALUES (?, ?, ?);");
 			$stmt->bind_param('sss', $email, $password, $type);
             $stmt->execute();
-			return false;
+			return true;
 		}
     }
 ?>
