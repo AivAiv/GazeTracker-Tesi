@@ -15,7 +15,7 @@ function register(email, password, passwordRepeat, userType) {
 
     const formData = new FormData();
     formData.append('email', email);
-    formData.append('password', password);
+    formData.append('password', hex_sha512(password));
     formData.append('userType', userType);
     axios.post('../api-register.php', formData).then(response => {
         if (response.data["registrationSuccess"]) {
