@@ -1,16 +1,15 @@
 document.querySelector("main form").addEventListener("submit", function (event) {
 	event.preventDefault();
 	const email = document.querySelector("input[name=txtEmail]").value;
-    const emailRepeat = document.querySelector("input[name=txtEmailRepeat]").value;
 	const password = document.querySelector("input[name=txtPassword]").value;
+    const passwordRepeat = document.querySelector("input[name=txtPasswordRepeat]").value;
     const userType = document.querySelector("input[name=rdbUserType]:checked").value;
-    console.log(userType);
-	register(email, emailRepeat, password, userType);
+	register(email, password, passwordRepeat, userType);
 });
 
-function register(email, emailRepeat, password, userType) {
-    if (email != emailRepeat) {
-        console.log("different email");
+function register(email, password, passwordRepeat, userType) {
+    if (password != passwordRepeat) {
+        console.log("different password");
         return;
     }
 
