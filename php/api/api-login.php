@@ -8,7 +8,8 @@
 		$login_result = $dbh->login($_POST["email"], $_POST["password"]);
 		if(isset($login_result) && (count($login_result) != 0)) {
 			$result["loginSuccess"] = true;
-			$result["userType"] = $login_result[0]["type"];
+			$_SESSION["email"] = $login_result[0]["email"];
+			$_SESSION["userType"] = $login_result[0]["type"];
 		}
 	}
 

@@ -1,5 +1,6 @@
 <?php
     require_once 'bootstrap.php';
+    session_unset();
 
     //Base Template
     $templateParams["title"] = "GazeTracker";

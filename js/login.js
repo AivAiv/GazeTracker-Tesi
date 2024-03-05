@@ -11,11 +11,7 @@ function login(email, password) {
     formData.append('password', hex_sha512(password));
     axios.post('php/api/api-login.php', formData).then(response => {
 		if(response.data["loginSuccess"]) {
-            if(response.data["userType"] === "C") {
-                window.location.href = './php/redirector/creatorHome-redirector.php';
-            } else {
-                window.location.href = './php/redirector/testerHome-redirector.php';
-            }
+            window.location.href = './php/redirector/home-redirector.php';
 		} else {
             console.log("Not registered or wrong password");
         }

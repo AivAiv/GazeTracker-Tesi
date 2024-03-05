@@ -15,10 +15,8 @@
     </head>
     <body>
         <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Other</a></li>
-            </ul>
+            <div>GazeTracker</div>
+            <button id="btnLogout">Logout</button>
         </nav>
         <main>
             <?php
