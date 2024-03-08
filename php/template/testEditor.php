@@ -6,7 +6,8 @@
 <hr>
 <br>
 <section id="testsEdit">
-    <section id="createPopup">
+    <section id="createTab">
+        <div>CREA UN NUOVO TEST</div>
         <form action="#" method="POST" name="Create">
             <label>Nome test
                 <input type="text" name="txtName" required autofocus/>
@@ -23,7 +24,7 @@
         </form>
     </section>
 
-    <section id="modifyPopup">
-
+    <section id="modifyTab">
+    <div>MODIFICA TEST</div>
     </section>
 </section>
