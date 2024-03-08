@@ -59,12 +59,19 @@
 		}
 
 		public function getCreatorTests($email) {
-			$query = "SELECT test.* FROM `user`, `test` WHERE `email` = ? AND `cod_creator` = user.id ";
+			$query = "SELECT test.* FROM `user`, `test` WHERE `email` = ? AND `cod_creator` = `user`.`id` ";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('s', $email);
 			$stmt->execute();
 			$result = $stmt->get_result();
 			return $result->fetch_all(MYSQLI_ASSOC);
+		}
+
+		public function deleteTest($testId) {
+			$stmt = $this->db->prepare("DELETE FROM `test` WHERE `test`.`id` = ?");
+			$stmt->bind_param('i', $testId);
+            $stmt->execute();
+			return true;
 		}
     }
 ?>

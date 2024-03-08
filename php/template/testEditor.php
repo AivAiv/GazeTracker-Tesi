@@ -2,6 +2,9 @@
     <section id="testsList">Non ci sono test, creane uno!</section>
     <button id="btnOpenCreate">Crea nuovo test</button>
 </section>
+<br>
+<hr>
+<br>
 <section id="testsEdit">
     <section id="createPopup">
         <form action="#" method="POST" name="Create">
