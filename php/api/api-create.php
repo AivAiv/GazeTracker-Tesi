@@ -3,8 +3,8 @@
 
 	$result["creationSuccess"] = false;
 
-	if(isset($_POST["name"]) && isset($_POST["codCreator"])) {
-		$result["creationSuccess"] = $dbh->createTest($_POST["name"], $_POST["codCreator"]);
+	if(isset($_POST["testName"])) {
+		$result["creationSuccess"] = $dbh->createTest($_POST["testName"], $_SESSION["id"]);
 	}
 
 	header('Content-Type: application/json');

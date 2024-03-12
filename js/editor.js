@@ -12,6 +12,7 @@ function generateTests(tests) {
     return result;
 }
 
+//unused
 function generateModifyTab(test) {
     let result = `
     <form action="#" method="POST" name="Create">
@@ -42,15 +43,30 @@ function deleteTest(testId) {
     });
 }
 
-function openModifyTab(test) {
+function createTest(testName) {
     const formData = new FormData();
-    formData.append('testId', testId);
-    axios.post('../api/api-delete.php', formData).then(response => {
-        if (response.data["deletionSuccess"]) {
-            console.log("Deleted test: " + testId);
+    formData.append('testName', testName);
+    axios.post('../api/api-create.php', formData).then(response => {
+        if (response.data["creationSuccess"]) {
+            console.log("Created test: " + testName);
             updateTestList();
         }
     });
+}
+
+function openModifyTab(test) {
+    document.getElementById("createTab").style.display = "none";
+    document.getElementById("modifyTab").style.display = "block";
+    showTestContent(test);
+}
+
+function showTestContent(test) {
+    document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
+}
+
+function openCreateTab() {
+    document.getElementById("createTab").style.display = "block";
+    document.getElementById("modifyTab").style.display = "none";
 }
 
 function attachEventListeners(tests) {
@@ -64,7 +80,6 @@ function attachEventListeners(tests) {
         });
         testChildren[2].test = tests[i];
         testChildren[2].addEventListener("click", function (event) {
-            console.log("modify");
             openModifyTab(event.currentTarget.test);
         });
     }
@@ -82,7 +97,16 @@ function updateTestList() {
 }
 
 updateTestList();
+openCreateTab();
 
 document.querySelector("#btnOpenCreate").addEventListener("click", function (event) {
     event.preventDefault();
+    openCreateTab();
+});
+
+document.querySelector("#createTab form").addEventListener("submit", function (event) {
+	event.preventDefault();
+    console.log("CREA!");
+	let name = document.querySelector("#createTab input[name=txtName]").value;
+    createTest(name);
 });

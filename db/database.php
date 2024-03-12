@@ -82,10 +82,9 @@
 			return true;
 		}
 
-		// Unused
 		public function createTest($name, $codCreator) {
 			$stmt = $this->db->prepare("INSERT INTO `test` (`id`, `name`, `cod_creator`, `active`) VALUES (NULL, ?, ?, '1');");
-			$stmt->bind_param('ii', $name, $codCreator);
+			$stmt->bind_param('si', $name, $codCreator);
             $stmt->execute();
 			return true;
 		}
