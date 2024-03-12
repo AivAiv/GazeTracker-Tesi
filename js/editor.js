@@ -46,6 +46,11 @@ function modifyTest(testId, name) {
     });
 }
 
+function openCreateTab() {
+    document.getElementById("createTab").style.display = "block";
+    document.getElementById("modifyTab").style.display = "none";
+}
+
 function openModifyTab(test) {
     currentSelectedTestId = test["id"];
     document.getElementById("createTab").style.display = "none";
@@ -55,11 +60,6 @@ function openModifyTab(test) {
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
-}
-
-function openCreateTab() {
-    document.getElementById("createTab").style.display = "block";
-    document.getElementById("modifyTab").style.display = "none";
 }
 
 function attachEventListeners(tests) {

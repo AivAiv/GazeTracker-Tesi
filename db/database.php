@@ -11,7 +11,7 @@
 
         public function login($email, $password) {
 			// Find user in DB
-			$query = "SELECT * FROM `user` WHERE `email` = ?";
+			$query = "SELECT * FROM `user` WHERE `email` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('s',$email);
 			$stmt->execute();
@@ -32,7 +32,7 @@
 		}
 
 		public function isEmailPresent($email) {
-			$query = "SELECT * FROM `user` WHERE `email` = ?";
+			$query = "SELECT * FROM `user` WHERE `email` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('s', $email);
 			$stmt->execute();
@@ -51,24 +51,36 @@
 		}
 
 		public function getAllTests() {
-			$query = "SELECT * FROM `test`";
+			$query = "SELECT * FROM `test`;";
 			$stmt = $this->db->prepare($query);
 			$stmt->execute();
 			$result = $stmt->get_result();
-			return $result->fetch_all(MYSQLI_ASSOC);
+			$res = $result->fetch_all(MYSQLI_ASSOC);
+
+			// Retrieve pages
+			for ($i = 0; $i < count($res); $i++) {
+				$res[$i]["pages"] = $this->getTestPages($res[$i]["id"]);
+			}
+			return $res;
 		}
 
 		public function getCreatorTests($email) {
-			$query = "SELECT test.* FROM `user`, `test` WHERE `email` = ? AND `cod_creator` = `user`.`id` ";
+			$query = "SELECT test.* FROM `user`, `test` WHERE `email` = ? AND `cod_creator` = `user`.`id`;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('s', $email);
 			$stmt->execute();
 			$result = $stmt->get_result();
-			return $result->fetch_all(MYSQLI_ASSOC);
+			$res = $result->fetch_all(MYSQLI_ASSOC);
+
+			// Retrieve pages
+			for ($i = 0; $i < count($res); $i++) {
+				$res[$i]["pages"] = $this->getTestPages($res[$i]["id"]);
+			}
+			return $res;
 		}
 
 		public function deleteTest($testId) {
-			$stmt = $this->db->prepare("DELETE FROM `test` WHERE `test`.`id` = ?");
+			$stmt = $this->db->prepare("DELETE FROM `test` WHERE `test`.`id` = ?;");
 			$stmt->bind_param('i', $testId);
             $stmt->execute();
 			return true;
@@ -93,6 +105,15 @@
 			$stmt->bind_param('ii', $state, $testId);
             $stmt->execute();
 			return true;
+		}
+
+		public function getTestPages($testId) {
+			$query = "SELECT `name`, `cod_test`, `max_time` FROM `page` WHERE `cod_test` = ?;";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('i', $testId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			return $result->fetch_all(MYSQLI_ASSOC);
 		}
     }
 ?>

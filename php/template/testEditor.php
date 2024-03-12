@@ -12,6 +12,9 @@
             <label>Nome test
                 <input type="text" name="txtName" required autofocus/>
             </label>
+            <fieldset id="lstPages">
+                <legend>Pages List</legend>
+            </fieldset>
             <input type="reset" name="btnDiscard" value="Scarta"/>
             <input type="submit" name="btnCreate" value="Crea"/>
         </form>
@@ -23,6 +26,9 @@
             <label>Nome test
                 <input type="text" name="txtName" required autofocus/>
             </label>
+            <fieldset id="lstPages">
+                <legend>Pages List</legend>
+            </fieldset>
             <input type="reset" name="btnDiscard" value="Scarta le modifiche"/>
             <input type="submit" name="btnSave" value="Salva"/>
         </form>
