@@ -12,26 +12,6 @@ function generateTests(tests) {
     return result;
 }
 
-//unused
-function generateModifyTab(test) {
-    let result = `
-    <form action="#" method="POST" name="Create">
-        <label>Nome test
-            <input type="text" name="txtName" required autofocus/>
-        </label>
-        <fieldset>
-            <legend>Aggiunta pagine</legend>
-            <button>Aggiungi immagine</button>
-            <button>Aggiungi link</button>
-            <button>Aggiungi testo</button>
-        </fieldset>
-        <section id="pagesList">pages List</section>
-        <input type="reset" name="btnDiscard" value="Scarta"/>
-        <input type="submit" name="btnCreate" value="Crea"/>
-    </form>`;
-    return result;
-}
-
 function deleteTest(testId) {
     const formData = new FormData();
     formData.append('testId', testId);
@@ -54,7 +34,20 @@ function createTest(testName) {
     });
 }
 
+function modifyTest(testId, name) {
+    const formData = new FormData();
+    formData.append('testId', testId);
+    formData.append('name', name);
+    axios.post('../api/api-edit.php', formData).then(response => {
+        if (response.data["editSuccess"]) {
+            console.log("Modified test: " + testId);
+            updateTestList();
+        }
+    });
+}
+
 function openModifyTab(test) {
+    currentSelectedTestId = test["id"];
     document.getElementById("createTab").style.display = "none";
     document.getElementById("modifyTab").style.display = "block";
     showTestContent(test);
@@ -96,6 +89,8 @@ function updateTestList() {
     });
 }
 
+let currentSelectedTestId = 0;
+
 updateTestList();
 openCreateTab();
 
@@ -106,7 +101,12 @@ document.querySelector("#btnOpenCreate").addEventListener("click", function (eve
 
 document.querySelector("#createTab form").addEventListener("submit", function (event) {
 	event.preventDefault();
-    console.log("CREA!");
 	let name = document.querySelector("#createTab input[name=txtName]").value;
     createTest(name);
+});
+
+document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
+	event.preventDefault();
+	let name = document.querySelector("#modifyTab input[name=txtName]").value;
+    modifyTest(currentSelectedTestId, name);
 });
