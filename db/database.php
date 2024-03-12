@@ -74,7 +74,13 @@
 			return true;
 		}
 
-		// Unused
+		public function createTest($name, $codCreator) {
+			$stmt = $this->db->prepare("INSERT INTO `test` (`id`, `name`, `cod_creator`, `active`) VALUES (NULL, ?, ?, '1');");
+			$stmt->bind_param('si', $name, $codCreator);
+			$stmt->execute();
+			return true;
+		}
+
 		public function modifyTest($testId, $name) {
 			$stmt = $this->db->prepare("UPDATE `test` SET `name` = ?, `active` = '1' WHERE `test`.`id` = ?;");
 			$stmt->bind_param('si', $name, $testId);
@@ -82,9 +88,9 @@
 			return true;
 		}
 
-		public function createTest($name, $codCreator) {
-			$stmt = $this->db->prepare("INSERT INTO `test` (`id`, `name`, `cod_creator`, `active`) VALUES (NULL, ?, ?, '1');");
-			$stmt->bind_param('si', $name, $codCreator);
+		public function updateTestState($testId, $state) {
+			$stmt = $this->db->prepare("UPDATE `test` SET `active` = ? WHERE `test`.`id` = ?;");
+			$stmt->bind_param('ii', $state, $testId);
             $stmt->execute();
 			return true;
 		}

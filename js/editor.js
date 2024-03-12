@@ -67,12 +67,14 @@ function attachEventListeners(tests) {
         testChildren = document.getElementById("testEditor_" + tests[i]["id"]).children;
         testChildren[1].test = tests[i];
         testChildren[1].addEventListener("click", function (event) {
+            event.preventDefault();
             if (confirm("Stai eliminando un test, sei sicuro di voler proseguire?")) {
                 deleteTest(event.currentTarget.test["id"]);
             }
         });
         testChildren[2].test = tests[i];
         testChildren[2].addEventListener("click", function (event) {
+            event.preventDefault();
             openModifyTab(event.currentTarget.test);
         });
     }

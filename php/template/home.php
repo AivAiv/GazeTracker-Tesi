@@ -4,6 +4,4 @@
     <div>I TUOI TEST</div>
     <button id="btnEdit">Gestisci test</button>
 <?php endif; ?>
-<section id="testContainer">
-    yay
-</section>
+<section id="testContainer"></section>
