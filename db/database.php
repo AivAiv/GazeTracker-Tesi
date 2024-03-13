@@ -108,7 +108,7 @@
 		}
 
 		public function getTestPages($testId) {
-			$query = "SELECT `name`, `cod_test`, `max_time` FROM `page` WHERE `cod_test` = ?;";
+			$query = "SELECT * FROM `page` WHERE `cod_test` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('i', $testId);
 			$stmt->execute();

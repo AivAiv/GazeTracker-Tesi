@@ -68,7 +68,7 @@ function populateHome() {
             let tests = generateTesterTests(response.data["tests"]);
             const main = document.getElementById("testContainer");
             main.innerHTML = tests;
-            //attachEventListener();
+            //TODO:attachEventListener();
         } else if (response.data["testsRetrieved"] && response.data["userType"] == "C") {
             let tests = generateCreatorTests(response.data["tests"]);
             const main = document.getElementById("testContainer");

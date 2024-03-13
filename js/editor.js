@@ -12,6 +12,19 @@ function generateTests(tests) {
     return result;
 }
 
+function generatePages(pages) {
+    let result = "";
+    for(let i= 0; i < pages.length; i++){
+        let page = `
+        <div id="page_${pages[i]["id"]}">
+            <p>${pages[i]["name"]}</p>
+            <button class="btnDelete">x</button>
+        </div>`;
+        result += page;
+    }
+    return result;
+}
+
 function deleteTest(testId) {
     const formData = new FormData();
     formData.append('testId', testId);
@@ -60,6 +73,8 @@ function openModifyTab(test) {
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
+    document.querySelector("#modifyTab #lstPages").innerHTML = generatePages(test["pages"]);
+    //TODO:attach event listeners()
 }
 
 function attachEventListeners(tests) {
