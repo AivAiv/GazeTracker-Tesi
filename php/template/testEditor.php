@@ -12,8 +12,14 @@
             <label>Nome test
                 <input type="text" name="txtName" required autofocus/>
             </label>
+            <fieldset>
+                <legend>Aggiungi pagina</legend>
+                <button class="btnAddImage">Aggiungi immagine</button>
+                <button class="btnAddLink">Aggiungi link</button>
+                <button class="btnAddText">Aggiungi testo</button>
+            </fieldset>
             <fieldset id="lstPages">
-                <legend>Pages List</legend>
+                <legend>Pagine attuali</legend>
             </fieldset>
             <input type="reset" name="btnDiscard" value="Scarta"/>
             <input type="submit" name="btnCreate" value="Crea"/>
@@ -26,11 +32,19 @@
             <label>Nome test
                 <input type="text" name="txtName" required autofocus/>
             </label>
+            <fieldset>
+                <legend>Aggiungi pagina</legend>
+                <button class="btnAddImage">Aggiungi immagine</button>
+                <button class="btnAddLink">Aggiungi link</button>
+                <button class="btnAddText">Aggiungi testo</button>
+            </fieldset>
             <fieldset id="lstPages">
-                <legend>Pages List</legend>
+                <legend>Pagine attuali</legend>
             </fieldset>
             <input type="reset" name="btnDiscard" value="Scarta le modifiche"/>
             <input type="submit" name="btnSave" value="Salva"/>
         </form>
     </section>
 </section>
+
+<section id="textPopup"></section>

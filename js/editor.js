@@ -62,6 +62,7 @@ function modifyTest(testId, name) {
 function openCreateTab() {
     document.getElementById("createTab").style.display = "block";
     document.getElementById("modifyTab").style.display = "none";
+    pagesPopUp.closePopUp();
 }
 
 function openModifyTab(test) {
@@ -69,11 +70,12 @@ function openModifyTab(test) {
     document.getElementById("createTab").style.display = "none";
     document.getElementById("modifyTab").style.display = "block";
     showTestContent(test);
+    pagesPopUp.closePopUp();
 }
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
-    document.querySelector("#modifyTab #lstPages").innerHTML = generatePages(test["pages"]);
+    document.querySelector("#modifyTab #lstPages").innerHTML = "<legend>Pagine attuali</legend>" + generatePages(test["pages"]);
     //TODO:attach event listeners()
 }
 
@@ -106,10 +108,13 @@ function updateTestList() {
     });
 }
 
+let pagesPopUp = new PopUp("textPopup");
 let currentSelectedTestId = 0;
 
 updateTestList();
 openCreateTab();
+//openTextPopup(false);
+pagesPopUp.closePopUp();
 
 document.querySelector("#btnOpenCreate").addEventListener("click", function (event) {
     event.preventDefault();
@@ -120,6 +125,39 @@ document.querySelector("#createTab form").addEventListener("submit", function (e
 	event.preventDefault();
 	let name = document.querySelector("#createTab input[name=txtName]").value;
     createTest(name);
+});
+
+// Image pages
+document.querySelector("#createTab .btnAddImage").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateImagePopUp();
+});
+
+document.querySelector("#modifyTab .btnAddImage").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateImagePopUp();
+});
+
+// link pages
+document.querySelector("#createTab .btnAddLink").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateLinkPopUp();
+});
+
+document.querySelector("#modifyTab .btnAddLink").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateLinkPopUp();
+});
+
+// text Pages
+document.querySelector("#createTab .btnAddText").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateTextPopUp();
+});
+
+document.querySelector("#modifyTab .btnAddText").addEventListener("click", function (event) {
+	event.preventDefault();
+    pagesPopUp.generateTextPopUp();
 });
 
 document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
