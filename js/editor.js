@@ -108,12 +108,11 @@ function updateTestList() {
     });
 }
 
-let pagesPopUp = new PopUp("textPopup");
+let pagesPopUp = new PopUp("popUp");
 let currentSelectedTestId = 0;
 
 updateTestList();
 openCreateTab();
-//openTextPopup(false);
 pagesPopUp.closePopUp();
 
 document.querySelector("#btnOpenCreate").addEventListener("click", function (event) {
@@ -122,9 +121,15 @@ document.querySelector("#btnOpenCreate").addEventListener("click", function (eve
 });
 
 document.querySelector("#createTab form").addEventListener("submit", function (event) {
-	event.preventDefault();
+    event.preventDefault();
 	let name = document.querySelector("#createTab input[name=txtName]").value;
     createTest(name);
+});
+
+document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    let name = document.querySelector("#modifyTab input[name=txtName]").value;
+    modifyTest(currentSelectedTestId, name);
 });
 
 // Image pages
@@ -158,10 +163,4 @@ document.querySelector("#createTab .btnAddText").addEventListener("click", funct
 document.querySelector("#modifyTab .btnAddText").addEventListener("click", function (event) {
 	event.preventDefault();
     pagesPopUp.generateTextPopUp();
-});
-
-document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
-	event.preventDefault();
-	let name = document.querySelector("#modifyTab input[name=txtName]").value;
-    modifyTest(currentSelectedTestId, name);
 });
