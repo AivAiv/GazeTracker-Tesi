@@ -36,10 +36,12 @@ function deleteTest(testId) {
     });
 }
 
-function createTest(testName) {
+function createTest(testName, pages) {
     const formData = new FormData();
     formData.append('testName', testName);
+    formData.append('pages', JSON.stringify(pages));
     axios.post('../api/api-create.php', formData).then(response => {
+        console.log(response.data);
         if (response.data["creationSuccess"]) {
             console.log("Created test: " + testName);
             updateTestList();
@@ -108,30 +110,42 @@ function updateTestList() {
     });
 }
 
-let pagesPopUp = new PopUp("popUp");
+let pagesHolder = new PagesHolder();
+let pagesPopUp = new PopUp("popUp", pagesHolder);
 let currentSelectedTestId = 0;
 
 updateTestList();
 openCreateTab();
 pagesPopUp.closePopUp();
 
-document.querySelector("#btnOpenCreate").addEventListener("click", function (event) {
+let btnOpenCreateTest = document.querySelector("#btnOpenCreate");
+btnOpenCreateTest.holder = pagesHolder;
+btnOpenCreateTest.addEventListener("click", function (event) {
     event.preventDefault();
+    event.currentTarget.holder.resetList();
     openCreateTab();
 });
 
-document.querySelector("#createTab form").addEventListener("submit", function (event) {
+let btnCreateTest = document.querySelector("#createTab form");
+btnCreateTest.holder = pagesHolder;
+btnCreateTest.addEventListener("submit", function (event) {
     event.preventDefault();
 	let name = document.querySelector("#createTab input[name=txtName]").value;
-    createTest(name);
+    console.log(event.currentTarget.holder.getPages());
+    createTest(name, event.currentTarget.holder.getPages());
+    event.currentTarget.holder.resetList();
 });
 
-document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
+let btnModifyTest = document.querySelector("#modifyTab form");
+btnModifyTest.holder = pagesHolder;
+btnModifyTest.addEventListener("submit", function (event) {
     event.preventDefault();
     let name = document.querySelector("#modifyTab input[name=txtName]").value;
+    event.currentTarget.holder.resetList();
     modifyTest(currentSelectedTestId, name);
 });
 
+//#region Link, images and text buttons action listeners
 // Image pages
 document.querySelector("#createTab .btnAddImage").addEventListener("click", function (event) {
 	event.preventDefault();
@@ -164,3 +178,4 @@ document.querySelector("#modifyTab .btnAddText").addEventListener("click", funct
 	event.preventDefault();
     pagesPopUp.generateTextPopUp();
 });
+//#endregion

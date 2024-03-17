@@ -1,16 +1,19 @@
 class PopUp {
 
-    #domId;
+    #domId = "";
     #domPopUp;
+    #pagesHolder;
 
-    constructor(domId) {
+    constructor(domId, pHolder) {
       this.#domId = domId;
       this.#domPopUp = document.getElementById(this.#domId);
+      this.#pagesHolder = pHolder;
     }
 
     openPopUp() { this.#domPopUp.style.display = "block"; }
     closePopUp() { this.#domPopUp.style.display = "none"; }
 
+    //#region HTML genrators
     generateImagePopUp() {
         let img = `<div>AGGIUNGI PAGINA IMMAGINE</div>
         <form action="#" method="POST" name="Modify">
@@ -70,7 +73,9 @@ class PopUp {
         this.#attachTextListeners();
         this.openPopUp();
     }
+    //#endregion
 
+    //#region Event listeners
     #attachImageListeners() {
         
     }
@@ -80,8 +85,26 @@ class PopUp {
     }
 
     #attachTextListeners() {
+        let form = document.querySelector("#" + this.#domId + " form");
+        form.domId = this.#domId;
+        form.pHolder = this.#pagesHolder;
+        form.caller = this;
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            event.currentTarget.pHolder.addPage({
+                name : document.querySelector("#" + event.currentTarget.domId + " input[name=txtName]").value,
+                link : null,
+                image : null,
+                text : null,
+                maxTime : document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
+            });
+            event.currentTarget.caller.closePopUp();
+        });
         
+        form.addEventListener("reset", function (event) { this.closePopUp(); });
     }
+    //#endregion
 
     populatePopUp() {
 

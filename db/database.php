@@ -90,7 +90,7 @@
 			$stmt = $this->db->prepare("INSERT INTO `test` (`id`, `name`, `cod_creator`, `active`) VALUES (NULL, ?, ?, '1');");
 			$stmt->bind_param('si', $name, $codCreator);
 			$stmt->execute();
-			return true;
+			return $this->db->insert_id;
 		}
 
 		public function modifyTest($testId, $name) {
@@ -114,6 +114,14 @@
 			$stmt->execute();
 			$result = $stmt->get_result();
 			return $result->fetch_all(MYSQLI_ASSOC);
+		}
+
+		public function addTestPage($name, $codTest, $link, $image, $text, $maxTime) {
+			$query = "INSERT INTO `page` (`id`, `name`, `cod_test`, `link`, `image`, `text`, `max_time`) VALUES (NULL, ?, ?, ?, ?, ?, ?);";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('sisssi', $name, $codTest, $link, $image, $text, $maxTime);
+			$stmt->execute();
+			return true;
 		}
     }
 ?>
