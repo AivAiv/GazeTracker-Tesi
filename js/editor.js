@@ -30,7 +30,7 @@ function deleteTest(testId) {
     formData.append('testId', testId);
     axios.post('../api/api-delete.php', formData).then(response => {
         if (response.data["deletionSuccess"]) {
-            console.log("Deleted test: " + testId);
+            console.log("[LOG] : Deleted test - " + testId);
             updateTestList();
         }
     });
@@ -41,9 +41,8 @@ function createTest(testName, pages) {
     formData.append('testName', testName);
     formData.append('pages', JSON.stringify(pages));
     axios.post('../api/api-create.php', formData).then(response => {
-        console.log(response.data);
         if (response.data["creationSuccess"]) {
-            console.log("Created test: " + testName);
+            console.log("[LOG] : Created test - " + testName);
             updateTestList();
         }
     });
@@ -55,7 +54,7 @@ function modifyTest(testId, name) {
     formData.append('name', name);
     axios.post('../api/api-edit.php', formData).then(response => {
         if (response.data["editSuccess"]) {
-            console.log("Modified test: " + testId);
+            console.log("[LOG] : Modified test - " + testId);
             updateTestList();
         }
     });
@@ -77,7 +76,11 @@ function openModifyTab(test) {
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
-    document.querySelector("#modifyTab #lstPages").innerHTML = "<legend>Pagine attuali</legend>" + generatePages(test["pages"]);
+    updateTestPages(test["pages"], "modifyTab");
+}
+
+function updateTestPages(pages, tabName) {
+    document.querySelector("#" + tabName + " #lstPages").innerHTML = "<legend>Pagine attuali</legend>" + generatePages(pages);
     //TODO:attach event listeners()
 }
 

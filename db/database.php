@@ -119,7 +119,7 @@
 		public function addTestPage($name, $codTest, $link, $image, $text, $maxTime) {
 			$query = "INSERT INTO `page` (`id`, `name`, `cod_test`, `link`, `image`, `text`, `max_time`) VALUES (NULL, ?, ?, ?, ?, ?, ?);";
 			$stmt = $this->db->prepare($query);
-			$stmt->bind_param('sisssi', $name, $codTest, $link, $image, $text, $maxTime);
+			$stmt->bind_param('sissss', $name, $codTest, $link, $image, $text, $maxTime);
 			$stmt->execute();
 			return true;
 		}

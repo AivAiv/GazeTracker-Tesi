@@ -35,14 +35,14 @@ function updateState(testId, state) {
     formData.append('state', state);
     axios.post('../api/api-edit.php', formData).then(response => {
         if (response.data["editSuccess"]) {
-            console.log("Modified test: " + testId);
+            console.log("[LOG] : Changed state of test - " + testId);
             populateHome();
         }
     });
 }
 
 function attachCreatorEventListeners(tests) {
-    for (i = 0; i < tests.length; i++) {
+    for (let i = 0; i < tests.length; i++) {
         testChildren = document.getElementById("testHome_" + tests[i]["id"]).children;
         testChildren[1].test = tests[i];
         testChildren[1].addEventListener("click", function (event) {
@@ -56,7 +56,7 @@ function attachCreatorEventListeners(tests) {
         testChildren[2].test = tests[i];
         testChildren[2].addEventListener("click", function (event) {
             event.preventDefault();
-            console.log("Change page to results of test: " + event.currentTarget.test["id"]);
+            console.log("Change page to results of test: " + event.currentTarget.test["id"]);//TODO: change to new page
         });
     }
 }
