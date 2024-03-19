@@ -12,19 +12,6 @@ function generateTests(tests) {
     return result;
 }
 
-function generatePages(pages) {
-    let result = "";
-    for(let i= 0; i < pages.length; i++){
-        let page = `
-        <div id="page_${pages[i]["id"]}">
-            <p>${pages[i]["name"]}</p>
-            <button class="btnDelete">x</button>
-        </div>`;
-        result += page;
-    }
-    return result;
-}
-
 function deleteTest(testId) {
     const formData = new FormData();
     formData.append('testId', testId);
@@ -34,35 +21,42 @@ function deleteTest(testId) {
             updateTestList();
         }
     });
+    openCreateTab();
 }
 
 function createTest(testName, pages) {
     const formData = new FormData();
     formData.append('testName', testName);
-    formData.append('pages', JSON.stringify(pages));
+    formData.append('pages', JSON.stringify(pagesHolder.getPages()));
     axios.post('../api/api-create.php', formData).then(response => {
         if (response.data["creationSuccess"]) {
             console.log("[LOG] : Created test - " + testName);
             updateTestList();
         }
     });
+    pagesHolder.resetList();
 }
 
 function modifyTest(testId, name) {
     const formData = new FormData();
     formData.append('testId', testId);
     formData.append('name', name);
+    formData.append('pages', JSON.stringify(pagesHolder.getPages()));
     axios.post('../api/api-edit.php', formData).then(response => {
         if (response.data["editSuccess"]) {
             console.log("[LOG] : Modified test - " + testId);
             updateTestList();
         }
     });
+    pagesHolder.resetList();
 }
 
 function openCreateTab() {
     document.getElementById("createTab").style.display = "block";
     document.getElementById("modifyTab").style.display = "none";
+    pagesHolder.resetList();
+    createPagesList.updateTestPages();
+    modifyPagesList.updateTestPages();
     pagesPopUp.closePopUp();
 }
 
@@ -76,13 +70,16 @@ function openModifyTab(test) {
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
-    updateTestPages(test["pages"], "modifyTab");
+    pagesHolder.resetList();
+    createPagesList.updateTestPages();
+    pagesHolder.overridePages(test["pages"]);
+    console.log(pagesHolder);
+    modifyPagesList.updateTestPages();
 }
 
-function updateTestPages(pages, tabName) {
-    document.querySelector("#" + tabName + " #lstPages").innerHTML = "<legend>Pagine attuali</legend>" + generatePages(pages);
-    //TODO:attach event listeners()
-}
+function resetCreateTab() {}//TODO: implement
+
+function resetModifyTab() {}//TODO: implement
 
 function attachEventListeners(tests) {
     for (i = 0; i < tests.length; i++) {
@@ -113,38 +110,31 @@ function updateTestList() {
     });
 }
 
-let pagesHolder = new PagesHolder();
-let pagesPopUp = new PopUp("popUp", pagesHolder);
+const pagesHolder = new PagesHolder();
+const modifyPagesList = new PagesList("#modifyTab #lstPages", pagesHolder);
+const createPagesList = new PagesList("#createTab #lstPages", pagesHolder);
+const pagesPopUp = new PopUp("popUp", pagesHolder, modifyPagesList, createPagesList);
+
 let currentSelectedTestId = 0;
 
 updateTestList();
 openCreateTab();
 pagesPopUp.closePopUp();
 
-let btnOpenCreateTest = document.querySelector("#btnOpenCreate");
-btnOpenCreateTest.holder = pagesHolder;
-btnOpenCreateTest.addEventListener("click", function (event) {
+document.querySelector("#btnOpenCreate").addEventListener("click", function (event) {
     event.preventDefault();
-    event.currentTarget.holder.resetList();
     openCreateTab();
 });
 
-let btnCreateTest = document.querySelector("#createTab form");
-btnCreateTest.holder = pagesHolder;
-btnCreateTest.addEventListener("submit", function (event) {
+document.querySelector("#createTab form").addEventListener("submit", function (event) {
     event.preventDefault();
 	let name = document.querySelector("#createTab input[name=txtName]").value;
-    console.log(event.currentTarget.holder.getPages());
-    createTest(name, event.currentTarget.holder.getPages());
-    event.currentTarget.holder.resetList();
+    createTest(name);
 });
 
-let btnModifyTest = document.querySelector("#modifyTab form");
-btnModifyTest.holder = pagesHolder;
-btnModifyTest.addEventListener("submit", function (event) {
+document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
     event.preventDefault();
     let name = document.querySelector("#modifyTab input[name=txtName]").value;
-    event.currentTarget.holder.resetList();
     modifyTest(currentSelectedTestId, name);
 });
 

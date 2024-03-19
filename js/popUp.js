@@ -3,11 +3,15 @@ class PopUp {
     #domId = "";
     #domPopUp;
     #pagesHolder;
+    #pagesListMod;
+    #pagesListCre;
 
-    constructor(domId, pHolder) {
+    constructor(domId, pHolder, pListM, pListC) {
       this.#domId = domId;
       this.#domPopUp = document.getElementById(this.#domId);
       this.#pagesHolder = pHolder;
+      this.#pagesListMod = pListM;
+      this.#pagesListCre = pListC;
     }
 
     openPopUp() { this.#domPopUp.style.display = "block"; }
@@ -88,6 +92,8 @@ class PopUp {
         let form = document.querySelector("#" + this.#domId + " form");
         form.domId = this.#domId;
         form.pHolder = this.#pagesHolder;
+        form.pListM = this.#pagesListMod;
+        form.pListC = this.#pagesListCre;
         form.caller = this;
 
         form.addEventListener("submit", function (event) {
@@ -100,35 +106,12 @@ class PopUp {
                 maxTime : document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
             });
             event.currentTarget.caller.closePopUp();
-            event.currentTarget.caller.updateTestPages(event.currentTarget.pHolder.getPages(), "createTab");
+            event.currentTarget.pListM.updateTestPages();
+            event.currentTarget.pListC.updateTestPages();
         });
         
         form.addEventListener("reset", function (event) { this.closePopUp(); });
     }
     //#endregion
-
-    populatePopUp() {
-
-    }
-
-    //FIXME: duplicate kinda
-    generatePages(pages) {
-        let result = "";
-        for(let i= 0; i < pages.length; i++){
-            let page = `
-            <div id="unsavedPage_${i}">
-                <p>${pages[i]["name"]}</p>
-                <button class="btnDelete">x</button>
-            </div>`; // different
-            result += page;
-        }
-        return result;
-    }
-
-    //FIXME: duplicate
-    updateTestPages(pages, tabName) {
-        document.querySelector("#" + tabName + " #lstPages").innerHTML = "<legend>Pagine attuali</legend>" + generatePages(pages);
-        //TODO:attach event listeners()
-    }
 
 }
