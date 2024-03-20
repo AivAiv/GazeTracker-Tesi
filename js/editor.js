@@ -34,7 +34,7 @@ function createTest(testName, pages) {
             updateTestList();
         }
     });
-    pagesHolder.resetList();
+    resetCreateTab();
 }
 
 function modifyTest(testId, name) {
@@ -48,38 +48,42 @@ function modifyTest(testId, name) {
             updateTestList();
         }
     });
-    pagesHolder.resetList();
 }
 
 function openCreateTab() {
     document.getElementById("createTab").style.display = "block";
     document.getElementById("modifyTab").style.display = "none";
-    pagesHolder.resetList();
-    createPagesList.updateTestPages();
-    modifyPagesList.updateTestPages();
-    pagesPopUp.closePopUp();
+    resetCreateTab();
+    resetModifyTab();
 }
 
 function openModifyTab(test) {
     currentSelectedTestId = test["id"];
     document.getElementById("createTab").style.display = "none";
     document.getElementById("modifyTab").style.display = "block";
+    resetCreateTab();
     showTestContent(test);
-    pagesPopUp.closePopUp();
 }
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
-    pagesHolder.resetList();
-    createPagesList.updateTestPages();
     pagesHolder.overridePages(test["pages"]);
-    console.log(pagesHolder);
     modifyPagesList.updateTestPages();
 }
 
-function resetCreateTab() {}//TODO: implement
+function resetCreateTab() {
+    document.querySelector("#createTab input[name=txtName]").value = "";
+    pagesHolder.resetList();
+    createPagesList.updateTestPages();
+    pagesPopUp.closePopUp();
+}
 
-function resetModifyTab() {}//TODO: implement
+function resetModifyTab() {
+    document.querySelector("#modifyTab input[name=txtName]").value = "";
+    pagesHolder.resetList();
+    modifyPagesList.updateTestPages();
+    pagesPopUp.closePopUp();
+}
 
 function attachEventListeners(tests) {
     for (i = 0; i < tests.length; i++) {

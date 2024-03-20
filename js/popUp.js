@@ -45,7 +45,7 @@ class PopUp {
                 <input type="text" name="txtName" required autofocus/>
             </label>
             <label>Contenuto
-                <input type="text" name="txtText" required/>
+                <input type="url" name="urlLink" required/>
             </label>
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
