@@ -36,12 +36,9 @@ class PagesList {
             btnDel.addEventListener("click",  function (event) {
                 event.preventDefault();
                 if (confirm("Stai eliminando una, sei sicuro?")) {
-                    console.log("----");
                     event.currentTarget.pHolder.deletePage(i);
                     console.log("[LOG] : deleted page - " + i);
                     event.currentTarget.caller.updateTestPages();
-                    console.log(event.currentTarget.pHolder.getPages());
-                    console.log("----");
                 }
             });
         }
