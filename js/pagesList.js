@@ -22,7 +22,7 @@ class PagesList {
             <div id="page_${i}">
                 <p>${this.#pagesHolder.getPages()[i]["name"]}</p>
                 <button class="btnDelete">x</button>
-            </div>`; // different
+            </div>`;
             result += page;
         }
         return result;
@@ -30,13 +30,17 @@ class PagesList {
 
     #attachPageListeners() {
         for (let i = 0; i < this.#pagesHolder.getPages().length; i++) {
-            document.querySelector(this.#domId + " #page_" + i + " .btnDelete").addEventListener("click",  function (event) {
+            let btnDel = document.querySelector(this.#domId + " #page_" + i + " .btnDelete");
+            btnDel.pHolder = this.#pagesHolder;
+            btnDel.caller = this;
+            btnDel.addEventListener("click",  function (event) {
                 event.preventDefault();
                 if (confirm("Stai eliminando una, sei sicuro?")) {
                     console.log("----");
-                    //console.log(this.#pagesHolder.getPages());
-                    console.log("eliminata pagina " + i);
-                    //console.log(this.#pagesHolder.getPages());
+                    event.currentTarget.pHolder.deletePage(i);
+                    console.log("[LOG] : deleted page - " + i);
+                    event.currentTarget.caller.updateTestPages();
+                    console.log(event.currentTarget.pHolder.getPages());
                     console.log("----");
                 }
             });
