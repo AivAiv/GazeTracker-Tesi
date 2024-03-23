@@ -5,11 +5,30 @@
 
 	if(isset($_POST["testId"]) && isset($_POST["name"]) && isset($_POST["pages"])) {
 		$result["editSuccess"] = $dbh->modifyTest($_POST["testId"], $_POST["name"]);
-		//per ogni pagina POSTata
-			//se non ha id -> aggiungi e togli da lista
-		//chiedi al db le pagine
-		//per ogni pagina in db
-			//se non c'è nella lista POSTata -> cancella
+		$pages = json_decode($_POST["pages"], true);
+		$dbPages = $dbh->getTestPages($_POST["testId"]);
+
+		// Add new pages
+		$oldPages = Array();
+		for ($i = 0; $i < count($pages); $i++) {
+			if (!isset($pages[$i]["id"])) {
+				$dbh->addTestPage($pages[$i]["name"], $_POST["testId"], $pages[$i]["link"], $pages[$i]["image"], $pages[$i]["text"], $pages[$i]["maxTime"]);
+			} else {
+				array_push($oldPages, $pages[$i]);
+			}
+		}
+		$result["old"] = $oldPages;
+
+		// Delete deleted pages
+		$result["db"] = $dbPages;
+		$result["if"] = Array();
+		foreach ($dbPages as $dbPage) {
+			$key = array_search($dbPage["id"], array_column($oldPages, 'id'));
+			array_push($result["if"], $key);
+			if ($key === false) {
+				$dbh->removeTestPage($dbPage["id"]);
+			}
+		}
 	}
 
 	if(isset($_POST["testId"]) && isset($_POST["state"])) {

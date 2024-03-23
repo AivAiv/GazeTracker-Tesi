@@ -110,7 +110,7 @@ class PopUp {
             event.currentTarget.pListC.updateTestPages();
         });
         
-        form.addEventListener("reset", function (event) { this.closePopUp(); });
+    form.addEventListener("reset", function (event) { /*this.closePopUp();*/ }); //FIXME: funzioni bottoni reset
     }
     //#endregion
 

@@ -43,11 +43,13 @@ function modifyTest(testId, name) {
     formData.append('name', name);
     formData.append('pages', JSON.stringify(pagesHolder.getPages()));
     axios.post('../api/api-edit.php', formData).then(response => {
+        console.log(response.data);
         if (response.data["editSuccess"]) {
             console.log("[LOG] : Modified test - " + testId);
             updateTestList();
         }
     });
+    openCreateTab();
 }
 
 function openCreateTab() {
