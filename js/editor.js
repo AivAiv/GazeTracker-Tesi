@@ -144,6 +144,14 @@ document.querySelector("#modifyTab form").addEventListener("submit", function (e
     modifyTest(currentSelectedTestId, name);
 });
 
+document.querySelector("#createTab form").addEventListener("reset", function (event) {
+	resetCreateTab();
+});
+
+document.querySelector("#modifyTab form").addEventListener("reset", function (event) {
+    openCreateTab();
+});
+
 //#region Link, images and text buttons action listeners
 // Image pages
 document.querySelector("#createTab .btnAddImage").addEventListener("click", function (event) {

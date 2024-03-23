@@ -65,7 +65,7 @@ class PopUp {
                 <input type="text" name="txtName" required autofocus/>
             </label>
             <label>Contenuto
-                <textarea name="txtText" rows="4" cols="50"></textarea>
+                <textarea name="txtText" rows="4" cols="50" required></textarea>
             </label>
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
@@ -85,7 +85,28 @@ class PopUp {
     }
 
     #attachLinkListeners() {
+        let form = document.querySelector("#" + this.#domId + " form");
+        form.domId = this.#domId;
+        form.pHolder = this.#pagesHolder;
+        form.pListM = this.#pagesListMod;
+        form.pListC = this.#pagesListCre;
+        form.caller = this;
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            event.currentTarget.pHolder.addPage({
+                name : document.querySelector("#" + event.currentTarget.domId + " input[name=txtName]").value,
+                link : document.querySelector("#" + event.currentTarget.domId + " input[name=urlLink]").value,
+                image : null,
+                text : null,
+                maxTime : document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
+            });
+            event.currentTarget.caller.closePopUp();
+            event.currentTarget.pListM.updateTestPages();
+            event.currentTarget.pListC.updateTestPages();
+        });
         
+        form.addEventListener("reset", function (event) { event.currentTarget.caller.closePopUp(); });
     }
 
     #attachTextListeners() {
@@ -110,7 +131,7 @@ class PopUp {
             event.currentTarget.pListC.updateTestPages();
         });
         
-    form.addEventListener("reset", function (event) { /*this.closePopUp();*/ }); //FIXME: funzioni bottoni reset
+        form.addEventListener("reset", function (event) { event.currentTarget.caller.closePopUp(); });
     }
     //#endregion
 
