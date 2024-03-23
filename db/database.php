@@ -124,7 +124,6 @@
 			return true;
 		}
 
-		// unused
 		public function removeTestPage($id) {
 			$query = "DELETE FROM `page` WHERE `page`.`id` = ?;";
 			$stmt = $this->db->prepare($query);
