@@ -56,7 +56,9 @@ function attachCreatorEventListeners(tests) {
         testChildren[2].test = tests[i];
         testChildren[2].addEventListener("click", function (event) {
             event.preventDefault();
-            console.log("Change page to results of test: " + event.currentTarget.test["id"]);//TODO: change to new page
+            sessionStorage.clear();
+            sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
+            window.location.href = './reviewTest-redirector.php';
         });
     }
 }
@@ -68,6 +70,7 @@ function attachTesterEventListener(tests) {
             btnTest.test = tests[i];
             btnTest.addEventListener("click", function (event) {
                 event.preventDefault();
+                sessionStorage.clear();
                 sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
                 window.location.href = './executeTest-redirector.php';
             });

@@ -8,5 +8,10 @@
 		"../../js/navigation.js", "../../js/pagesHolder.js", "../../js/pagesList.js" , "../../js/popUp.js", "../../js/editor.js");
 	$templateParams["css"] = array();//"light-background", "register-login", "register");
 
+	$templateParams["navigationButtons"] = array("home"=>true, 
+												"logout"=>false,   
+												"forward"=>false, 
+												"backward"=>false);
+
 	require '../template/base.php';
 ?>

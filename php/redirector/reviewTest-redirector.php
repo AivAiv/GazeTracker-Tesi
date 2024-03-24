@@ -11,7 +11,7 @@
 	$templateParams["navigationButtons"] = array("home"=>true, 
 												"logout"=>false,   
 												"forward"=>true, 
-												"backward"=>false);
+												"backward"=>true);
 
 	require '../template/base.php';
 ?>

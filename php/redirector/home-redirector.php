@@ -8,5 +8,10 @@
 		"../../js/navigation.js", "../../js/testRetriever.js");
 	$templateParams["css"] = array();//"light-background", "register-login", "register");
 
+	$templateParams["navigationButtons"] = array("home"=>false, 
+												"logout"=>true,   
+												"forward"=>false, 
+												"backward"=>false);
+
 	require '../template/base.php';
 ?>

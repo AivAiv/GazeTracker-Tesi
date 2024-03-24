@@ -16,7 +16,18 @@
     <body>
         <nav>
             <div>GazeTracker</div>
-            <button id="btnLogout">Logout</button>
+            <?php if(isset($templateParams["navigationButtons"]) && $templateParams["navigationButtons"]["logout"]): ?>
+                <button id="btnLogout">Logout</button>
+            <?php endif; ?>
+            <?php if(isset($templateParams["navigationButtons"]) && $templateParams["navigationButtons"]["home"]): ?>
+                <button id="btnHome">Home</button>
+            <?php endif; ?>
+            <?php if(isset($templateParams["navigationButtons"]) && $templateParams["navigationButtons"]["backward"]): ?>
+                <button id="btnBackward"><</button>
+            <?php endif; ?>
+            <?php if(isset($templateParams["navigationButtons"]) && $templateParams["navigationButtons"]["forward"]): ?>
+                <button id="btnForward">></button>
+            <?php endif; ?>
         </nav>
         <main>
             <?php
