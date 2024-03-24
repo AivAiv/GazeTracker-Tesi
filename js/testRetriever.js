@@ -61,13 +61,27 @@ function attachCreatorEventListeners(tests) {
     }
 }
 
+function attachTesterEventListener(tests) {
+    for (let i = 0; i < tests.length; i++) {
+        if (tests[i]["active"] == 1) { //FIXME: Migliorabile, checkare active in populateHome non in generateTesterTest
+            btnTest = document.getElementById("testHome_" + tests[i]["id"]);
+            btnTest.test = tests[i];
+            btnTest.addEventListener("click", function (event) {
+                event.preventDefault();
+                sessionStorage.setItem("test", event.currentTarget.test["id"]);
+                window.location.href = './executeTest-redirector.php';
+            });
+        }
+    }
+}
+
 function populateHome() {
     axios.get('../api/api-testRetrieve.php').then(response => {
         if (response.data["testsRetrieved"] && response.data["userType"] == "T") {
             let tests = generateTesterTests(response.data["tests"]);
             const main = document.getElementById("testContainer");
             main.innerHTML = tests;
-            //TODO:attachEventListener();
+            attachTesterEventListener(response.data["tests"]);
         } else if (response.data["testsRetrieved"] && response.data["userType"] == "C") {
             let tests = generateCreatorTests(response.data["tests"]);
             const main = document.getElementById("testContainer");
