@@ -1,1 +1,1 @@
-console.log(sessionStorage.getItem("test"));
+console.log(JSON.parse(sessionStorage.getItem("test")));

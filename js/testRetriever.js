@@ -68,7 +68,7 @@ function attachTesterEventListener(tests) {
             btnTest.test = tests[i];
             btnTest.addEventListener("click", function (event) {
                 event.preventDefault();
-                sessionStorage.setItem("test", event.currentTarget.test["id"]);
+                sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
                 window.location.href = './executeTest-redirector.php';
             });
         }
