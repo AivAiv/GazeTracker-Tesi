@@ -1,13 +1,14 @@
 if (document.querySelector("#btnLogout") != null) {
     document.querySelector("#btnLogout").addEventListener("click", function (event) {
         event.preventDefault();
-        window.location.href = '../../index.php';
+        sessionStorage.clear();
+        window.location.replace('../../index.php');
     });
 }
 
 if (document.querySelector("#btnHome") != null) {
     document.querySelector("#btnHome").addEventListener("click", function (event) {
         event.preventDefault();
-        window.location.href = './home-redirector.php';
+        window.location.replace('./home-redirector.php');
     });
 }

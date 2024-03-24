@@ -1,7 +1,7 @@
 <?php
 	require_once '../../bootstrap.php';
 		
-	$templateParams["title"] = "GazeTracker";
+	$templateParams["title"] = "GazeTracker - Home";
 	$templateParams["pageName"] = "home.php";
 	$templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", 
 									"https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js", 
