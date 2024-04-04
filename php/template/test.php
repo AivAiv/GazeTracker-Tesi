@@ -1,8 +1,17 @@
-<section id="testStage"></section>
+<section id="testStage">
+    <section id="calibrationPage">
+        <button class="btnConf1">5</button>
+        <button class="btnConf2">5</button>
+        <button class="btnConf3">5</button>
+        <button class="btnConf4">5</button>
+
+        <p>Clicclare su tutti e 4 i bottoni finchè non diventano verdi per calibrare la libreria</p>
+    </section>
+</section>
 <div>Tempo rimanente: <span>00:01:00</span></div>
 
 <!-- ---------------• ↓↓ SIMONE ↓↓ •--------------- -->
-<div class="row" id="preview">
+<!--<div class="row" id="preview">
     <?php
         $okVar[0]['attivo'] = true;
         if ($okVar[0]['attivo']) {
@@ -32,5 +41,5 @@
         </div>";
         }
     ?>
-</div>
+</div>-->
 <!-- ---------------• ↑↑ SIMONE ↑↑ •--------------- -->

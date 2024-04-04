@@ -1,6 +1,91 @@
+const buttonContainer = document.getElementById("calibrationPage");
+const pageContainer = document.getElementById("testStage");
+const test = JSON.parse(sessionStorage.getItem("test"));
+
+let calibrationButtons = Array.from(buttonContainer.children);
+calibrationButtons.splice(4,1);
+let calibrationClicks = [5,5,5,5];
+let currentPageIndex = 0;
+
 console.log(JSON.parse(sessionStorage.getItem("test")));
+console.log(calibrationButtons);
+console.log(calibrationClicks);
+
+calibrationButtons.forEach(btn => {
+    btn.caller = btn;
+    btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        let btnId = this.classList["value"].substr(-1);
+        if (calibrationClicks[btnId-1] > 1) {
+            calibrationClicks[btnId-1]--;
+            //console.log(btnId + " - " + calibrationClicks[btnId-1]);
+        } else {
+            calibrationClicks[btnId-1] = "✓";
+            if (isCalibrationEnded()) {
+                loadCurrentPage();
+            }
+        }
+        btn.innerHTML = calibrationClicks[btnId-1];
+    });
+});
+
+setForwardButton();
+
+function isCalibrationEnded() { return calibrationClicks.every(btn => btn == "✓"); }
+
+function loadCurrentPage() {
+    console.log("carico la pagina");
+    console.log(test["pages"]);
+    //document.getElementById("div_console").disabled = false;
+    //webgazer.pause();
+    if (test["pages"][currentPageIndex] != null) {
+        drawPage(test["pages"][currentPageIndex]);
+    } else {
+        pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
+    }
+    //webgazer.resume();
+    //calibrazioneFinita= true;
+}
+
+function drawPage(page) {
+    console.log(document.getElementById("btnForward"));
+    if (page["image"] != null) {
+        pageContainer.innerHTML = `<div> immagine </div>`;//`<img src="#"/>`;
+    } else if (page["link"] != null) {
+        pageContainer.innerHTML = `<div> link </div>`;//`<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>`;
+    } else {
+        pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
+    }
+}
+
+function setForwardButton() {
+    let btnForward = document.getElementById("btnForward");
+    if (btnForward != null) {
+        btnForward.addEventListener("click", nextPage);
+    }
+}
+
+function nextPage() { 
+    currentPageIndex ++;
+    console.log(currentPageIndex);
+    loadCurrentPage();
+}
+
+/*function backward() {
+    if (indexPag - 1 >= 0) {
+        webgazer.pause();
+        indexPag--;
+        if (pagine[indexPag].Photo != null) {
+            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
+        } else {
+            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
+        }
+        webgazer.resume();
+    }
+}*/
 
 // ---------------• ↓↓ SIMONE ↓↓ •---------------
+/*
 var xPerc;
 var yPerc;
 var eyeTracker = document.getElementById('preview');
@@ -15,7 +100,7 @@ function calibrazione(e){
     if(val <= 1){
         e.classList.remove("btn-secondary");
         e.classList.add("btn-success");
-        e.innerHTML = "✓";
+        e.innerHTML = "";
         checkConf();
     }else{
         val = val-1;
@@ -45,6 +130,9 @@ function checkConf(){
     }
 }
 
+*/
+
+/*
 function generateUUID() {
 
     uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
@@ -128,7 +216,9 @@ function trasformaPercentuale(x, y) {
     //console.log('x:', xPerc, 'y:', yPerc);
     return { x: xPerc, y: yPerc };
 }
+*/
 
+/*
 function forward() {
     if (pagine.length > indexPag + 1) {
         webgazer.pause();
@@ -155,5 +245,4 @@ function backward() {
         }
         webgazer.resume();
     }
-}
-// ---------------• ↑↑ SIMONE ↑↑ •---------------
+}*/
