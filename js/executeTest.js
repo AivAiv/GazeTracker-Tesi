@@ -40,11 +40,9 @@ function loadCurrentPage() {
     //webgazer.pause();
     if (test["pages"].length === 0) {
         pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
-    }
-    if (test["pages"][currentPageIndex] != null) {
+    } else if (test["pages"][currentPageIndex] != null) {
         drawPage(test["pages"][currentPageIndex]);
-    }
-    if (currentPageIndex == test["pages"].length) {
+    } else if (currentPageIndex == test["pages"].length) {
         pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
     }
     //webgazer.resume();
