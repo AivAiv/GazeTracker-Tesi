@@ -1,51 +1,25 @@
-const buttonContainer = document.getElementById("calibrationPage");
+//FIXME: Codice duplicato di executeTest per visualizzazione e scorrimento pagine
+const buttonContainer = document.getElementById("calibrationPage"); 
 const pageContainer = document.getElementById("testStage");
 const test = JSON.parse(sessionStorage.getItem("test"));
 
-let calibrationButtons = Array.from(buttonContainer.children);
-calibrationButtons.splice(4,1);
-let calibrationClicks = [5,5,5,5];
 let currentPageIndex = 0;
 
 console.log(JSON.parse(sessionStorage.getItem("test")));
-console.log(calibrationButtons);
-console.log(calibrationClicks);
 
-calibrationButtons.forEach(btn => {
-    btn.caller = btn;
-    btn.addEventListener("click", function (event) {
-        event.preventDefault();
-        let btnId = this.classList["value"].substr(-1);
-        if (calibrationClicks[btnId-1] > 1) {
-            calibrationClicks[btnId-1]--;
-            //console.log(btnId + " - " + calibrationClicks[btnId-1]);
-        } else {
-            calibrationClicks[btnId-1] = "✓";
-            if (isCalibrationEnded()) {
-                loadCurrentPage();
-            }
-        }
-        btn.innerHTML = calibrationClicks[btnId-1];
-    });
-});
-
+loadCurrentPage();
 setForwardButton();
-
-function isCalibrationEnded() { return calibrationClicks.every(btn => btn == "✓"); }
+setPreviousButton()
 
 function loadCurrentPage() {
     console.log("carico la pagina");
     console.log(test["pages"]);
     //document.getElementById("div_console").disabled = false;
     //webgazer.pause();
-    if (test["pages"].length === 0) {
-        pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
-    }
     if (test["pages"][currentPageIndex] != null) {
         drawPage(test["pages"][currentPageIndex]);
-    }
-    if (currentPageIndex == test["pages"].length) {
-        pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
+    } else {
+        pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
     }
     //webgazer.resume();
     //calibrazioneFinita= true;
@@ -70,27 +44,23 @@ function setForwardButton() {
 }
 
 function nextPage() { 
-    if (currentPageIndex == test["pages"].length) {
-        currentPageIndex = test["pages"].length;
-    } else {
-        currentPageIndex ++;
-    }
+    currentPageIndex ++;
     console.log(currentPageIndex);
     loadCurrentPage();
 }
 
-/*function backward() {
-    if (indexPag - 1 >= 0) {
-        webgazer.pause();
-        indexPag--;
-        if (pagine[indexPag].Photo != null) {
-            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
-        } else {
-            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
-        }
-        webgazer.resume();
+function setPreviousButton() {
+    let btnBackward = document.getElementById("btnBackward");
+    if (btnBackward != null) {
+        btnBackward.addEventListener("click", previousPage);
     }
-}*/
+}
+
+function previousPage() { 
+    currentPageIndex --;
+    console.log(currentPageIndex);
+    loadCurrentPage();
+}
 
 // ---------------• ↓↓ SIMONE ↓↓ •---------------
 /*
