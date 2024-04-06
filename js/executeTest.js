@@ -6,6 +6,33 @@ let calibrationButtons = Array.from(buttonContainer.children);
 calibrationButtons.splice(4,1);
 let calibrationClicks = [5,5,5,5];
 let currentPageIndex = 0;
+let calibrationEnded = false;
+
+
+//---
+var xPerc;
+var yPerc;
+var eyeTracker = document.getElementById('testStage');
+var eyeTrackerRect = eyeTracker.getBoundingClientRect();
+var uuid;
+var webgazer;
+
+var calibrazioneFinita= false;
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("CARICAMENTO utente");
+    generateUUID();
+    console.log(uuid);
+    if(test["pages"]){
+        console.log("inizio webgazer");
+        initWebGazer();
+    }else{
+        console.log("pagine non caricate");
+    }
+    
+});
+//---
+
 
 console.log(JSON.parse(sessionStorage.getItem("test")));
 console.log(calibrationButtons);
@@ -23,6 +50,7 @@ calibrationButtons.forEach(btn => {
             calibrationClicks[btnId-1] = "✓";
             if (isCalibrationEnded()) {
                 loadCurrentPage();
+                calibrationEnded = true;
             }
         }
         btn.innerHTML = calibrationClicks[btnId-1];
@@ -37,7 +65,7 @@ function loadCurrentPage() {
     console.log("carico la pagina");
     console.log(test["pages"]);
     //document.getElementById("div_console").disabled = false;
-    //webgazer.pause();
+    webgazer.pause();
     if (test["pages"].length === 0) {
         pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
     } else if (test["pages"][currentPageIndex] != null) {
@@ -45,8 +73,7 @@ function loadCurrentPage() {
     } else if (currentPageIndex == test["pages"].length) {
         pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
     }
-    //webgazer.resume();
-    //calibrazioneFinita= true;
+    webgazer.resume();
 }
 
 function drawPage(page) {
@@ -77,30 +104,17 @@ function nextPage() {
     loadCurrentPage();
 }
 
-/*function backward() {
-    if (indexPag - 1 >= 0) {
-        webgazer.pause();
-        indexPag--;
-        if (pagine[indexPag].Photo != null) {
-            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
-        } else {
-            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
-        }
-        webgazer.resume();
-    }
-}*/
-
 // ---------------• ↓↓ SIMONE ↓↓ •---------------
-/*
-var xPerc;
+
+/*var xPerc;
 var yPerc;
-var eyeTracker = document.getElementById('preview');
+var eyeTracker = document.getElementById('testStage');
 var eyeTrackerRect = eyeTracker.getBoundingClientRect();
 var uuid;
-var webgazer;
+let webgazer;
 
-var calibrazioneFinita= false;
-
+var calibrazioneFinita= false;*/
+/*
 function calibrazione(e){
     let val = + e.innerHTML;
     if(val <= 1){
@@ -138,7 +152,7 @@ function checkConf(){
 
 */
 
-/*
+
 function generateUUID() {
 
     uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
@@ -147,7 +161,7 @@ function generateUUID() {
         return v.toString(16);
     });
 
-    const formData = new FormData();
+    /*const formData = new FormData();
     formData.append("idPage", pagine[indexPag].ID);
     axios.post("../api/api_get_anonymous_user.php", formData
     ).then(response => {
@@ -159,23 +173,23 @@ function generateUUID() {
             });
         }
         while (response.data.some(item => item.IndexUtenteAnonimo === uuid));
-    });
+    });*/
 
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     console.log("CARICAMENTO utente");
     generateUUID();
     console.log(uuid);
-    if(pagine){
-        console.log(pagine);
+    if(test["pages"]){
+        console.log("inizio webgazer");
         initWebGazer();
     }else{
         console.log("pagine non caricate");
     }
     
-});
+});*/
 
 function initWebGazer() {
     webgazer.setGazeListener(function (data, elapsedTime) {
@@ -187,12 +201,12 @@ function initWebGazer() {
 
         eyeTrackerRect = eyeTracker.getBoundingClientRect();
 
-        if(calibrazioneFinita){
+        if(calibrationEnded){
             if (x >= eyeTrackerRect.left && x <= eyeTrackerRect.left + eyeTrackerRect.width &&
                 y >= eyeTrackerRect.top && y <= eyeTrackerRect.top + eyeTrackerRect.height) {
                 coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
                 //console.log(coords.x);
-                const formData = new FormData();
+                /*const formData = new FormData();
                 formData.append("coord_x", coords.x);
                 formData.append("coord_y", coords.y);
                 formData.append("idPage", pagine[indexPag].ID);
@@ -200,7 +214,7 @@ function initWebGazer() {
                 axios.post("../api/api_add_coordinate.php", formData
                 ).then(response => {
                     console.log(response.data);
-                 });
+                 });*/
             } else {
                 // Il tracciamento è fuori dal quadrato, nascondi il punto di tracciamento degli occhi
                 console.log('nothing');
@@ -222,7 +236,7 @@ function trasformaPercentuale(x, y) {
     //console.log('x:', xPerc, 'y:', yPerc);
     return { x: xPerc, y: yPerc };
 }
-*/
+
 
 /*
 function forward() {
