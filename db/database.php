@@ -131,5 +131,27 @@
 			$stmt->execute();
 			return true;
 		}
+
+		// Simone - unused
+		public function get_all_anonymous_users($id_page) {
+			if (
+				$stmt = $this->db->prepare("SELECT distinct(IndexUtenteAnonimo) FROM registrazione where ID_Visualizzation = ?")
+			) {
+				$stmt->bind_param('i', $id_page);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				return $result->fetch_all(MYSQLI_ASSOC);
+			}
+		}
+
+		//Simone "da rivedere" - unused
+		public function save_test_X($idVisualizzation, $coor_x, $coor_y, $uuid)
+		{
+			if ($stmt = $this->db->prepare("INSERT INTO registrazione(Momento, Coordinata_X, Coordinata_Y, IndexUtenteAnonimo, ID_Visualizzation) VALUES (CURTIME(3), ?, ?, ?, ?)")) {
+				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
+				// Eseguo la query ottenuta.
+				return $stmt->execute();
+			}
+		}
     }
 ?>
