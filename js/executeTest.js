@@ -9,7 +9,7 @@ let currentPageIndex = 0;
 let calibrationEnded = false;
 
 
-//---
+// Simone
 var xPerc;
 var yPerc;
 var eyeTracker = document.getElementById('testStage');
@@ -64,7 +64,6 @@ function isCalibrationEnded() { return calibrationClicks.every(btn => btn == "�
 function loadCurrentPage() {
     console.log("carico la pagina");
     console.log(test["pages"]);
-    //document.getElementById("div_console").disabled = false;
     webgazer.pause();
     if (test["pages"].length === 0) {
         pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
@@ -104,55 +103,7 @@ function nextPage() {
     loadCurrentPage();
 }
 
-// ---------------• ↓↓ SIMONE ↓↓ •---------------
-
-/*var xPerc;
-var yPerc;
-var eyeTracker = document.getElementById('testStage');
-var eyeTrackerRect = eyeTracker.getBoundingClientRect();
-var uuid;
-let webgazer;
-
-var calibrazioneFinita= false;*/
-/*
-function calibrazione(e){
-    let val = + e.innerHTML;
-    if(val <= 1){
-        e.classList.remove("btn-secondary");
-        e.classList.add("btn-success");
-        e.innerHTML = "";
-        checkConf();
-    }else{
-        val = val-1;
-        e.innerHTML = val;
-    }
-}
-
-function checkConf(){
-    var bottoni = document.querySelectorAll(".btnConf");
-    ok = true;
-    bottoni.forEach(function(btn) {
-        if(btn.classList.contains("btn-secondary")){
-            ok = false;
-        }
-    });
-    if(ok){
-        console.log("carico la pagina");
-        document.getElementById("div_console").disabled = false;
-        webgazer.pause();
-        if (pagine[indexPag].Photo != null) {
-            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
-        } else {
-            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
-        }
-        webgazer.resume();
-        calibrazioneFinita= true;
-    }
-}
-
-*/
-
-
+// Simone
 function generateUUID() {
 
     uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
@@ -177,20 +128,7 @@ function generateUUID() {
 
 }
 
-
-/*document.addEventListener('DOMContentLoaded', function () {
-    console.log("CARICAMENTO utente");
-    generateUUID();
-    console.log(uuid);
-    if(test["pages"]){
-        console.log("inizio webgazer");
-        initWebGazer();
-    }else{
-        console.log("pagine non caricate");
-    }
-    
-});*/
-
+// Simone
 function initWebGazer() {
     webgazer.setGazeListener(function (data, elapsedTime) {
         if (data == null) {
@@ -225,45 +163,16 @@ function initWebGazer() {
     webgazer.applyKalmanFilter(webgazer.params.applyKalmanFilter);
 }
 
-
+// Simone
 function onloadIframeEsegui(e) {
     e.style.height = e.contentWindow.document.body.scrollHeight + 'px';
     document.getElementById("preview").style.height = e.style.height;
 }
 
+// Simone
 function trasformaPercentuale(x, y) {
     xPerc = (x * 100) / eyeTrackerRect.width;
     yPerc = (y * 100) / eyeTrackerRect.height;
     //console.log('x:', xPerc, 'y:', yPerc);
     return { x: xPerc, y: yPerc };
 }
-
-
-/*
-function forward() {
-    if (pagine.length > indexPag + 1) {
-        webgazer.pause();
-        indexPag++;
-        if (pagine[indexPag].Photo != null) {
-            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
-        } else {
-            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
-        }
-        webgazer.resume();
-    }else{
-        window.location.assign("../api/api_ultimaPagina.php");
-    }
-}
-
-function backward() {
-    if (indexPag - 1 >= 0) {
-        webgazer.pause();
-        indexPag--;
-        if (pagine[indexPag].Photo != null) {
-            document.getElementById("preview").innerHTML = "<img class= 'mx-auto d-block responsive col-12' src=../../img/" + pagine[indexPag].Photo + ">";
-        } else {
-            document.getElementById("preview").innerHTML = "<iframe class= 'mx-auto d-block responsive col-12' scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>";
-        }
-        webgazer.resume();
-    }
-}*/
