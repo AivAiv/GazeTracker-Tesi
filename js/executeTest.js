@@ -114,7 +114,7 @@ function generateUUID() {
 
     const formData = new FormData();
     formData.append("idPage", test["pages"][currentPageIndex]["id"]);
-    axios.post("../api/api_get_anonymous_user.php", formData
+    axios.post("../api/api-getAnonymousUser.php", formData
     ).then(response => {
         do {
             uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
@@ -150,7 +150,7 @@ function initWebGazer() {
                 formData.append("coord_y", coords.y);
                 formData.append("idPage", test["pages"][currentPageIndex]["id"]);
                 formData.append("uuid", uuid);
-                axios.post("../api/api_add_coordinate.php", formData
+                axios.post("../api/api-addCoordinate.php", formData
                 ).then(response => {
                     //console.log(response.data);
                  });

@@ -133,7 +133,7 @@
 		}
 
 		// Simone - unused
-		public function get_all_anonymous_users($id_page) {
+		public function getAllAnonymousUsers($id_page) {
 			if (
 				$stmt = $this->db->prepare("SELECT distinct(anonym_user_index) FROM webgazer_data where cod_page = ?")
 			) {
@@ -145,7 +145,7 @@
 		}
 
 		//Simone "da rivedere" - unused
-		public function save_test_X($idVisualizzation, $coor_x, $coor_y, $uuid)
+		public function saveTest($idVisualizzation, $coor_x, $coor_y, $uuid)
 		{
 			if ($stmt = $this->db->prepare("INSERT INTO webgazer_data(instant, x, y, anonym_user_index, cod_page) VALUES (CURTIME(3), ?, ?, ?, ?)")) {
 				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
