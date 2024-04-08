@@ -80,7 +80,7 @@ function drawPage(page) {
     if (page["image"] != null) {
         pageContainer.innerHTML = `<div> immagine </div>`;//`<img src="#"/>`;
     } else if (page["link"] != null) {
-        pageContainer.innerHTML = `<div> link </div>`;//`<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = " + pagine[indexPag].link + "></iframe>`;
+        pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + test["pages"][currentPageIndex]["link"] + `"></iframe>`;
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }
