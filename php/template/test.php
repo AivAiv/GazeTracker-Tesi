@@ -1,4 +1,4 @@
-<section id="testStage">
+<section id="testStage" style="width: 100%; height: 200px; background-color: peachpuff;"> <!--TODO: Remove style-->
     <section id="calibrationPage">
         <button class="btnConf1">5</button>
         <button class="btnConf2">5</button>

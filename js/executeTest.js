@@ -161,8 +161,8 @@ function generateUUID() {
         return v.toString(16);
     });
 
-    /*const formData = new FormData();
-    formData.append("idPage", pagine[indexPag].ID);
+    const formData = new FormData();
+    formData.append("idPage", test["pages"][currentPageIndex]["id"]);
     axios.post("../api/api_get_anonymous_user.php", formData
     ).then(response => {
         do {
@@ -173,7 +173,7 @@ function generateUUID() {
             });
         }
         while (response.data.some(item => item.IndexUtenteAnonimo === uuid));
-    });*/
+    });
 
 }
 
@@ -201,23 +201,24 @@ function initWebGazer() {
 
         eyeTrackerRect = eyeTracker.getBoundingClientRect();
 
-        if(calibrationEnded){
+        if(calibrationEnded && (currentPageIndex != test["pages"].length)){
             if (x >= eyeTrackerRect.left && x <= eyeTrackerRect.left + eyeTrackerRect.width &&
                 y >= eyeTrackerRect.top && y <= eyeTrackerRect.top + eyeTrackerRect.height) {
                 coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
                 //console.log(coords.x);
-                /*const formData = new FormData();
+                console.log("SENDING: " + currentPageIndex);
+                const formData = new FormData();
                 formData.append("coord_x", coords.x);
                 formData.append("coord_y", coords.y);
-                formData.append("idPage", pagine[indexPag].ID);
+                formData.append("idPage", test["pages"][currentPageIndex]["id"]);
                 formData.append("uuid", uuid);
                 axios.post("../api/api_add_coordinate.php", formData
                 ).then(response => {
-                    console.log(response.data);
-                 });*/
+                    //console.log(response.data);
+                 });
             } else {
                 // Il tracciamento è fuori dal quadrato, nascondi il punto di tracciamento degli occhi
-                console.log('nothing');
+                //console.log('nothing');
             }
         }
     }).begin();
