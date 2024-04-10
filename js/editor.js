@@ -12,7 +12,7 @@ function generateTests(tests) {
     return result;
 }
 
-function deleteTest(testId) {
+function deleteTest(testId) { //TODO: delete stored pages
     const formData = new FormData();
     formData.append('testId', testId);
     axios.post('../api/api-delete.php', formData).then(response => {
@@ -24,20 +24,38 @@ function deleteTest(testId) {
     openCreateTab();
 }
 
-function createTest(testName, pages) {
-    const formData = new FormData();
-    formData.append('testName', testName);
-    formData.append('pages', JSON.stringify(pagesHolder.getPages()));
-    axios.post('../api/api-create.php', formData).then(response => {
-        if (response.data["creationSuccess"]) {
-            console.log("[LOG] : Created test - " + testName);
-            updateTestList();
+function createTest(testName) {
+    // Create empty test
+    const testData = new FormData();
+    let testId;
+    testData.append('testName', testName);
+    axios.post('../api/api-create.php', testData).then(response => {
+        console.log(response.data); //FIXME: delete
+        if (response.data["testCreated"]) {
+            testId = response.data["testId"];
+            console.log(pagesHolder.getPages());
+            // Fill the test with pages //TODO: Attualmente nessun controllo sul corretto upload delle pagine
+            pagesHolder.getPages().forEach(page => {
+                let pageData = new FormData();
+                pageData.append('testId', testId);
+                pageData.append('page', JSON.stringify(page));
+                if (page["image"] != null) { pageData.append('imgFile', page["image"]); }
+                axios.post('../api/api-create.php', pageData).then(response => {
+                    console.log(response.data); //FIXME: delete
+                    //if (response.data["addedPage"]) {
+                    //}
+                    console.log("[LOG] : Created test - " + testName);
+                    updateTestList();
+                    resetCreateTab();
+                });
+            });
         }
     });
-    resetCreateTab();
+
+
 }
 
-function modifyTest(testId, name) {
+function modifyTest(testId, name) {//TODO: fix images modification
     const formData = new FormData();
     formData.append('testId', testId);
     formData.append('name', name);

@@ -121,6 +121,14 @@
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('sissss', $name, $codTest, $link, $image, $text, $maxTime);
 			$stmt->execute();
+			return $this->db->insert_id;
+		}
+
+		public function updateImageName($pageId, $newName) { //unused
+			$query = "UPDATE `page` SET `image` = ? WHERE `page`.`id` = ?;";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('is', $pageId, $newName);
+			$stmt->execute();
 			return true;
 		}
 
@@ -132,7 +140,7 @@
 			return true;
 		}
 
-		// Simone - unused
+		// Simone
 		public function getAllAnonymousUsers($id_page) {
 			if (
 				$stmt = $this->db->prepare("SELECT distinct(anonym_user_index) FROM webgazer_data where cod_page = ?")
@@ -144,12 +152,11 @@
 			}
 		}
 
-		//Simone "da rivedere" - unused
+		//Simone "da rivedere"
 		public function saveTest($idVisualizzation, $coor_x, $coor_y, $uuid)
 		{
 			if ($stmt = $this->db->prepare("INSERT INTO webgazer_data(instant, x, y, anonym_user_index, cod_page) VALUES (CURTIME(3), ?, ?, ?, ?)")) {
 				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
-				// Eseguo la query ottenuta.
 				return $stmt->execute();
 			}
 		}

@@ -25,7 +25,7 @@ class PopUp {
                 <input type="text" name="txtName" required autofocus/>
             </label>
             <label>Contenuto
-                <input type="file" name="fleImage">
+                <input type="file" name="fleImage" accept="image/png, image/jpeg, image/jpg">
             </label>
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
@@ -81,7 +81,28 @@ class PopUp {
 
     //#region Event listeners
     #attachImageListeners() {
+        let form = document.querySelector("#" + this.#domId + " form");
+        form.domId = this.#domId;
+        form.pHolder = this.#pagesHolder;
+        form.pListM = this.#pagesListMod;
+        form.pListC = this.#pagesListCre;
+        form.caller = this;
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            event.currentTarget.pHolder.addPage({
+                name : document.querySelector("#" + event.currentTarget.domId + " input[name=txtName]").value,
+                link : null,
+                image : document.querySelector("#" + event.currentTarget.domId + " input[name=fleImage]").files[0],
+                text : null,
+                maxTime : document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value
+            });
+            event.currentTarget.caller.closePopUp();
+            event.currentTarget.pListM.updateTestPages();
+            event.currentTarget.pListC.updateTestPages();
+        });
         
+        form.addEventListener("reset", function (event) { event.currentTarget.caller.closePopUp(); });
     }
 
     #attachLinkListeners() {
