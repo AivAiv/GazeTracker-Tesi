@@ -78,7 +78,7 @@ function loadCurrentPage() {
 function drawPage(page) {
     console.log(document.getElementById("btnForward"));
     if (page["image"] != null) {
-        pageContainer.innerHTML = `<div> immagine </div>`;//`<img src="#"/>`;
+        pageContainer.innerHTML = `<img src="../../img/` + test["pages"][currentPageIndex]["image"] + `"/>`;
     } else if (page["link"] != null) {
         pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + test["pages"][currentPageIndex]["link"] + `"></iframe>`;
     } else {
