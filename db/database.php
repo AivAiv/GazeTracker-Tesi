@@ -125,9 +125,9 @@
 		}
 
 		public function updateImageName($pageId, $newName) { //unused
-			$query = "UPDATE `page` SET `image` = ? WHERE `page`.`id` = ?;";
+			$query = "UPDATE `page` SET `image` = ? WHERE `id` = ?;";
 			$stmt = $this->db->prepare($query);
-			$stmt->bind_param('is', $pageId, $newName);
+			$stmt->bind_param('si', $newName, $pageId);
 			$stmt->execute();
 			return true;
 		}
