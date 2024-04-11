@@ -80,6 +80,14 @@
 		}
 
 		public function deleteTest($testId) {
+			$imgDir = "../../img/";
+			$pages = $this->getTestPages($testId);
+			foreach($pages as $page) {
+				if ($page["image"] != null) {
+					unlink($imgDir . $page["image"]);
+				}
+			}
+
 			$stmt = $this->db->prepare("DELETE FROM `test` WHERE `test`.`id` = ?;");
 			$stmt->bind_param('i', $testId);
             $stmt->execute();
@@ -124,7 +132,7 @@
 			return $this->db->insert_id;
 		}
 
-		public function updateImageName($pageId, $newName) { //unused
+		public function updateImageName($pageId, $newName) {
 			$query = "UPDATE `page` SET `image` = ? WHERE `id` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('si', $newName, $pageId);
@@ -133,6 +141,12 @@
 		}
 
 		public function removeTestPage($id) {
+			$imgDir = "../../img/";
+			$page = $this->getPage($id);
+			if ($page[0]["image"] != null) {
+				unlink($imgDir . $page[0]["image"]);
+			}
+
 			$query = "DELETE FROM `page` WHERE `page`.`id` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('i', $id);
@@ -159,6 +173,15 @@
 				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
 				return $stmt->execute();
 			}
+		}
+
+		public function getPage($pageId) {
+			$query = "SELECT * FROM `page` WHERE `id` = ?;";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('i', $pageId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			return $result->fetch_all(MYSQLI_ASSOC);
 		}
     }
 ?>

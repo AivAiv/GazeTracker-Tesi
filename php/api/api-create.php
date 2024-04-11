@@ -10,7 +10,7 @@
 		$result["testCreated"] = true;
 	}
 
-	if(isset($_POST["testId"]) && isset($_POST["page"])) { //TODO: Forse otrei farlo direttamente nel databaseHelper
+	if(isset($_POST["testId"]) && isset($_POST["page"])) { //TODO: Forse potrei farlo direttamente nel databaseHelper
 		$page = json_decode($_POST["page"], true);
 		if (isset($_FILES["imgFile"])) { // Add image page
 			$pageId = $dbh->addTestPage($page["name"], $_POST["testId"], $page["link"], "missing file", $page["text"], $page["maxTime"]);
