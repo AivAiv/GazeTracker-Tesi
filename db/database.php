@@ -153,7 +153,9 @@
 			$imgDir = "../../img/";
 			$page = $this->getPage($id);
 			if ($page[0]["image"] != null) {
-				unlink($imgDir . $page[0]["image"]);
+				if (file_exists($imgDir . $page[0]["image"])) {
+					unlink($imgDir . $page[0]["image"]);
+				}
 			}
 
 			$query = "DELETE FROM `page` WHERE `page`.`id` = ?;";

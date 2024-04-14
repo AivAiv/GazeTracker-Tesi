@@ -30,7 +30,6 @@ function createTest(testName) {//TODO: Update with all the page sending
     var testId;
     testData.append('testName', testName);
     axios.post('../api/api-create.php', testData).then(response => {
-        console.log(response.data); //FIXME: delete
         if (response.data["testCreated"]) {
             testId = response.data["testId"];
             console.log(pagesHolder.getPages());
@@ -41,7 +40,6 @@ function createTest(testName) {//TODO: Update with all the page sending
                 pageData.append('page', JSON.stringify(page));
                 if (page["image"] != null) { pageData.append('imgFile', page["image"]); }
                 axios.post('../api/api-create.php', pageData).then(response => {
-                    console.log(response.data); //FIXME: delete
                     //if (response.data["addedPage"]) {
                     //}
                     console.log("[LOG] : Created test - " + testName);
@@ -53,15 +51,13 @@ function createTest(testName) {//TODO: Update with all the page sending
     });
 }
 
-function modifyTest(testId, name) {//TODO: fix images modification
+function modifyTest(testId, name) {
     const testData = new FormData();
     var testId;
     testData.append('testId', testId);
     testData.append('name', name);
     axios.post('../api/api-edit.php', testData).then(response => {  // Update test name
-        console.log(response.data); //FIXME: delete
         if (response.data["editSuccess"]) {
-            console.log(pagesHolder.getPages());
             var pagesToAdd = pagesHolder.getPages().filter(p=>{return p["id"] == null});
             var pagesRemaining = pagesHolder.getPages().filter(p=>{return p["id"] != null});
             //--------
@@ -74,7 +70,6 @@ function modifyTest(testId, name) {//TODO: fix images modification
             formData.append('testId', testId);
             formData.append('pagesRemaining', JSON.stringify(pagesRemaining));
             axios.post('../api/api-edit.php', formData).then(response => {  // Remove deleted pages
-                console.log(response.data);
                 if (response.data["editSuccess"]) {
                     let pageData = new FormData();
                     pageData.append('testId', testId);
@@ -82,14 +77,10 @@ function modifyTest(testId, name) {//TODO: fix images modification
                         if (page["image"] != null) {
                             pageData.append('imgsToAdd[]', page["image"]);
                             page["listId"] = pageData.getAll("imgsToAdd[]").length - 1;
-                            console.log(pageData.getAll("imgsToAdd[]").length);
                         }
                     });
                     pageData.append('pagesToAdd', JSON.stringify(pagesToAdd));
-                    console.log("TO ADD:");
-                    console.log(pagesToAdd);
                     axios.post('../api/api-edit.php', pageData).then(response => {
-                        console.log(response.data); //FIXME: delete
                         if (response.data["addedPages"]) {
                             console.log("[LOG] : Modified test - " + testId);
                             updateTestList();
@@ -98,50 +89,8 @@ function modifyTest(testId, name) {//TODO: fix images modification
                     }); 
                 }
             });
-
-
-
-
-
-
-
-
-            // Fill the test with pages //TODO: Attualmente nessun controllo sul corretto upload delle pagine
-            /*pagesHolder.getPages().forEach(page => {
-                let pageData = new FormData();
-                pageData.append('testId', testId);
-                pageData.append('page', JSON.stringify(page));
-                pageData.append('allPages', JSON.stringify(pagesHolder.getPages()));
-                pagesHolder.getPages().forEach(page => {
-                    if (page["image"] != null) { pageData.append('allFile[]', page["image"]); }
-                });
-                if (page["image"] != null) { pageData.append('imgFile', [page["image"], page["image"]]); }
-                axios.post('../api/api-edit.php', pageData).then(response => {
-                    console.log(response.data); //FIXME: delete
-                    //if (response.data["addedPage"]) {
-                    //}
-                    console.log("[LOG] : Modified test - " + name);
-                    updateTestList();
-                    openCreateTab();
-                });
-            });*/
         }
     });
-
-
-
-    /*const formData = new FormData();
-    formData.append('testId', testId);
-    formData.append('name', name);
-    formData.append('pages', JSON.stringify(pagesHolder.getPages()));
-    axios.post('../api/api-edit.php', formData).then(response => {
-        console.log(response.data);
-        if (response.data["editSuccess"]) {
-            console.log("[LOG] : Modified test - " + testId);
-            updateTestList();
-        }
-    });
-    openCreateTab();*/
 }
 
 function openCreateTab() {
