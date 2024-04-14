@@ -123,6 +123,15 @@
 			$result = $stmt->get_result();
 			return $result->fetch_all(MYSQLI_ASSOC);
 		}
+		
+		public function getPage($pageId) {
+			$query = "SELECT * FROM `page` WHERE `id` = ?;";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('i', $pageId);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			return $result->fetch_all(MYSQLI_ASSOC);
+		}
 
 		public function addTestPage($name, $codTest, $link, $image, $text, $maxTime) {
 			$query = "INSERT INTO `page` (`id`, `name`, `cod_test`, `link`, `image`, `text`, `max_time`) VALUES (NULL, ?, ?, ?, ?, ?, ?);";
@@ -173,15 +182,6 @@
 				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
 				return $stmt->execute();
 			}
-		}
-
-		public function getPage($pageId) {
-			$query = "SELECT * FROM `page` WHERE `id` = ?;";
-			$stmt = $this->db->prepare($query);
-			$stmt->bind_param('i', $pageId);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			return $result->fetch_all(MYSQLI_ASSOC);
 		}
     }
 ?>
