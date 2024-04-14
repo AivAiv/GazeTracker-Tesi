@@ -12,7 +12,7 @@ function generateTests(tests) {
     return result;
 }
 
-function deleteTest(testId) { //TODO: delete stored pages
+function deleteTest(testId) {
     const formData = new FormData();
     formData.append('testId', testId);
     axios.post('../api/api-delete.php', formData).then(response => {
@@ -20,8 +20,8 @@ function deleteTest(testId) { //TODO: delete stored pages
             console.log("[LOG] : Deleted test - " + testId);
             updateTestList();
         }
+        openCreateTab();
     });
-    openCreateTab();
 }
 
 function createTest(testName) {
@@ -31,7 +31,7 @@ function createTest(testName) {
     testData.append('testName', testName);
     axios.post('../api/api-create.php', testData).then(response => {
         console.log(response.data); //FIXME: delete
-        if (response.data["testCreated"]) {
+        if (response.data["editSuccess"]) {
             testId = response.data["testId"];
             console.log(pagesHolder.getPages());
             // Fill the test with pages //TODO: Attualmente nessun controllo sul corretto upload delle pagine
@@ -51,12 +51,39 @@ function createTest(testName) {
             });
         }
     });
-
-
 }
 
 function modifyTest(testId, name) {//TODO: fix images modification
-    const formData = new FormData();
+
+    const testData = new FormData();
+    let testId;
+    testData.append('testId', testId);
+    formData.append('name', name);
+    axios.post('../api/api-edit.php', testData).then(response => {
+        console.log(response.data); //FIXME: delete
+        if (response.data["testEdited"]) {
+            console.log(pagesHolder.getPages());
+            // Fill the test with pages //TODO: Attualmente nessun controllo sul corretto upload delle pagine
+            pagesHolder.getPages().forEach(page => {
+                let pageData = new FormData();
+                pageData.append('testId', testId);
+                pageData.append('page', JSON.stringify(page));
+                if (page["image"] != null) { pageData.append('imgFile', page["image"]); }
+                axios.post('../api/api-edit.php', pageData).then(response => {
+                    console.log(response.data); //FIXME: delete
+                    //if (response.data["addedPage"]) {
+                    //}
+                    console.log("[LOG] : Modified test - " + testName);
+                    updateTestList();
+                    openCreateTab();
+                });
+            });
+        }
+    });
+
+
+
+    /*const formData = new FormData();
     formData.append('testId', testId);
     formData.append('name', name);
     formData.append('pages', JSON.stringify(pagesHolder.getPages()));
@@ -67,7 +94,7 @@ function modifyTest(testId, name) {//TODO: fix images modification
             updateTestList();
         }
     });
-    openCreateTab();
+    openCreateTab();*/
 }
 
 function openCreateTab() {
