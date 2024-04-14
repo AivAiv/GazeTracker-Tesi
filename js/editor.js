@@ -90,11 +90,11 @@ function modifyTest(testId, name) {//TODO: fix images modification
                     console.log(pagesToAdd);
                     axios.post('../api/api-edit.php', pageData).then(response => {
                         console.log(response.data); //FIXME: delete
-                        //if (response.data["addedPage"]) {
-                        //}
-                        console.log("[LOG] : Modified test - " + name);
-                        updateTestList();
-                        openCreateTab();
+                        if (response.data["addedPages"]) {
+                            console.log("[LOG] : Modified test - " + testId);
+                            updateTestList();
+                            openCreateTab();
+                        }
                     }); 
                 }
             });
