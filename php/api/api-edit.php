@@ -8,29 +8,35 @@
 		$result["editSuccess"] = $dbh->modifyTest($_POST["testId"], $_POST["name"]);
 	}
 
-	if(isset($_POST["testId"]) && isset($_POST["page"])) { //TODO: Forse potrei farlo direttamente nel databaseHelper
-		$page = json_decode($_POST["page"], true);
+	if(isset($_POST["testId"]) && isset($_POST["page"]) && isset($_POST["allPages"])) { //TODO: Forse potrei farlo direttamente nel databaseHelper
+		$result["files"] = $_FILES["allFile"];
+		/*$page = json_decode($_POST["page"], true);
+		$allPages = json_decode($_POST["allPages"], true);
 		$dbPages = $dbh->getTestPages($_POST["testId"]);
+		$remainingOldPages = array_filter($allPages, function($p) {
+			if (isset($p["id"])) {
+				return true;
+			}
+			return false;
+		});
 
+		$result["page"] = $page;
+		$result["allPages"] = $allPages;
+		$result["dbPages"] = $dbPages;
+		$result["remainingOldPages"] = $remainingOldPages;
 
-		$oldPage;
-			if (!isset($page["id"])) {
-				createPage();
-			} else {
-				$oldPage = $page;
-
-				$result["db"] = $dbPages;
-				$result["if"] = Array();
-				foreach ($dbPages as $dbPage) {
-					$key = array_search($dbPage["id"], array_column($oldPages, 'id'));
-					array_push($result["if"], $key);
-					if ($key === false) {
-						$dbh->removeTestPage($dbPage["id"]);
-					}
+		if (!isset($page["id"])) {
+			createPage();
+		} else {
+			$result["if"] = Array();
+			foreach ($dbPages as $dbPage) {
+				$key = array_search($dbPage["id"], array_column($remainingOldPages, 'id'));
+				array_push($result["if"], $key);
+				if ($key === false) {
+					$dbh->removeTestPage($dbPage["id"]);
 				}
 			}
-		$result["old"] = $oldPage;
-
+		}*/
 
 		$result["addedPage"] = true;
 	}
@@ -80,7 +86,7 @@
 	echo json_encode($result);
 
 	function createPage() {//FIXME: Duplicated code
-		if (isset($_FILES["imgFile"])) { // Add image page
+		/*if (isset($_FILES["imgFile"])) { // Add image page
 			$pageId = $dbh->addTestPage($page["name"], $_POST["testId"], $page["link"], "missing file", $page["text"], $page["maxTime"]);
             $extension = strtolower(pathinfo($_FILES["imgFile"]["name"], PATHINFO_EXTENSION));
             $pageName = $_SESSION['id'] . "_" . $_POST["testId"] . "_" . $pageId . "." . $extension;
@@ -89,6 +95,6 @@
 			move_uploaded_file($_FILES["imgFile"]["tmp_name"], $pathCompleta);
 		} else { // Add link or text page
 			$pageId = $dbh->addTestPage($page["name"], $_POST["testId"], $page["link"], $page["image"], $page["text"], $page["maxTime"]);
-		}
+		}*/
 	}
 ?>
