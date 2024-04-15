@@ -10,6 +10,7 @@ class PagesList {
       this.#pagesHolder = pHolder;
     }
 
+    // Generates the page cards in editor
     updateTestPages() {
         this.#domList.innerHTML = this.#generatePages();
         this.#attachPageListeners();
