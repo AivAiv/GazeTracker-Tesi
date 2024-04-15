@@ -25,7 +25,7 @@ class PopUp {
                 <input type="text" name="txtName" required autofocus/>
             </label>
             <label>Contenuto
-                <input type="file" name="fleImage" accept="image/png, image/jpeg, image/jpg">
+                <input type="file" name="fleImage" accept="image/png, image/jpeg, image/jpg" required>
             </label>
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
