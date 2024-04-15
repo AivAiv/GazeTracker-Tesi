@@ -8,4 +8,4 @@
         <p>Clicclare su tutti e 4 i bottoni finchè non diventano verdi per calibrare la libreria</p>
     </section>
 </section>
-<div>Tempo rimanente: <span>00:01:00</span></div>
+<div>Tempo rimanente: <span id="tmrDuration">00:01:00</span></div>

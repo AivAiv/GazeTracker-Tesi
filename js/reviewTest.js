@@ -9,7 +9,7 @@ console.log(JSON.parse(sessionStorage.getItem("test")));
 
 loadCurrentPage();
 setForwardButton();
-setPreviousButton()
+setPreviousButton();
 
 function loadCurrentPage() {
     console.log("carico la pagina");

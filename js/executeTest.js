@@ -38,6 +38,8 @@ console.log(JSON.parse(sessionStorage.getItem("test")));
 console.log(calibrationButtons);
 console.log(calibrationClicks);
 
+document.getElementById("tmrDuration").parentNode.style.display = "none";
+
 calibrationButtons.forEach(btn => {
     btn.caller = btn;
     btn.addEventListener("click", function (event) {
@@ -71,6 +73,7 @@ function loadCurrentPage() {
         drawPage(test["pages"][currentPageIndex]);
     } else if (currentPageIndex == test["pages"].length) {
         pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
+        document.getElementById("tmrDuration").parentNode.style.display = "none";
     }
     webgazer.resume();
 }
@@ -84,6 +87,8 @@ function drawPage(page) {
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }
+    document.getElementById("tmrDuration").innerHTML = page["max_time"];
+    document.getElementById("tmrDuration").parentNode.style.display = "inline-block";
 }
 
 function setForwardButton() {
