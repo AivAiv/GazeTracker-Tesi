@@ -4,7 +4,8 @@
 	$result["executionsRetrieved"] = false;
 
 	if(isset($_POST["pageId"])) {
-		$result["executionsList"] = array("Utente1", "Utente2", "Utente3");
+		$tmpResult = $dbh->getAllAnonymousUsers($_POST['pageId']); //FIXME: uguale a api-getAnonymousUser
+		if (!empty($tmpResult)) {$result["executionsList"] = $tmpResult;}
 		$result["executionsRetrieved"] = true;
 	}
 

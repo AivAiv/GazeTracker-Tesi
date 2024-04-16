@@ -26,10 +26,10 @@ function loadExecutions(page) {
     const formData = new FormData();
     formData.append('pageId', page["id"]);
     axios.post('../api/api-retrieveExecutions.php', formData).then(response => {
-		if(response.data["executionsRetrieved"]) {
-            drawExecutions(response.data["executionsList"]);
+		if(response.data["executionsRetrieved"] && response.data["executionsList"]) {
+            drawExecutions(response.data["executionsList"].map(exec => {return exec["anonym_user_index"]}));
 		} else {
-            executionsContainer.innerHTML = "No executions done yet."
+            executionsContainer.innerHTML = "No executions done yet.";
         }
     });
 }
@@ -43,10 +43,13 @@ function drawExecutions(executionsList) {
     executionsContainer.innerHTML = executions;
     for (let i = 0; i < executionsList.length; i++) {
         let btnExec = document.getElementById("btnExec_" + i);
-        btnExec.exec = executionsList[i];
+        btnExec.execs = executionsList;
         btnExec.addEventListener("click",  function (event) {
             event.preventDefault();
-            console.log(event.currentTarget.exec); //TODO: reviewpage-redirector
+            console.log(event.currentTarget.execs);
+            sessionStorage.clear();
+            sessionStorage.setItem("pages", JSON.stringify(event.currentTarget.execs));
+            window.location.href = './reviewPage-redirector.php';
         });
     }
 }
