@@ -183,9 +183,31 @@ function trasformaPercentuale(x, y) {
 }*/
 
 const pages = JSON.parse(sessionStorage.getItem("pages"));
-let currentPageIndex = 0;
+const lblPageName = document.getElementById("pageName");
+const lblUserId = document.getElementById("userId");
+
+let currentPageIndex = sessionStorage.getItem("currentPageIndex");
 setForwardButton();
 setBackwardButton();
+loadPageInformations();
+
+//FIXME: Adatta al contesto
+function drawPage(page) {
+    if (page["image"] != null) {
+        pageContainer.innerHTML = `<img src="../../img/` + test["pages"][currentPageIndex]["image"] + `"/>`;
+    } else if (page["link"] != null) {
+        pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + test["pages"][currentPageIndex]["link"] + `"></iframe>`;
+    } else {
+        pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
+    }
+    document.getElementById("tmrDuration").innerHTML = page["max_time"];
+    document.getElementById("tmrDuration").parentNode.style.display = "inline-block";
+}
+
+function loadPageInformations() {
+    lblUserId.innerHTML = pages[currentPageIndex];
+    //TODO: Update page name
+}
 
 function setForwardButton() {
     let btnForward = document.getElementById("btnForward");
@@ -209,6 +231,7 @@ function nextPage() {
     }
     console.log(currentPageIndex);
     //loadCurrentPage();
+    loadPageInformations();
 }
 
 function PreviousPage() { 
@@ -219,4 +242,5 @@ function PreviousPage() {
     }
     console.log(currentPageIndex);
     //loadCurrentPage();
+    loadPageInformations();
 }

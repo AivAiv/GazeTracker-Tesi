@@ -44,11 +44,13 @@ function drawExecutions(executionsList) {
     for (let i = 0; i < executionsList.length; i++) {
         let btnExec = document.getElementById("btnExec_" + i);
         btnExec.execs = executionsList;
+        btnExec.pageIndex = i;
         btnExec.addEventListener("click",  function (event) {
             event.preventDefault();
             console.log(event.currentTarget.execs);
             sessionStorage.clear();
             sessionStorage.setItem("pages", JSON.stringify(event.currentTarget.execs));
+            sessionStorage.setItem("currentPageIndex", event.currentTarget.pageIndex);
             window.location.href = './reviewPage-redirector.php';
         });
     }

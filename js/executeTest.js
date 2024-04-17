@@ -98,7 +98,7 @@ function setForwardButton() {
     }
 }
 
-function nextPage() { 
+function nextPage() {
     if (currentPageIndex == test["pages"].length) {
         currentPageIndex = test["pages"].length;
     } else {
