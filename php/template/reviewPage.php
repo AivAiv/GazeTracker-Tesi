@@ -1,5 +1,6 @@
 <div>Pagina: <span id="pageName"></span></div>
 <div>ID utente: <span id="userId"></span></div>
+<button id="btnHeatmap">DOT</button>
 <section id="testStage" style="width: 100%; height: 200px; background-color: peachpuff;"> <!--TODO: Remove style-->
 </section>
 <section id="heatmap" style="width: 100%; height: 200px; position: absolute;"> <!--TODO: Remove style-->

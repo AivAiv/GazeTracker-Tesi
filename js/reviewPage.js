@@ -188,13 +188,25 @@ const lblPageName = document.getElementById("pageName");
 const lblUserId = document.getElementById("userId");
 const pageContainer = document.getElementById("testStage");
 const heatmapContainer = document.getElementById("heatmap");
+const btnHeatmap = document.getElementById("btnHeatmap");
 
 let currentExecIndex = sessionStorage.getItem("currentExecIndex");
 setForwardButton();
 setBackwardButton();
 loadPageInformations();
 
-//FIXME: Adatta al contesto
+btnHeatmap.addEventListener("click", function (event) {
+    event.preventDefault;
+    if (event.currentTarget.innerHTML == "DOT") {
+        event.currentTarget.innerHTML = "LINE";
+        loadHeatMap();
+    }
+    else {
+        event.currentTarget.innerHTML = "DOT";
+        loadLineMap();
+    }
+});
+
 function drawPage(page) {
     if (page["image"] != null) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
@@ -206,11 +218,11 @@ function drawPage(page) {
 }
 
 function loadPageInformations() {
-    //TODO: Update page name
+    lblPageName.innerHTML = currentPage["name"];
     lblUserId.innerHTML = executions[currentExecIndex];
     drawPage(currentPage);
     //TODO: Update visualization time
-    loadLineMap();
+    loadHeatMap();
 }
 
 function setForwardButton() {
@@ -299,7 +311,7 @@ function loadLineMap() {
     axios.post("../api/api-getWebgazerData.php", formData).then(response => {
         ctx.beginPath();
 
-        registrazione = response.data;
+        let registrazione = response.data;
         registrazione.forEach(coordianta => {
             RealCoordiante = trasformaFromPercentuale(coordianta.x, coordianta.y, document.getElementById("heatmap-canvas"));
             ctx.lineTo(RealCoordiante.x, RealCoordiante.y);
