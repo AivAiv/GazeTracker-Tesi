@@ -210,7 +210,7 @@ function loadPageInformations() {
     lblUserId.innerHTML = executions[currentExecIndex];
     drawPage(currentPage);
     //TODO: Update visualization time
-    loadHeatMap();
+    loadLineMap();
 }
 
 function setForwardButton() {
@@ -287,22 +287,21 @@ function loadHeatMap() {
 // Simone
 function loadLineMap() {
 
-    const ctx = document.querySelector(".heatmap-canvas").getContext('2d');
+    const ctx = document.getElementById("heatmap-canvas").getContext('2d');
 
     ctx.strokeStyle = 'red'; // Colore della linea (puoi cambiarlo a tuo piacimento)
     ctx.lineWidth = 1;
 
-    ctx.clearRect(0, 0, document.querySelector(".heatmap-canvas").width, document.querySelector(".heatmap-canvas").height);
+    ctx.clearRect(0, 0, document.getElementById("heatmap-canvas").width, document.getElementById("heatmap-canvas").height);
     const formData = new FormData();
-    formData.append("idPage", +document.getElementById("idPagina").innerHTML);
-    formData.append("IDUtenteAnonimo", document.getElementById("idUtenteAnonimo").innerHTML);
-    axios.post("../api/api_get_registrazioni.php", formData
-    ).then(response => {
+    formData.append("pageId", currentPage["id"]);
+    formData.append("anonymUserId", executions[currentExecIndex]);
+    axios.post("../api/api-getWebgazerData.php", formData).then(response => {
         ctx.beginPath();
 
         registrazione = response.data;
         registrazione.forEach(coordianta => {
-            RealCoordiante = trasformaFromPercentuale(coordianta.x, coordianta.y, document.querySelector(".heatmap-canvas"));
+            RealCoordiante = trasformaFromPercentuale(coordianta.x, coordianta.y, document.getElementById("heatmap-canvas"));
             ctx.lineTo(RealCoordiante.x, RealCoordiante.y);
         });
 
