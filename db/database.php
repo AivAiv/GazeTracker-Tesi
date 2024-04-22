@@ -177,13 +177,24 @@
 			}
 		}
 
-		//Simone "da rivedere"
+		// Simone "da rivedere"
 		public function saveTest($idVisualizzation, $coor_x, $coor_y, $uuid)
 		{
 			if ($stmt = $this->db->prepare("INSERT INTO webgazer_data(instant, x, y, anonym_user_index, cod_page) VALUES (CURTIME(3), ?, ?, ?, ?)")) {
 				$stmt->bind_param('ddsi', $coor_x, $coor_y, $uuid, $idVisualizzation);
 				return $stmt->execute();
 			}
+		}
+
+		// Simone
+		public function get_registrazioni_test($pageId, $userId)
+		{
+		   if ($stmt = $this->db->prepare("SELECT instant, x, y from webgazer_data where cod_page = ? and anonym_user_index = ? order by instant asc")) {
+			  $stmt->bind_param('is', $pageId, $userId);
+			  $stmt->execute();
+			  $result = $stmt->get_result();
+			  return $result->fetch_all(MYSQLI_ASSOC);
+		   }
 		}
     }
 ?>

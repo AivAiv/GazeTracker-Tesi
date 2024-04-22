@@ -1,6 +1,9 @@
 const pagesContainer = document.getElementById("pagesList");
 const executionsContainer = document.getElementById("executionsList");
 const test = JSON.parse(sessionStorage.getItem("test"));
+
+let currentPage;
+
 document.getElementById("testTitle").innerHTML = test["name"];
 loadPages();
 
@@ -16,6 +19,7 @@ function loadPages() {
         btnPage.page = test["pages"][i];
         btnPage.addEventListener("click",  function (event) {
             event.preventDefault();
+            currentPage = event.currentTarget.page;
             loadExecutions(event.currentTarget.page);
         });
     }
@@ -44,13 +48,14 @@ function drawExecutions(executionsList) {
     for (let i = 0; i < executionsList.length; i++) {
         let btnExec = document.getElementById("btnExec_" + i);
         btnExec.execs = executionsList;
-        btnExec.pageIndex = i;
+        btnExec.execIndex = i;
         btnExec.addEventListener("click",  function (event) {
             event.preventDefault();
             console.log(event.currentTarget.execs);
             sessionStorage.clear();
-            sessionStorage.setItem("pages", JSON.stringify(event.currentTarget.execs));
-            sessionStorage.setItem("currentPageIndex", event.currentTarget.pageIndex);
+            sessionStorage.setItem("executions", JSON.stringify(event.currentTarget.execs));
+            sessionStorage.setItem("page", JSON.stringify(currentPage));
+            sessionStorage.setItem("currentExecIndex", event.currentTarget.execIndex);
             window.location.href = './reviewPage-redirector.php';
         });
     }

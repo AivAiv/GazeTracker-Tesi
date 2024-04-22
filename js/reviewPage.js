@@ -182,11 +182,14 @@ function trasformaPercentuale(x, y) {
     return { x: xPerc, y: yPerc };
 }*/
 
-const pages = JSON.parse(sessionStorage.getItem("pages"));
+const executions = JSON.parse(sessionStorage.getItem("executions"));
+const currentPage = JSON.parse(sessionStorage.getItem("page"));
 const lblPageName = document.getElementById("pageName");
 const lblUserId = document.getElementById("userId");
+const pageContainer = document.getElementById("testStage");
+const heatmapContainer = document.getElementById("heatmap");
 
-let currentPageIndex = sessionStorage.getItem("currentPageIndex");
+let currentExecIndex = sessionStorage.getItem("currentExecIndex");
 setForwardButton();
 setBackwardButton();
 loadPageInformations();
@@ -194,19 +197,20 @@ loadPageInformations();
 //FIXME: Adatta al contesto
 function drawPage(page) {
     if (page["image"] != null) {
-        pageContainer.innerHTML = `<img src="../../img/` + test["pages"][currentPageIndex]["image"] + `"/>`;
+        pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
     } else if (page["link"] != null) {
-        pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + test["pages"][currentPageIndex]["link"] + `"></iframe>`;
+        pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }
-    document.getElementById("tmrDuration").innerHTML = page["max_time"];
-    document.getElementById("tmrDuration").parentNode.style.display = "inline-block";
 }
 
 function loadPageInformations() {
-    lblUserId.innerHTML = pages[currentPageIndex];
     //TODO: Update page name
+    lblUserId.innerHTML = executions[currentExecIndex];
+    drawPage(currentPage);
+    //TODO: Update visualization time
+    loadHeatMap();
 }
 
 function setForwardButton() {
@@ -224,23 +228,91 @@ function setBackwardButton() {
 }
 
 function nextPage() {
-    if (currentPageIndex == (pages.length - 1)) {
-        currentPageIndex = (pages.length - 1);
+    if (currentExecIndex == (executions.length - 1)) {
+        currentExecIndex = (executions.length - 1);
     } else {
-        currentPageIndex ++;
+        currentExecIndex ++;
     }
-    console.log(currentPageIndex);
+    console.log(currentExecIndex);
     //loadCurrentPage();
     loadPageInformations();
 }
 
-function PreviousPage() { 
-    if (currentPageIndex <= 0) {
-        currentPageIndex = 0;
+function PreviousPage() {
+    if (currentExecIndex <= 0) {
+        currentExecIndex = 0;
     } else {
-        currentPageIndex --;
+        currentExecIndex --;
     }
-    console.log(currentPageIndex);
+    console.log(currentExecIndex);
     //loadCurrentPage();
     loadPageInformations();
+}
+
+// Simone
+function onloadIframeEsegui(e) {
+    e.style.height = e.contentWindow.document.body.scrollHeight + 'px';
+    document.getElementById("testStage").style.height = e.style.height;
+}
+
+// Simone
+function loadHeatMap() {
+    heatmapContainer.innerHTML = "";
+    heatmapInstance = h337.create({container: heatmapContainer}); // only container is required, the rest will be defaults
+    
+    const formData = new FormData();
+    formData.append("pageId", currentPage["id"]);
+    formData.append("anonymUserId", executions[currentExecIndex]);
+    axios.post("../api/api-getWebgazerData.php", formData).then(response => {
+        var points = [];
+        let registrazione = response.data;
+        registrazione.forEach(coordianta => {
+            RealCoordiante = trasformaFromPercentuale(coordianta.x, coordianta.y, heatmapInstance._renderer.canvas);
+            var point = {
+                x: RealCoordiante.x,
+                y: RealCoordiante.y,
+                value: 10,
+                radius: 10
+            };
+            points.push(point);
+        });
+        var data = {
+            max: 10,
+            data: points
+        };
+        heatmapInstance.setData(data);
+    });
+}
+
+// Simone
+function loadLineMap() {
+
+    const ctx = document.querySelector(".heatmap-canvas").getContext('2d');
+
+    ctx.strokeStyle = 'red'; // Colore della linea (puoi cambiarlo a tuo piacimento)
+    ctx.lineWidth = 1;
+
+    ctx.clearRect(0, 0, document.querySelector(".heatmap-canvas").width, document.querySelector(".heatmap-canvas").height);
+    const formData = new FormData();
+    formData.append("idPage", +document.getElementById("idPagina").innerHTML);
+    formData.append("IDUtenteAnonimo", document.getElementById("idUtenteAnonimo").innerHTML);
+    axios.post("../api/api_get_registrazioni.php", formData
+    ).then(response => {
+        ctx.beginPath();
+
+        registrazione = response.data;
+        registrazione.forEach(coordianta => {
+            RealCoordiante = trasformaFromPercentuale(coordianta.x, coordianta.y, document.querySelector(".heatmap-canvas"));
+            ctx.lineTo(RealCoordiante.x, RealCoordiante.y);
+        });
+
+        ctx.stroke();
+    });
+}
+
+// Simone - duplicato
+function trasformaFromPercentuale(x, y, rect) {
+    xReal = (x * parseFloat(rect.width)) / 100;
+    yReal = (y * parseFloat(rect.height)) / 100;
+    return { x: xReal, y: yReal };
 }
