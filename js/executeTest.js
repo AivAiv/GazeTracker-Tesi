@@ -75,15 +75,16 @@ function loadCurrentPage() {
         pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
         document.getElementById("tmrDuration").parentNode.style.display = "none";
     }
-    webgazer.resume();
 }
 
 function drawPage(page) {
     console.log(document.getElementById("btnForward"));
     if (page["image"] != null) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
+        webgazer.resume();
     } else if (page["link"] != null) {
         pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
+        webgazer.resume();
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }
