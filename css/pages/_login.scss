@@ -1,0 +1,63 @@
+@use './general';
+@use '../components/colors';
+@use '../components/cards';
+@use '../components/buttons';
+@use '../components/inputs';
+
+
+#login_section {
+    @extend %flexed;
+    width: 25vw;
+    height: 60vh;
+
+    #form_login {
+        @include cards.card($width: 90%);
+        padding: 8% 5%;
+        height: 80%;
+        gap: 5%;
+        h1 {
+            font-size: 3.2vw;
+            text-align: center;
+            width: 100%;
+        }
+        div {
+            @extend %flexed;
+            width: 100%;
+            height: 50%;
+            div {
+                @extend %flexed;
+                align-items: flex-start;
+                width: 70%;
+                label {
+                    font-size: small;
+                }
+                input {
+                    @include inputs.textField;
+                    padding: 3px 0px;
+                    width: 100%;
+                    height: 40%;
+                }
+                input::placeholder {
+                    color: colors.$dark-color;
+                }
+            }
+        }
+
+        button {
+            @extend %bigTertiaryButton;
+            padding: 4% 14%;
+        }
+    }
+
+    section {
+        @extend %flexed;
+        width: 100%;
+        margin-top: 10%;
+        gap: 1vh;
+
+        button {
+            @extend %bigSecondaryButton;
+            padding: 4% 10%;
+        }
+    }
+}

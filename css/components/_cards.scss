@@ -1,0 +1,22 @@
+@use '../pages/general';
+@use 'colors';
+
+@mixin card(   
+                $bg: colors.$primary-color,
+                $txtColor: colors.$dark-color, 
+                $radius: 25px,
+                $width: 100%
+            ) {
+    @extend %flexed;
+    background-color: $bg;
+    border: 0px solid transparent;
+    border-radius: $radius;
+    color: $txtColor;
+    width: $width;
+    box-shadow: 0px 1px 5px colors.$shadow;
+}
+
+.card {
+    @include card($width: 25%);
+    gap: 1vh;
+}

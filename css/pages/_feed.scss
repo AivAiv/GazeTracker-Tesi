@@ -1,0 +1,9 @@
+@use './general';
+@use '../components/colors';
+@use '../components/cards';
+@use '../components/buttons';
+@use '../components/inputs';
+
+#feed {
+    background-color: forestgreen;
+}

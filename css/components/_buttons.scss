@@ -1,0 +1,28 @@
+@use 'colors';
+
+@mixin bigButton(   
+                    $bg: colors.$primary-color, 
+                    $txtColor: colors.$dark-color, 
+                    $radius: 100px,
+                    $fontSize: 1vw
+                ) {
+    background-color: $bg;
+    border: 0px solid transparent;
+    border-radius: $radius;
+    color: $txtColor;
+    box-shadow: 0px 1px 5px colors.$shadow;
+    font-weight: bold;
+    font-size: $fontSize;
+}
+
+%bigPrimaryButton {
+    @include bigButton;
+}
+
+%bigSecondaryButton {
+    @include bigButton(colors.$secondary-color, colors.$light-color);
+}
+
+%bigTertiaryButton {
+    @include bigButton(colors.$light-color);
+}

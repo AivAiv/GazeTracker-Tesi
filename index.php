@@ -6,7 +6,7 @@
     $templateParams["title"] = "GazeTracker - Accesso";
     $templateParams["pageName"] = "login.php";
     $templateParams["js"] = array("https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "js/login.js", "js/lib/sha512.js");
-    $templateParams["css"] = array();//"light-background", "register-login", "login");
+    $templateParams["css"] = array("main");
 
     require 'php/template/accessBase.php';
 ?>

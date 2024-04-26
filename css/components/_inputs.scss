@@ -1,0 +1,16 @@
+@use 'colors';
+
+@mixin textField(   
+                    $bg: colors.$primary-color, 
+                    $txtColor: colors.$dark-color, 
+                    $radius: 5px
+                ) {
+    background-color: $bg;
+    border: 1px solid colors.$dark-color;
+    border-radius: $radius;
+    color: $txtColor;
+}
+
+@mixin radioField($accentColor: colors.$secondary-color) {
+    accent-color: $accentColor;
+}

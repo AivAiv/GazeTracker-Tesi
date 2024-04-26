@@ -1,0 +1,94 @@
+@use './general';
+@use '../components/colors';
+@use '../components/cards';
+@use '../components/buttons';
+@use '../components/inputs';
+
+
+#signin_section {
+    display: none;
+    @extend %flexed;
+    width: 25vw;
+    height: 77vh;
+
+    #form_signin{
+        @include cards.card($width: 90%);
+        padding: 8% 5%;
+        height: 80%;
+        gap: 5%;
+        h1 {
+            font-size: 3.2vw;
+            text-align: center;
+            width: 100%;
+        }
+        div {
+            @extend %flexed;
+            width: 100%;
+            height: 70%;
+            div {
+                @extend %flexed;
+                align-items: flex-start;
+                width: 70%;
+                label {
+                    font-size: small;
+                }
+                input {
+                    @include inputs.textField;
+                    padding: 3px 0px;
+                    width: 100%;
+                    height: 40%;
+                }
+                input::placeholder {
+                    color: colors.$dark-color;
+                }
+            }
+
+            #radio {
+                @extend %flexed;
+                width: 100%;
+                label {
+                    font-weight: bold;
+                    font-size: 1vw;
+                    margin-top: 2%;
+                }
+                div {
+                    @extend %flexed;
+                    flex-direction: row;
+                    justify-content: center;
+                    width: 70%;
+                    label {
+                        font-size: small;
+                        font-weight: normal;
+                        margin-top: 0;
+                        font-size: 0.9vw;
+                    }
+                    div {
+                        width: 15%;
+                        font-weight: bold;
+                    }
+                    input {
+                        @include inputs.radioField;
+                        width: 10%;
+                        margin-top: 1%;
+                    }
+                }
+            }
+        }
+        button {
+            @extend %bigTertiaryButton;
+            padding: 4% 14%;
+        }
+    }
+
+    section {   // Uguale a login
+        @extend %flexed;
+        width: 100%;
+        margin-top: 10%;
+        gap: 1vh;
+
+        button {
+            @extend %bigSecondaryButton;
+            padding: 4% 10%;
+        }
+    }
+}
