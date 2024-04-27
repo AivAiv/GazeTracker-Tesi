@@ -1,4 +1,5 @@
-<div>
+<section class="base-container">
+    <div>GazeTracker</div>
     <form action="#" method="POST" name="Access">
         <fieldset>
             <label>Email
@@ -12,4 +13,4 @@
     </form>
     <div>Non sei registrato?</div>
     <button id="btnSwitchToRegister">Registrati</button>
-</div>
+</section>

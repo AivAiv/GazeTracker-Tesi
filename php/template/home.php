@@ -1,7 +1,9 @@
-<?php if(isset($_SESSION["userType"]) && $_SESSION["userType"] == "T"): ?>
-    <div>PARTECIPA AD UN TEST!</div>
-<?php else: ?>
-    <div>I TUOI TEST</div>
-    <button id="btnEdit">Gestisci test</button>
-<?php endif; ?>
-<section id="testContainer"></section>
+<section class="base-container">
+    <?php if(isset($_SESSION["userType"]) && $_SESSION["userType"] == "T"): ?>
+        <div>PARTECIPA AD UN TEST!</div>
+    <?php else: ?>
+        <div>I TUOI TEST</div>
+        <button id="btnEdit">Gestisci test</button>
+    <?php endif; ?>
+    <section id="testContainer"></section>
+</section>

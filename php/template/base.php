@@ -14,7 +14,7 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <nav style="margin-top: 300px;"> <!--TODO: Remove style-->
+        <nav>
             <div>GazeTracker</div>
             <?php if(isset($templateParams["navigationButtons"]) && $templateParams["navigationButtons"]["logout"]): ?>
                 <button id="btnLogout">Logout</button>

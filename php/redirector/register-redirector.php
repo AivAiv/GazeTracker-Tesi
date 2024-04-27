@@ -4,6 +4,6 @@
 	$templateParams["title"] = "GazeTracker - Registrazione";
 	$templateParams["pageName"] = "register.php";
 	$templateParams["js"] = array("https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "../../js/register.js", "../../js/lib/sha512.js");
-	$templateParams["css"] = array("main");
+	$templateParams["css"] = array("../../css/main");
 
-	require '../template/base.php';
+	require '../template/accessBase.php';
