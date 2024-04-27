@@ -1,63 +1,40 @@
-@use './general';
 @use '../components/colors';
-@use '../components/cards';
-@use '../components/buttons';
-@use '../components/inputs';
 
+.base-container {
+    &.login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-#login_section {
-    @extend %flexed;
-    width: 25vw;
-    height: 60vh;
+        form {
+            width: 33%;
+            background-color: colors.$primary-color;
+            padding: 20px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
 
-    #form_login {
-        @include cards.card($width: 90%);
-        padding: 8% 5%;
-        height: 80%;
-        gap: 5%;
-        h1 {
-            font-size: 3.2vw;
-            text-align: center;
-            width: 100%;
-        }
-        div {
-            @extend %flexed;
-            width: 100%;
-            height: 50%;
-            div {
-                @extend %flexed;
-                align-items: flex-start;
-                width: 70%;
-                label {
-                    font-size: small;
-                }
-                input {
-                    @include inputs.textField;
-                    padding: 3px 0px;
-                    width: 100%;
-                    height: 40%;
-                }
-                input::placeholder {
-                    color: colors.$dark-color;
-                }
+            input[type=submit] {
+                background-color: colors.$light-color;
+                padding: 10px;
+                border-radius: 25px;
+                border: 0px;
             }
         }
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
 
-        button {
-            @extend %bigTertiaryButton;
-            padding: 4% 14%;
-        }
-    }
-
-    section {
-        @extend %flexed;
-        width: 100%;
-        margin-top: 10%;
-        gap: 1vh;
-
-        button {
-            @extend %bigSecondaryButton;
-            padding: 4% 10%;
+            button {
+                background-color: colors.$secondary-color;
+                color: colors.$light-color;
+                padding: 10px;
+                border-radius: 25px;
+                border: 0px;
+            }
         }
     }
 }

@@ -24,5 +24,38 @@ html main, body main {
 }
 html main .base-container, body main .base-container {
   flex: 1;
-  background-color: lightblue;
+}
+
+.base-container.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.base-container.login form {
+  width: 33%;
+  background-color: #E3B23C;
+  padding: 20px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.base-container.login form input[type=submit] {
+  background-color: #EDEBD7;
+  padding: 10px;
+  border-radius: 25px;
+  border: 0px;
+}
+.base-container.login section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+.base-container.login section button {
+  background-color: #423E37;
+  color: #EDEBD7;
+  padding: 10px;
+  border-radius: 25px;
+  border: 0px;
 }/*# sourceMappingURL=main.css.map */

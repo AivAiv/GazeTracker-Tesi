@@ -1,6 +1,6 @@
 <section class="base-container">
-    <div>GazeTracker</div>
     <form action="#" method="POST" name="Register">
+        <h1>GazeTracker</h1>
         <fieldset>
             <label>Email
                 <input type="email" name="txtEmail" id="txtEmail" required/>
@@ -23,6 +23,8 @@
         </fieldset>
         <input type="submit" name="btnRegister" value="Registrati"/>
     </form>
-    <div>Hai già un account?</div>
-    <button id="btnSwitchToLogin">Login</button>
+    <section>
+        <div>Hai già un account?</div>
+        <button id="btnSwitchToLogin">Login</button>
+    </section>
 </section>
