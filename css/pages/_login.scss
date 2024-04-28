@@ -31,7 +31,7 @@
                 justify-content: space-between;
                 font-size: 10pt;
 
-                input[type=text], input[type=password] {
+                input[type=email], input[type=password] {
                     border-radius: 5px;
                     border: 1px solid colors.$shadow;
                     background-color: colors.$primary-color;

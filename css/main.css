@@ -58,7 +58,7 @@ html main .base-container, body main .base-container {
   justify-content: space-between;
   font-size: 10pt;
 }
-.base-container.login form label input[type=text], .base-container.login form label input[type=password] {
+.base-container.login form label input[type=email], .base-container.login form label input[type=password] {
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: #E3B23C;
