@@ -23,6 +23,8 @@ html, body {
         display: flex;
         background-color: colors.$light-color;
         height: 100%;
+        width: 100%;
+        min-width: fit-content;
 
         .base-container {
             flex: 1;

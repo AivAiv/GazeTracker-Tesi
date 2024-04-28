@@ -1,16 +1,16 @@
 <section class="base-container login">
     <form action="#" method="POST" name="Access">
         <h1>GazeTracker</h1>
-        <label>Email
-            <input type="text" name="txtEmail" required autofocus/>
+        <label> &nbsp&nbspEmail
+            <input type="text" name="txtEmail" placeholder="Inserisci la tua email" required autofocus/>
         </label>
-        <label>Password
-            <input type="password" name="txtPassword" required/>
+        <label>&nbsp&nbspPassword
+            <input type="password" name="txtPassword" placeholder="Inserisci la tua password" required/>
         </label>
         <input type="submit" name="btnLogin" value="Accedi"/>
     </form>
     <section>
-        <div>Non sei registrato?</div>
+        <div>Non hai un account?</div>
         <button id="btnSwitchToRegister">Registrati</button>
     </section>
 </section>
