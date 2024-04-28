@@ -15,7 +15,34 @@ html nav, body nav {
   align-items: center;
   justify-content: space-between;
   background-color: #23211E;
-  height: 10%;
+  height: 8%;
+  padding: 1%;
+}
+html nav h1, body nav h1 {
+  color: #EDEBD7;
+}
+html nav section, body nav section {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  gap: 10px;
+}
+html nav section #btnLogout, html nav section #btnHome, body nav section #btnLogout, body nav section #btnHome {
+  background-color: #423E37;
+  color: #EDEBD7;
+  padding: 1% 2%;
+  border-radius: 25px;
+  border: 0px;
+  font-weight: bold;
+  font-size: 12pt;
+}
+html nav section #btnForward, html nav section #btnBackward, body nav section #btnForward, body nav section #btnBackward {
+  background-color: #EDEBD7;
+  padding: 1% 2%;
+  border-radius: 25px;
+  border: 0px;
+  font-weight: bold;
+  font-size: 12pt;
 }
 html main, body main {
   display: flex;

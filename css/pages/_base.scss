@@ -17,8 +17,40 @@ html, body {
         align-items: center;
         justify-content: space-between;
         background-color: colors.$dark-color;
-        height: 10%;
+        height: 8%;
+        padding: 1%;
+
+        h1 {
+            color: colors.$light-color;
+        }
+
+        section {
+            display: flex;
+            width: 50%;
+            justify-content: flex-end;
+            gap: 10px;
+
+            #btnLogout, #btnHome {
+                background-color: colors.$secondary-color;
+                color: colors.$light-color;
+                padding: 1% 2%;
+                border-radius: 25px;
+                border: 0px;
+                font-weight: bold;
+                font-size: 12pt;
+            }
+
+            #btnForward, #btnBackward {
+                background-color: colors.$light-color;
+                padding: 1% 2%;
+                border-radius: 25px;
+                border: 0px;
+                font-weight: bold;
+                font-size: 12pt;
+            }
+        }
     }
+
     main {
         display: flex;
         background-color: colors.$light-color;
