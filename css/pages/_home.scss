@@ -1,0 +1,39 @@
+@use '../components/colors';
+
+.base-container {
+    &.home {
+        background-color: colors.$secondary-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: colors.$light-color;
+            height: 10%;
+        }
+
+        #testContainer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 90%;
+            flex-wrap: wrap;
+
+            button {
+                flex: 1 0 18%;
+                //width: 15vw;
+                height: 15vw;
+                background-color: colors.$dark-color;
+                color: colors.$light-color;
+                border-radius: 25px;
+                border: 0px;
+                box-shadow: 0px 5px 20px 0px colors.$shadow;
+                margin: 10px;
+                font-weight: bold;
+            }
+        }
+    }
+}
