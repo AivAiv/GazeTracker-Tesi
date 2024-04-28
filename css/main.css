@@ -29,13 +29,13 @@ html main .base-container, body main .base-container {
   flex: 1;
 }
 
-.base-container.login {
+.base-container.access {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.base-container.login form {
+.base-container.access form {
   background-color: #E3B23C;
   padding: 3% 5%;
   border-radius: 25px;
@@ -47,24 +47,24 @@ html main .base-container, body main .base-container {
   margin: 10px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
 }
-.base-container.login form h1 {
+.base-container.access form h1 {
   font-size: 40pt;
   margin-bottom: 8%;
 }
-.base-container.login form label {
+.base-container.access form label {
   width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-size: 10pt;
 }
-.base-container.login form label input[type=email], .base-container.login form label input[type=password] {
+.base-container.access form label input[type=email], .base-container.access form label input[type=password] {
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: #E3B23C;
   padding: 2%;
 }
-.base-container.login form input[type=submit] {
+.base-container.access form input[type=submit] {
   background-color: #EDEBD7;
   padding: 10px 40px;
   border-radius: 25px;
@@ -75,7 +75,7 @@ html main .base-container, body main .base-container {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
   width: 60%;
 }
-.base-container.login section {
+.base-container.access section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +83,7 @@ html main .base-container, body main .base-container {
   padding: 10px;
   font-size: 14pt;
 }
-.base-container.login section button {
+.base-container.access section button {
   background-color: #423E37;
   color: #EDEBD7;
   padding: 10px 40px;
@@ -92,4 +92,27 @@ html main .base-container, body main .base-container {
   font-weight: bold;
   font-size: 14pt;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.base-container.access.register form b {
+  margin-top: 10px;
+}
+.base-container.access.register form section {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+.base-container.access.register form section label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+  font-size: 11pt;
+}
+.base-container.access.register form section .separator {
+  width: 2px;
+  height: 100%;
+  background-color: #23211E;
 }/*# sourceMappingURL=main.css.map */

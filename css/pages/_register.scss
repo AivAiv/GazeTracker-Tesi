@@ -1,0 +1,35 @@
+@use '../components/colors';
+
+.base-container {
+    &.access {
+        &.register {
+            form {
+                b {
+                    margin-top: 10px;
+                }
+                section {
+                    display: flex;
+                    flex-direction: row;
+                    width: 80%;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    label {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        gap: 5px;
+                        font-size: 11pt;
+                    }
+
+                    .separator {
+                        width: 2px;
+                        height: 100%;
+                        background-color: colors.$dark-color;
+                    }
+                }
+            }
+        }
+    }
+}

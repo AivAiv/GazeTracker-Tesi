@@ -1,4 +1,4 @@
-<section class="base-container login">
+<section class="base-container access">
     <form action="#" method="POST" name="Access">
         <h1>GazeTracker</h1>
         <label>&nbspEmail
