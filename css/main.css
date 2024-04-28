@@ -131,6 +131,9 @@ html main .base-container, body main .base-container {
   align-items: center;
   justify-content: center;
 }
+.base-container.access.register form section input[type=radio] {
+  accent-color: #423E37;
+}
 .base-container.access.register form section label {
   display: flex;
   flex-direction: row;
