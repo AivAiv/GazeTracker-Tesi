@@ -5,7 +5,7 @@
 }
 
 html, body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,13 +15,16 @@ html nav, body nav {
   align-items: center;
   justify-content: space-between;
   background-color: #23211E;
-  height: 8%;
-  padding: 1%;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 html nav h1, body nav h1 {
   color: #EDEBD7;
+  padding: 15px;
+  font-size: 25pt;
 }
 html nav section, body nav section {
+  padding: 15px;
   display: flex;
   width: 50%;
   justify-content: flex-end;
@@ -30,7 +33,7 @@ html nav section, body nav section {
 html nav section #btnLogout, html nav section #btnHome, body nav section #btnLogout, body nav section #btnHome {
   background-color: #423E37;
   color: #EDEBD7;
-  padding: 1% 2%;
+  padding: 8px 16px;
   border-radius: 25px;
   border: 0px;
   font-weight: bold;
@@ -47,10 +50,10 @@ html nav section #btnForward, html nav section #btnBackward, body nav section #b
 html main, body main {
   display: flex;
   background-color: #EDEBD7;
-  height: 100%;
+  /*height: 100%;
   width: 100%;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
+  min-width: fit-content;*/
+  flex: 1;
 }
 html main .base-container, body main .base-container {
   flex: 1;
@@ -168,8 +171,9 @@ html main .base-container, body main .base-container {
   flex-wrap: wrap;
 }
 .base-container.home #testContainer button {
-  flex: 1 0 18%;
-  height: 15vw;
+  flex: 0 0 15%;
+  min-width: 100px;
+  aspect-ratio: 1/1;
   background-color: #23211E;
   color: #EDEBD7;
   border-radius: 25px;
