@@ -150,27 +150,27 @@ html main .base-container, body main .base-container {
   background-color: #23211E;
 }
 
-.base-container.home {
+.base-container.homeTester {
   background-color: #423E37;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.base-container.home h1 {
+.base-container.homeTester h1 {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #EDEBD7;
   height: 10%;
 }
-.base-container.home #testContainer {
+.base-container.homeTester #testContainer {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   width: 90%;
   flex-wrap: wrap;
 }
-.base-container.home #testContainer button {
+.base-container.homeTester #testContainer button {
   flex: 0 0 15%;
   min-width: 100px;
   aspect-ratio: 1/1;
@@ -181,4 +181,89 @@ html main .base-container, body main .base-container {
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
   margin: 10px;
   font-weight: bold;
+}
+.base-container.homeCreator {
+  background-color: #423E37;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.base-container.homeCreator .firstLine {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+.base-container.homeCreator .firstLine h1 {
+  color: #EDEBD7;
+  font-size: 20pt;
+}
+.base-container.homeCreator .firstLine button {
+  font-weight: bold;
+  background-color: #E3B23C;
+  border-radius: 25px;
+  border: 0px;
+  padding: 15px 3%;
+  font-size: 14pt;
+}
+.base-container.homeCreator #testContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+  gap: 10px;
+}
+.base-container.homeCreator #testContainer div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EDEBD7;
+  width: 100%;
+  border-radius: 15px;
+}
+.base-container.homeCreator #testContainer div p {
+  font-weight: bold;
+  margin: 10px;
+}
+.base-container.homeCreator #testContainer div section {
+  display: flex;
+  margin: 10px;
+}
+.base-container.homeCreator #testContainer div section .btnResults {
+  background-color: #EDEBD7;
+  border: 2px solid #23211E;
+  border-radius: 25px;
+  padding: 10px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.base-container.homeCreator #testContainer div section .btnStatus {
+  font-weight: bold;
+  background-color: #23211E;
+  color: #EDEBD7;
+  border-radius: 25px;
+  border: 0px;
+  padding: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #37352f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #131210;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #131210;
 }/*# sourceMappingURL=main.css.map */

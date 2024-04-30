@@ -15,14 +15,16 @@ function generateCreatorTests(tests) {
         let test = `
         <div id="testHome_${tests[i]["id"]}">
             <p>${tests[i]["name"]}</p>
-            <button class="btnStatus">`;
-            if (tests[i]["active"] == 1) {
-                test += `Attivo`;
-            } else {
-                test += `Non attivo`;
-            }
-            test += `</button>
-            <button class="btnResults">Guarda risultati</button>
+            <section>
+                <button class="btnStatus">`;
+                if (tests[i]["active"] == 1) {
+                    test += `Attivo`;
+                } else {
+                    test += `Non attivo`;
+                }
+                test += `</button>
+                <button class="btnResults">Guarda risultati</button>
+            </section>
         </div>`;
         result += test;
     }
@@ -41,11 +43,11 @@ function updateState(testId, state) {
     });
 }
 
-function attachCreatorEventListeners(tests) {
+function attachCreatorEventListeners(tests) { //FIXME: Not cute, rigid
     for (let i = 0; i < tests.length; i++) {
         testChildren = document.getElementById("testHome_" + tests[i]["id"]).children;
-        testChildren[1].test = tests[i];
-        testChildren[1].addEventListener("click", function (event) {
+        testChildren[1].children[0].test = tests[i];
+        testChildren[1].children[0].addEventListener("click", function (event) {
             event.preventDefault();
             if (event.currentTarget.test["active"] == 1) {
                 updateState(event.currentTarget.test["id"], 0);
@@ -53,8 +55,8 @@ function attachCreatorEventListeners(tests) {
                 updateState(event.currentTarget.test["id"], 1);
             }
         });
-        testChildren[2].test = tests[i];
-        testChildren[2].addEventListener("click", function (event) {
+        testChildren[1].children[1].test = tests[i];
+        testChildren[1].children[1].addEventListener("click", function (event) {
             event.preventDefault();
             sessionStorage.clear();
             sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
