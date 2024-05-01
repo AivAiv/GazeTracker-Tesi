@@ -33,7 +33,7 @@ function loadExecutions(page) {
 		if(response.data["executionsRetrieved"] && response.data["executionsList"]) {
             drawExecutions(response.data["executionsList"].map(exec => {return exec["anonym_user_index"]}));
 		} else {
-            executionsContainer.innerHTML = "No executions done yet.";
+            executionsContainer.innerHTML = "Non ci sono ancora esecuzioni.";
         }
     });
 }

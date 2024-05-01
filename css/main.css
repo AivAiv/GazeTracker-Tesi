@@ -206,6 +206,7 @@ html main .base-container, body main .base-container {
   border: 0px;
   padding: 15px 3%;
   font-size: 14pt;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
 }
 .base-container.homeCreator #testContainer {
   display: flex;
@@ -214,6 +215,7 @@ html main .base-container, body main .base-container {
   justify-content: flex-start;
   width: 80%;
   gap: 10px;
+  margin-bottom: 10px;
 }
 .base-container.homeCreator #testContainer div {
   display: flex;
@@ -222,6 +224,7 @@ html main .base-container, body main .base-container {
   background-color: #EDEBD7;
   width: 100%;
   border-radius: 15px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
 }
 .base-container.homeCreator #testContainer div p {
   font-weight: bold;
@@ -246,6 +249,66 @@ html main .base-container, body main .base-container {
   border-radius: 25px;
   border: 0px;
   padding: 10px;
+}
+
+.base-container.review-test {
+  background-color: #423E37;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.base-container.review-test .firstLine {
+  text-align: center;
+  width: 100%;
+  color: #EDEBD7;
+  padding: 10px 0px;
+}
+.base-container.review-test .firstLine span {
+  color: #E3B23C;
+}
+.base-container.review-test #pageContent {
+  display: flex;
+  width: 90%;
+  margin: 10px 0px;
+  flex: 1;
+}
+.base-container.review-test #pageContent button {
+  background-color: #EDEBD7;
+  border: 0px;
+  border-radius: 25px;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+}
+.base-container.review-test #pageContent hr {
+  width: 3px;
+  background-color: #23211E;
+  border: 0px;
+  border-radius: 25px;
+}
+.base-container.review-test #pageContent h3 {
+  color: #EDEBD7;
+}
+.base-container.review-test #pageContent .splitPage {
+  padding: 10px;
+  flex: 1;
+}
+.base-container.review-test #pageContent .splitPage section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+@media screen and (max-width: 600px) {
+  .base-container.review-test { /*MEDIA QUERY*/ }
+  .base-container.review-test #pageContent {
+    display: block;
+  }
+  .base-container.review-test #pageContent hr {
+    width: 100%;
+    height: 3px;
+    margin: 10px 0px;
+  }
 }
 
 /* width */
