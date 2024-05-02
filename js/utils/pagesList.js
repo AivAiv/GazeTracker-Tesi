@@ -36,7 +36,7 @@ class PagesList {
             btnDel.caller = this;
             btnDel.addEventListener("click",  function (event) {
                 event.preventDefault();
-                if (confirm("Stai eliminando una, sei sicuro?")) {
+                if (confirm("Stai eliminando una pagina, sei sicuro?")) {
                     event.currentTarget.pHolder.deletePage(i);
                     console.log("[LOG] : deleted page - " + i);
                     event.currentTarget.caller.updateTestPages();

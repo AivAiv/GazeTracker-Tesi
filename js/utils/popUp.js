@@ -2,6 +2,7 @@ class PopUp {
 
     #domId = "";
     #domPopUp;
+    #domScrim;
     #pagesHolder;
     #pagesListMod;
     #pagesListCre;
@@ -9,13 +10,14 @@ class PopUp {
     constructor(domId, pHolder, pListM, pListC) {
       this.#domId = domId;
       this.#domPopUp = document.getElementById(this.#domId);
+      this.#domScrim = document.querySelector(".scrim");
       this.#pagesHolder = pHolder;
       this.#pagesListMod = pListM;
       this.#pagesListCre = pListC;
     }
 
-    openPopUp() { this.#domPopUp.style.display = "block"; }
-    closePopUp() { this.#domPopUp.style.display = "none"; }
+    openPopUp() { this.#domPopUp.style.display = "flex"; this.#domScrim.style.display = "flex"; }
+    closePopUp() { this.#domPopUp.style.display = "none"; this.#domScrim.style.display = "none";}
 
     //#region HTML genrators
     generateImagePopUp() {
@@ -30,8 +32,10 @@ class PopUp {
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
             </label>
-            <input type="reset" name="btnDiscard" value="Scarta"/>
-            <input type="submit" name="btnAdd" value="Aggiungi"/>
+            <section>
+                <input type="reset" name="btnDiscard" value="Scarta"/>
+                <input type="submit" name="btnAdd" value="Aggiungi"/>
+            </section>
         </form>`;
         this.#domPopUp.innerHTML = img;
         this.#attachImageListeners();
@@ -50,8 +54,10 @@ class PopUp {
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
             </label>
-            <input type="reset" name="btnDiscard" value="Scarta"/>
-            <input type="submit" name="btnAdd" value="Aggiungi"/>
+            <section>
+                <input type="reset" name="btnDiscard" value="Scarta"/>
+                <input type="submit" name="btnAdd" value="Aggiungi"/>
+            </section>
         </form>`;
         this.#domPopUp.innerHTML = link;
         this.#attachLinkListeners();
@@ -70,8 +76,10 @@ class PopUp {
             <label>Tempo di visualizzazione massimo
                 <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
             </label>
-            <input type="reset" name="btnDiscard" value="Scarta"/>
-            <input type="submit" name="btnAdd" value="Aggiungi"/>
+            <section>
+                <input type="reset" name="btnDiscard" value="Scarta"/>
+                <input type="submit" name="btnAdd" value="Aggiungi"/>
+            </section>
         </form>`;
         this.#domPopUp.innerHTML = text;
         this.#attachTextListeners();

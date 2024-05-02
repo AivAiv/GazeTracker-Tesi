@@ -4,8 +4,10 @@ function generateTests(tests) {
         let test = `
         <div id="testEditor_${tests[i]["id"]}">
             <p>${tests[i]["name"]}</p>
-            <button class="btnDelete">Elimina</button>
-            <button class="btnModify">Modifica</button>
+            <section>
+                <button class="btnDelete">Elimina</button>
+                <button class="btnModify">Modifica</button>
+            </section>
         </div>`;
         result += test;
     }
@@ -43,10 +45,10 @@ function createTest(testName) {//TODO: Update with all the page sending
                     //if (response.data["addedPage"]) {
                     //}
                     console.log("[LOG] : Created test - " + testName);
-                    updateTestList();
-                    resetCreateTab();
                 });
             });
+            updateTestList();
+            resetCreateTab();
         }
     });
 }
@@ -94,7 +96,7 @@ function modifyTest(testId, name) {
 }
 
 function openCreateTab() {
-    document.getElementById("createTab").style.display = "block";
+    document.getElementById("createTab").style.display = "flex";
     document.getElementById("modifyTab").style.display = "none";
     resetCreateTab();
     resetModifyTab();
@@ -103,7 +105,7 @@ function openCreateTab() {
 function openModifyTab(test) {
     currentSelectedTestId = test["id"];
     document.getElementById("createTab").style.display = "none";
-    document.getElementById("modifyTab").style.display = "block";
+    document.getElementById("modifyTab").style.display = "flex";
     resetCreateTab();
     showTestContent(test);
 }
@@ -131,15 +133,15 @@ function resetModifyTab() {
 function attachEventListeners(tests) {
     for (i = 0; i < tests.length; i++) {
         testChildren = document.getElementById("testEditor_" + tests[i]["id"]).children;
-        testChildren[1].test = tests[i];
-        testChildren[1].addEventListener("click", function (event) {
+        testChildren[1].children[0].test = tests[i];
+        testChildren[1].children[0].addEventListener("click", function (event) {
             event.preventDefault();
             if (confirm("Stai eliminando un test, sei sicuro di voler proseguire?")) {
                 deleteTest(event.currentTarget.test["id"]);
             }
         });
-        testChildren[2].test = tests[i];
-        testChildren[2].addEventListener("click", function (event) {
+        testChildren[1].children[1].test = tests[i];
+        testChildren[1].children[1].addEventListener("click", function (event) {
             event.preventDefault();
             openModifyTab(event.currentTarget.test);
         });

@@ -311,6 +311,244 @@ html main .base-container, body main .base-container {
   }
 }
 
+.base-container.edit {
+  background-color: #423E37;
+  display: flex;
+  /*align-items: flex-start;*/
+}
+.base-container.edit #testsContainer {
+  height: 76vh; /*FIXME: meh*/
+  margin: 3%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.base-container.edit #testsContainer #testsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  margin-bottom: 15px;
+  overflow: auto;
+  padding: 10px;
+}
+.base-container.edit #testsContainer #testsList div { /*TODO: Praticamente uguale a quelli della home*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EDEBD7;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+.base-container.edit #testsContainer #testsList div p {
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.base-container.edit #testsContainer #testsList div section {
+  display: flex;
+  justify-content: flex-end;
+}
+.base-container.edit #testsContainer #testsList div section .btnDelete {
+  background-color: #EDEBD7;
+  border: 0px;
+  border-radius: 25px;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+.base-container.edit #testsContainer #testsList div section .btnModify {
+  background-color: #EDEBD7;
+  border: 2px solid #23211E;
+  border-radius: 25px;
+  padding: 5px 10px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.base-container.edit #testsContainer #btnOpenCreate {
+  align-self: center;
+  font-weight: bold;
+  background-color: #E3B23C;
+  border-radius: 25px;
+  border: 0px;
+  padding: 10px 15%;
+  font-size: 14pt;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+}
+.base-container.edit hr {
+  margin: 3% 0%;
+  border: 2px solid #23211E;
+  border-radius: 25px;
+}
+.base-container.edit #testsEdit {
+  height: 50vh; /*FIXME: meh*/
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  flex: 1;
+  background-color: #EDEBD7;
+  margin: 3%;
+  border: 0px;
+  border-radius: 25px;
+  padding: 20px;
+  display: flex;
+}
+.base-container.edit #testsEdit #createTab, .base-container.edit #testsEdit #modifyTab {
+  background-color: paleturquoise;
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.base-container.edit #testsEdit #createTab h3, .base-container.edit #testsEdit #modifyTab h3 {
+  background-color: palegoldenrod;
+  text-align: center;
+  padding: 10px;
+  font-size: 16pt;
+}
+.base-container.edit #testsEdit #createTab form, .base-container.edit #testsEdit #modifyTab form {
+  background-color: palegreen;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.base-container.edit #testsEdit #createTab form label, .base-container.edit #testsEdit #modifyTab form label {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.base-container.edit #testsEdit #createTab form fieldset, .base-container.edit #testsEdit #modifyTab form fieldset {
+  border-radius: 25px;
+  border: 2px solid #423E37;
+  display: flex;
+  gap: 5px;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+}
+.base-container.edit #testsEdit #createTab form fieldset legend, .base-container.edit #testsEdit #modifyTab form fieldset legend {
+  text-align: center;
+}
+.base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button { /*FIXME: Uguale a btnDelete */
+  flex: 1;
+  background-color: #E3B23C;
+  padding: 5px;
+  border: 0px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.base-container.edit #testsEdit #createTab form #lstPages, .base-container.edit #testsEdit #modifyTab form #lstPages {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: auto;
+  border-radius: 25px;
+  border: 2px solid #423E37;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+}
+.base-container.edit #testsEdit #createTab form #lstPages div, .base-container.edit #testsEdit #modifyTab form #lstPages div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #423E37;
+  border: 0px;
+  border-radius: 25px;
+  padding: 5px 10px;
+}
+.base-container.edit #testsEdit #createTab form #lstPages div p, .base-container.edit #testsEdit #modifyTab form #lstPages div p {
+  color: #EDEBD7;
+}
+.base-container.edit #testsEdit #createTab form #lstPages div .btnDelete, .base-container.edit #testsEdit #modifyTab form #lstPages div .btnDelete {
+  flex: 0;
+  background-color: #423E37;
+  color: #EDEBD7;
+  border: 0px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.base-container.edit #testsEdit #createTab form section, .base-container.edit #testsEdit #modifyTab form section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit] { /*FIXME: Simile a sotto*/
+  background-color: #E3B23C;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0px;
+  border-radius: 25px;
+  padding: 10px 5%;
+  font-weight: bold;
+  margin-left: 5px;
+  font-size: 14pt;
+}
+.base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset] {
+  background-color: #EDEBD7;
+  border: 0px solid #23211E;
+  border-radius: 25px;
+  padding: 10px 5%;
+  font-weight: bold;
+  font-size: 14pt;
+}
+.base-container.edit .scrim {
+  position: absolute;
+  width: 100%;
+  height: 89vh;
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.base-container.edit .scrim #popUp {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  background-color: #EDEBD7;
+  border: 0px;
+  border-radius: 25px;
+  padding: 20px;
+}
+.base-container.edit .scrim #popUp div {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+.base-container.edit .scrim #popUp form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+.base-container.edit .scrim #popUp form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.base-container.edit .scrim #popUp form label textarea {
+  max-width: 33vw;
+  max-height: 33vh;
+}
+.base-container.edit .scrim #popUp form label:has(> input[type=time]) {
+  flex-direction: row;
+}
+.base-container.edit .scrim #popUp form section {
+  display: flex;
+  justify-content: flex-end;
+}
+.base-container.edit .scrim #popUp form section input[type=submit] {
+  background-color: #E3B23C;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0px;
+  border-radius: 25px;
+  padding: 5px 10px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.base-container.edit .scrim #popUp form section input[type=reset] {
+  background-color: #EDEBD7;
+  border: 0px solid #23211E;
+  border-radius: 25px;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
