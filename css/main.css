@@ -372,33 +372,30 @@ html body main .base-container {
   border-radius: 25px;
 }
 .base-container.edit #testsEdit {
-  height: 50vh; /*FIXME: meh*/
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  height: 76vh; /*FIXME: meh*/
   flex: 1;
-  background-color: #EDEBD7;
   margin: 3%;
-  border: 0px;
-  border-radius: 25px;
-  padding: 20px;
   display: flex;
 }
 .base-container.edit #testsEdit #createTab, .base-container.edit #testsEdit #modifyTab {
-  background-color: paleturquoise;
+  background-color: #EDEBD7;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0px;
+  border-radius: 25px;
   flex: 1;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }
 .base-container.edit #testsEdit #createTab h3, .base-container.edit #testsEdit #modifyTab h3 {
-  background-color: palegoldenrod;
   text-align: center;
   padding: 10px;
-  font-size: 16pt;
+  font-size: 18pt;
 }
 .base-container.edit #testsEdit #createTab form, .base-container.edit #testsEdit #modifyTab form {
-  background-color: palegreen;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   flex: 1;
 }
@@ -406,12 +403,20 @@ html body main .base-container {
   display: flex;
   flex-direction: column;
   width: 50%;
+  font-size: 10pt;
+}
+.base-container.edit #testsEdit #createTab form label input[type=text], .base-container.edit #testsEdit #modifyTab form label input[type=text] { /*FIXME: "Duplicated"*/
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #EDEBD7;
+  padding: 2%;
 }
 .base-container.edit #testsEdit #createTab form fieldset, .base-container.edit #testsEdit #modifyTab form fieldset {
+  width: 95%;
   border-radius: 25px;
-  border: 2px solid #423E37;
+  border: 2px solid rgba(0, 0, 0, 0.3);
   display: flex;
-  gap: 5px;
+  gap: 10px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
 }
 .base-container.edit #testsEdit #createTab form fieldset legend, .base-container.edit #testsEdit #modifyTab form fieldset legend {
@@ -422,23 +427,27 @@ html body main .base-container {
   flex: 1;
   padding: 5px;
 }
+.base-container.edit #testsEdit #createTab form fieldset:has(> #lstPages), .base-container.edit #testsEdit #modifyTab form fieldset:has(> #lstPages) {
+  flex: 1;
+  max-height: 33vh; /*FIXME: Not cute, ha problemi*/
+}
 .base-container.edit #testsEdit #createTab form #lstPages, .base-container.edit #testsEdit #modifyTab form #lstPages {
   display: flex;
   flex-direction: column;
   gap: 5px;
   overflow: auto;
-  border-radius: 25px;
-  border: 2px solid #423E37;
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 .base-container.edit #testsEdit #createTab form #lstPages div, .base-container.edit #testsEdit #modifyTab form #lstPages div {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   background-color: #423E37;
   border: 0px;
   border-radius: 25px;
-  padding: 5px 10px;
+  padding: 5px 15px;
+  margin-right: 5px;
 }
 .base-container.edit #testsEdit #createTab form #lstPages div p, .base-container.edit #testsEdit #modifyTab form #lstPages div p {
   color: #EDEBD7;
@@ -450,15 +459,17 @@ html body main .base-container {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  width: 95%;
 }
 .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit] { /*FIXME: Simile a sotto*/
-  padding: 10px 5%;
+  padding: 8px 5%;
   margin-left: 5px;
   font-size: 14pt;
 }
 .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset] {
+  background-color: transparent;
   box-shadow: none;
-  padding: 10px 5%;
+  padding: 8px 5%;
   font-size: 14pt;
 }
 .base-container.edit .scrim {

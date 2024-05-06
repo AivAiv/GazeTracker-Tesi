@@ -17,7 +17,7 @@ class PagesList {
     }
 
     #generatePages() {
-        let result = "<legend>Pagine attuali</legend>";
+        let result = "";
         for (let i= 0; i < this.#pagesHolder.getPages().length; i++) {
             let page = `
             <div id="page_${i}">

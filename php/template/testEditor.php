@@ -17,9 +17,10 @@
                     <button class="btnAddLink">Aggiungi link</button>
                     <button class="btnAddText">Aggiungi testo</button>
                 </fieldset>
-                <div id="lstPages">
+                <fieldset>
                     <legend>Pagine attuali</legend>
-                </div>
+                    <div id="lstPages"></div>
+                </fieldset>
                 <section>
                     <input type="reset" name="btnDiscard" value="Scarta"/>
                     <input type="submit" name="btnCreate" value="Crea"/>
@@ -39,9 +40,10 @@
                     <button class="btnAddLink">Aggiungi link</button>
                     <button class="btnAddText">Aggiungi testo</button>
                 </fieldset>
-                <div id="lstPages">
+                <fieldset>
                     <legend>Pagine attuali</legend>
-                </div>
+                    <div id="lstPages"></div>
+                </fieldset>
                 <section>
                     <input type="reset" name="btnDiscard" value="Scarta le modifiche"/>
                     <input type="submit" name="btnSave" value="Salva"/>
