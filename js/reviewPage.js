@@ -212,6 +212,7 @@ function drawPage(page) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
     } else if (page["link"] != null) {
         pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
+        //pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }

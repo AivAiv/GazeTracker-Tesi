@@ -1,4 +1,5 @@
 @use '../components/colors';
+@use '../components/buttons';
 
 .base-container {
     &.access {
@@ -40,14 +41,10 @@
             }
             
             input[type=submit] {
-                background-color: colors.$light-color;
+                @extend %wgLightButton;
                 padding: 10px 40px;
-                border-radius: 25px;
-                border: 0px;
                 margin-top: 8%;
-                font-weight: bold;
                 font-size: 14pt;
-                box-shadow: 0px 4px 10px 0px colors.$shadow;
                 width: 60%;
             }
         }
@@ -61,12 +58,8 @@
             font-size: 14pt;
 
             button {
-                background-color: colors.$secondary-color;
-                color: colors.$light-color;
+                @extend %wgSecondaryButton;
                 padding: 10px 40px;
-                border-radius: 25px;
-                border: 0px;
-                font-weight: bold;
                 font-size: 14pt;
                 box-shadow: 0px 4px 10px 0px colors.$shadow;
             }

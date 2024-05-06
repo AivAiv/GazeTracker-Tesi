@@ -1,0 +1,55 @@
+@use '../components/colors';
+
+.base-container {
+    &.review-page {
+        background-color: colors.$secondary-color;
+        display: flex;
+        flex-direction: column;
+
+        .firstLine {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+
+            div {
+                color: colors.$light-color;
+
+                span {
+                    color: colors.$light-color;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .pageContent {
+            background-color: coral;
+
+            #testStage {
+                display: flex;
+                position: relative;
+                z-index: 2;
+
+                & > * {
+                    flex: 1;
+                }
+
+            }
+    
+            #heatmap {
+                background-color: pink;
+                width: 100%;
+                height: 200px;
+                position: relative;
+                z-index: 1;
+            }
+    
+            #heatmap-canvas {
+                background-color: aquamarine;
+                width: 100%;
+                height: 200px;
+                position: relative;
+                z-index: 2;
+            }
+        }
+    }
+}

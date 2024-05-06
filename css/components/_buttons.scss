@@ -1,28 +1,36 @@
 @use 'colors';
 
-@mixin bigButton(   
-                    $bg: colors.$primary-color, 
-                    $txtColor: colors.$dark-color, 
-                    $radius: 100px,
-                    $fontSize: 1vw
+@mixin wgButton(
+                $bg: colors.$primary-color, 
+                $txtColor: colors.$dark-color
                 ) {
     background-color: $bg;
-    border: 0px solid transparent;
-    border-radius: $radius;
     color: $txtColor;
-    box-shadow: 0px 1px 5px colors.$shadow;
+    border-radius: 25px;
+    border: 0px;
     font-weight: bold;
-    font-size: $fontSize;
 }
 
-%bigPrimaryButton {
-    @include bigButton;
+/*FIXME: Move me*/
+%shadow {
+    box-shadow: 0px 4px 10px 0px colors.$shadow;
 }
 
-%bigSecondaryButton {
-    @include bigButton(colors.$secondary-color, colors.$light-color);
+%wgPrimaryButton {
+    @include wgButton;
+    @extend %shadow;
 }
 
-%bigTertiaryButton {
-    @include bigButton(colors.$light-color);
+%wgSecondaryButton {
+    @include wgButton(colors.$secondary-color, colors.$light-color);
+}
+
+%wgLightButton {
+    @include wgButton(colors.$light-color);
+    @extend %shadow;
+}
+
+%wgDarkButton {
+    @include wgButton(colors.$dark-color, colors.$light-color);
+    @extend %shadow;
 }
