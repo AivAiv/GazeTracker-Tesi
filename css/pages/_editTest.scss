@@ -5,7 +5,7 @@
     &.edit {
         background-color: colors.$secondary-color;
         display: flex;
-        /*align-items: flex-start;*/
+        flex-wrap: wrap;
 
         #testsContainer {
             height: 76vh; /*FIXME: meh*/
@@ -73,18 +73,21 @@
         }
 
         #testsEdit {
-            height: 76vh; /*FIXME: meh*/
             flex: 1;
-            margin: 3%;
+            margin: 3.5% 3%;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             
             #createTab, #modifyTab {
+                width: 94%;
+                padding: 3%;
                 background-color: colors.$light-color;
                 box-shadow: 0px 5px 20px 0px colors.$shadow;
                 border: 0px;
                 border-radius: 25px;
                 flex: 1;
-                padding: 20px;
                 display: flex;
                 flex-direction: column;
 
@@ -137,15 +140,16 @@
 
                     fieldset:has(> #lstPages) {
                         flex: 1;
-                        max-height: 33vh; /*FIXME: Not cute, ha problemi*/
+                        max-height: 30vh; /*FIXME: Not cute, ha problemi*/
                     }
 
                     #lstPages {
                         display: flex;
                         flex-direction: column;
+                        align-items: center;
                         gap: 5px;
+                        flex: 1;
                         overflow: auto;
-                        width: 100%;
 
                         div {
                             display: flex;
@@ -155,8 +159,8 @@
                             background-color: colors.$secondary-color;
                             border: 0px;
                             border-radius: 25px;
-                            padding: 5px 15px;
-                            margin-right: 5px;
+                            padding: 1% 2%;
+                            width: 96%;
                             
                             p {
                                 color: colors.$light-color;
@@ -195,9 +199,7 @@
         }
 
         .scrim {
-            position: absolute;
-            width: 100%;
-            height: 89vh;
+            position: fixed;
             flex: 1;
             background-color: colors.$shadow;
             display: flex;
@@ -261,6 +263,12 @@
                     }
                 }
             }
+        }
+    }
+
+    @media screen and (max-width: 600px) { /*MEDIA QUERY*/
+        hr {
+            display: none;
         }
     }
 }

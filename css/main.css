@@ -316,7 +316,7 @@ html body main .base-container {
 .base-container.edit {
   background-color: #423E37;
   display: flex;
-  /*align-items: flex-start;*/
+  flex-wrap: wrap;
 }
 .base-container.edit #testsContainer {
   height: 76vh; /*FIXME: meh*/
@@ -372,18 +372,21 @@ html body main .base-container {
   border-radius: 25px;
 }
 .base-container.edit #testsEdit {
-  height: 76vh; /*FIXME: meh*/
   flex: 1;
-  margin: 3%;
+  margin: 3.5% 3%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .base-container.edit #testsEdit #createTab, .base-container.edit #testsEdit #modifyTab {
+  width: 94%;
+  padding: 3%;
   background-color: #EDEBD7;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
   border: 0px;
   border-radius: 25px;
   flex: 1;
-  padding: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -429,14 +432,15 @@ html body main .base-container {
 }
 .base-container.edit #testsEdit #createTab form fieldset:has(> #lstPages), .base-container.edit #testsEdit #modifyTab form fieldset:has(> #lstPages) {
   flex: 1;
-  max-height: 33vh; /*FIXME: Not cute, ha problemi*/
+  max-height: 30vh; /*FIXME: Not cute, ha problemi*/
 }
 .base-container.edit #testsEdit #createTab form #lstPages, .base-container.edit #testsEdit #modifyTab form #lstPages {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5px;
+  flex: 1;
   overflow: auto;
-  width: 100%;
 }
 .base-container.edit #testsEdit #createTab form #lstPages div, .base-container.edit #testsEdit #modifyTab form #lstPages div {
   display: flex;
@@ -446,8 +450,8 @@ html body main .base-container {
   background-color: #423E37;
   border: 0px;
   border-radius: 25px;
-  padding: 5px 15px;
-  margin-right: 5px;
+  padding: 1% 2%;
+  width: 96%;
 }
 .base-container.edit #testsEdit #createTab form #lstPages div p, .base-container.edit #testsEdit #modifyTab form #lstPages div p {
   color: #EDEBD7;
@@ -473,9 +477,7 @@ html body main .base-container {
   font-size: 14pt;
 }
 .base-container.edit .scrim {
-  position: absolute;
-  width: 100%;
-  height: 89vh;
+  position: fixed;
   flex: 1;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
@@ -526,6 +528,12 @@ html body main .base-container {
 .base-container.edit .scrim #popUp form section input[type=reset] {
   box-shadow: none;
   padding: 5px 10px;
+}
+@media screen and (max-width: 600px) {
+  .base-container { /*MEDIA QUERY*/ }
+  .base-container hr {
+    display: none;
+  }
 }
 
 .base-container.review-page {
