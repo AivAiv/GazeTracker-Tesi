@@ -49,7 +49,7 @@ html {
 }
 html body {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -84,9 +84,6 @@ html body nav section #btnForward, html body nav section #btnBackward {
 html body main {
   display: flex;
   background-color: #EDEBD7;
-  /*height: 100%;
-  width: 100%;
-  min-width: fit-content;*/
   flex: 1;
 }
 html body main .base-container {
@@ -314,8 +311,13 @@ html body main .base-container {
 }
 
 .base-container.edit {
+  flex: 1;
+  display: flex;
+}
+.base-container.edit #content {
   background-color: #423E37;
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
 }
 .base-container.edit #testsContainer {
@@ -477,12 +479,14 @@ html body main .base-container {
   font-size: 14pt;
 }
 .base-container.edit .scrim {
-  position: fixed;
   flex: 1;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .base-container.edit .scrim #popUp {
   display: flex;
@@ -529,13 +533,16 @@ html body main .base-container {
   box-shadow: none;
   padding: 5px 10px;
 }
-@media screen and (max-width: 600px) {
-  .base-container { /*MEDIA QUERY*/ }
-  .base-container hr {
+
+@media screen and (max-width: 600px) { /*MEDIA QUERY*/
+  hr {
     display: none;
   }
+  .base-container.edit .scrim {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.3), transparent);
+  }
 }
-
 .base-container.review-page {
   background-color: #423E37;
   display: flex;

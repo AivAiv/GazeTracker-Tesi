@@ -3,9 +3,15 @@
 
 .base-container {
     &.edit {
-        background-color: colors.$secondary-color;
+        flex: 1;
         display: flex;
-        flex-wrap: wrap;
+        
+        #content {
+            background-color: colors.$secondary-color;
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+        }
 
         #testsContainer {
             height: 76vh; /*FIXME: meh*/
@@ -199,12 +205,14 @@
         }
 
         .scrim {
-            position: fixed;
             flex: 1;
+            position: fixed;
             background-color: colors.$shadow;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
             
             #popUp {
                 display: flex;
@@ -265,10 +273,19 @@
             }
         }
     }
+}
 
-    @media screen and (max-width: 600px) { /*MEDIA QUERY*/
-        hr {
-            display: none;
+@media screen and (max-width: 600px) { /*MEDIA QUERY*/
+    hr {
+        display: none;
+    }
+
+    .base-container{
+        &.edit {
+            .scrim {
+                background-color: rgba(0,0,0,0);
+                background-image: radial-gradient(colors.$shadow, transparent);
+            }
         }
     }
 }
