@@ -1,4 +1,4 @@
-const buttonContainer = document.getElementById("calibrationPage");
+const buttonContainer = document.getElementById("allButtons");
 const pageContainer = document.getElementById("testStage");
 const test = JSON.parse(sessionStorage.getItem("test"));
 

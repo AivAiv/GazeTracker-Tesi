@@ -1,0 +1,52 @@
+@use '../components/colors';
+@use '../components/buttons';
+
+.base-container {
+    &.test {
+        background-color: colors.$secondary-color;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+        div {
+            background-color: colors.$secondary-color;
+        }
+
+        #testStage {
+            flex: 1;
+            display: flex;
+
+            #calibrationPage {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                #allButtons {
+                    position: absolute;
+                    z-index: 2;
+                    width: 95%;
+                    height: 80vh; //FIXME: Meh
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    justify-content: space-between;
+                    align-content: space-between;
+
+                    button {
+                        @extend %wgLightButton;
+                        border-radius: 10px;
+                        aspect-ratio: 1/1;
+                        width: 7vh; //FIXME: Meh
+                    }
+                }
+
+                p {
+                    position: absolute;
+                    z-index: 1;
+                    color: colors.$light-color;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
