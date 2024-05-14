@@ -1,5 +1,5 @@
 /*FIXME: Move me*/
-html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
+html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -19,7 +19,7 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   font-weight: bold;
 }
 
-.base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward {
+.base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward {
   background-color: #EDEBD7;
   color: #23211E;
   border-radius: 25px;
@@ -550,8 +550,13 @@ html body main .base-container {
 }
 .base-container.review-page .firstLine {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
+}
+.base-container.review-page .firstLine section {
+  display: flex;
+  gap: 15px;
 }
 .base-container.review-page .firstLine div {
   color: #EDEBD7;
@@ -560,30 +565,34 @@ html body main .base-container {
   color: #EDEBD7;
   font-weight: bold;
 }
+.base-container.review-page .firstLine button {
+  font-weight: normal;
+  padding: 5px 1%;
+}
 .base-container.review-page .pageContent {
-  background-color: coral;
+  display: flex;
 }
 .base-container.review-page .pageContent #testStage {
-  display: flex;
-  position: relative;
-  z-index: 2;
-}
-.base-container.review-page .pageContent #testStage > * {
+  position: absolute;
+  z-index: 1;
+  background-color: coral;
   flex: 1;
+  width: 100%;
+}
+.base-container.review-page .pageContent #testStage img {
+  width: 100%;
 }
 .base-container.review-page .pageContent #heatmap {
-  background-color: pink;
   width: 100%;
-  height: 200px;
-  position: relative;
-  z-index: 1;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
 }
 .base-container.review-page .pageContent #heatmap-canvas {
-  background-color: aquamarine;
   width: 100%;
-  height: 200px;
-  position: relative;
-  z-index: 2;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
 }
 
 /* width */
