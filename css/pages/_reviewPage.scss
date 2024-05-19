@@ -36,6 +36,7 @@
 
         .pageContent {
             display: flex;
+            flex: 1;
 
             #testStage {
                 position: absolute;
@@ -46,6 +47,12 @@
 
                 img {
                     width: 100%;
+                }
+
+                iframe {
+                    flex: 1;
+                    width: 100%;
+                    height: inherit;
                 }
             }
     
