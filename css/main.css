@@ -575,9 +575,9 @@ html body main .base-container {
 .base-container.review-page .pageContent #testStage {
   position: absolute;
   z-index: 1;
-  background-color: coral;
   flex: 1;
   width: 100%;
+  height: 100%;
 }
 .base-container.review-page .pageContent #testStage img {
   width: 100%;
@@ -604,12 +604,25 @@ html body main .base-container {
 .base-container.test div {
   background-color: #423E37;
 }
+.base-container.test div:has(> #tmrDuration) {
+  background-color: #423E37;
+  color: #EDEBD7;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+.base-container.test div:has(> #tmrDuration) #tmrDuration {
+  color: #EDEBD7;
+  font-weight: normal;
+}
 .base-container.test #testStage {
   flex: 1;
   display: flex;
+  justify-content: center;
 }
 .base-container.test #testStage #calibrationPage {
   flex: 1;
+  height: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -634,6 +647,22 @@ html body main .base-container {
   z-index: 1;
   color: #EDEBD7;
   text-align: center;
+}
+.base-container.test #testStage div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #EDEBD7;
+  height: inherit;
+}
+.base-container.test #testStage img {
+  flex: 1;
+  height: inherit;
+}
+.base-container.test #testStage iframe {
+  flex: 1;
+  height: inherit;
 }
 
 /* width */

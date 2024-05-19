@@ -12,12 +12,27 @@
             background-color: colors.$secondary-color;
         }
 
+        div:has(> #tmrDuration) {
+            background-color: colors.$secondary-color;
+            color: colors.$light-color;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+
+            #tmrDuration {
+                color: colors.$light-color;
+                font-weight: normal;
+            }
+        }
+
         #testStage {
             flex: 1;
             display: flex;
+            justify-content: center;
 
             #calibrationPage {
                 flex: 1;
+                height: inherit;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -46,6 +61,25 @@
                     color: colors.$light-color;
                     text-align: center;
                 }
+            }
+
+            div {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: colors.$light-color;
+                height: inherit;
+            }
+
+            img {
+                flex: 1;
+                height: inherit;
+            }
+
+            iframe {
+                flex: 1;
+                height: inherit;
             }
         }
     }

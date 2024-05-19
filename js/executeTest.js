@@ -83,7 +83,8 @@ function drawPage(page) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
         webgazer.resume();
     } else if (page["link"] != null) {
-        pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
+        //pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
+        pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
         webgazer.resume();
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
