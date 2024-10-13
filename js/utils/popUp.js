@@ -30,7 +30,7 @@ class PopUp {
                 <input type="file" name="fleImage" accept="image/png, image/jpeg, image/jpg" required>
             </label>
             <label>Tempo di visualizzazione massimo
-                <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
+                <input type="time" name="tmeMaxTimer" min="00:00:30" max="01:30" value="00:10" step="30">
             </label>
             <section>
                 <input type="reset" name="btnDiscard" value="Scarta"/>
@@ -52,7 +52,7 @@ class PopUp {
                 <input type="url" name="urlLink" required/>
             </label>
             <label>Tempo di visualizzazione massimo
-                <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
+                <input type="time" name="tmeMaxTimer" min="00:00:30" max="01:30" value="00:10" step="30">
             </label>
             <section>
                 <input type="reset" name="btnDiscard" value="Scarta"/>
@@ -72,9 +72,6 @@ class PopUp {
             </label>
             <label>Contenuto
                 <textarea name="txtText" rows="4" cols="50" required></textarea>
-            </label>
-            <label>Tempo di visualizzazione massimo
-                <input type="time" name="tmeMaxTimer" min="00:01" max="01:30" value="00:10" step="30">
             </label>
             <section>
                 <input type="reset" name="btnDiscard" value="Scarta"/>
@@ -153,7 +150,7 @@ class PopUp {
                 link : null,
                 image : null,
                 text : document.querySelector("#" + event.currentTarget.domId + " textarea").value,
-                maxTime : document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
+                maxTime : null,//document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
             });
             event.currentTarget.caller.closePopUp();
             event.currentTarget.pListM.updateTestPages();

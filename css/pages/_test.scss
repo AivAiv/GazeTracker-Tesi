@@ -11,7 +11,7 @@
         div {
             background-color: colors.$secondary-color;
         }
-
+        
         div:has(> #tmrDuration) {
             background-color: colors.$secondary-color;
             color: colors.$light-color;
@@ -83,4 +83,28 @@
             }
         }
     }
+}
+
+#webgazerVideoContainer {
+    width: 220px !important;
+    height: 140px !important;
+    top: 120px !important;
+    left: -15px !important;
+}
+
+#webgazerVideoFeed {
+    width: 220px !important;
+    height: 140px !important;
+}
+
+#webgazerFaceOverlay{
+    width: 220px !important;
+    height: 140px !important;
+}
+
+#webgazerFaceFeedbackBox{
+    width: 85px !important;
+    height: 85px !important;
+    top: 20px !important;
+    left: 60px !important;
 }

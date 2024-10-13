@@ -1,5 +1,6 @@
 const buttonContainer = document.getElementById("allButtons");
 const pageContainer = document.getElementById("testStage");
+const remainingTimeCounter = document.getElementById("tmrDuration");
 const test = JSON.parse(sessionStorage.getItem("test"));
 
 let calibrationButtons = Array.from(buttonContainer.children);
@@ -7,7 +8,7 @@ calibrationButtons.splice(4,1);
 let calibrationClicks = [5,5,5,5];
 let currentPageIndex = 0;
 let calibrationEnded = false;
-
+let startingTimes = [];
 
 // Simone
 var xPerc;
@@ -19,11 +20,13 @@ var webgazer;
 
 var calibrazioneFinita= false;
 
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log("CARICAMENTO utente");
     generateUUID();
     console.log(uuid);
-    if(test["pages"]){
+    if(test["pages"]) {
+        for(let page in test["pages"]) { startingTimes.push(0); }
         console.log("inizio webgazer");
         initWebGazer();
     }else{
@@ -38,7 +41,7 @@ console.log(JSON.parse(sessionStorage.getItem("test")));
 console.log(calibrationButtons);
 console.log(calibrationClicks);
 
-document.getElementById("tmrDuration").parentNode.style.display = "none";
+remainingTimeCounter.parentNode.style.display = "none";
 
 calibrationButtons.forEach(btn => {
     btn.caller = btn;
@@ -80,17 +83,18 @@ function loadCurrentPage() {
 function drawPage(page) {
     console.log(document.getElementById("btnForward"));
     if (page["image"] != null) {
+        remainingTimeCounter.parentNode.style.display = "flex";
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
         webgazer.resume();
     } else if (page["link"] != null) {
+        remainingTimeCounter.parentNode.style.display = "flex";
         //pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
         pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
         webgazer.resume();
     } else {
+        remainingTimeCounter.parentNode.style.display = "none";
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }
-    document.getElementById("tmrDuration").innerHTML = page["max_time"];
-    document.getElementById("tmrDuration").parentNode.style.display = "inline-block";
 }
 
 function setForwardButton() {
@@ -112,13 +116,13 @@ function nextPage() {
 
 // Simone
 function generateUUID() {
-
+    
     uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0,
-            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
-
+    
     const formData = new FormData();
     formData.append("idPage", test["pages"][currentPageIndex]["id"]);
     axios.post("../api/api-getAnonymousUser.php", formData
@@ -126,33 +130,35 @@ function generateUUID() {
         do {
             uuid = 'xxxxxxxx-xxxx'.replace(/[xy]/g, function (c) {
                 var r = Math.random() * 16 | 0,
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
         }
         while (response.data.some(item => item.IndexUtenteAnonimo === uuid));
     });
-
+    
 }
 
 // Simone
 function initWebGazer() {
     webgazer.setGazeListener(function (data, elapsedTime) {
-        if (data == null) {
-            return;
-        }
+        if (data == null) { return; }
+        
         var x = data.x; //these x coordinates are relative to the viewport
         var y = data.y; //these y coordinates are relative to the viewport
-
         eyeTrackerRect = eyeTracker.getBoundingClientRect();
-
+        
         if(calibrationEnded && (currentPageIndex != test["pages"].length)){
+            if (startingTimes[currentPageIndex] == 0) {
+                startingTimes[currentPageIndex] = elapsedTime;
+            }
+
             if (x >= eyeTrackerRect.left && x <= eyeTrackerRect.left + eyeTrackerRect.width &&
                 y >= eyeTrackerRect.top && y <= eyeTrackerRect.top + eyeTrackerRect.height) {
-                coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
-                //console.log(coords.x);
-                console.log("SENDING: " + currentPageIndex);
-                const formData = new FormData();
+                    coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
+                    //console.log(coords.x);
+                    console.log("SENDING: " + currentPageIndex);
+                    const formData = new FormData();
                 formData.append("coord_x", coords.x);
                 formData.append("coord_y", coords.y);
                 formData.append("idPage", test["pages"][currentPageIndex]["id"]);
@@ -165,6 +171,8 @@ function initWebGazer() {
                 // Il tracciamento è fuori dal quadrato, nascondi il punto di tracciamento degli occhi
                 //console.log('nothing');
             }
+
+            checkMaxTimeReached(elapsedTime);
         }
     }).begin();
     webgazer.applyKalmanFilter(webgazer.params.applyKalmanFilter);
@@ -182,4 +190,28 @@ function trasformaPercentuale(x, y) {
     yPerc = (y * 100) / eyeTrackerRect.height;
     //console.log('x:', xPerc, 'y:', yPerc);
     return { x: xPerc, y: yPerc };
+}
+
+function checkMaxTimeReached(elapsedTime) {
+    const toMilliseconds = (hrs,min,sec) => ((hrs*60*60)+(min*60)+sec)*1000;
+    const toSeconds = (millis) => (millis/1000);
+    let maxPageTime = test["pages"][currentPageIndex].max_time;
+    let timeParts = maxPageTime.split(":");
+    maxPageTime = toMilliseconds(Number(timeParts[0]), Number(timeParts[1]), Number(timeParts[2]));
+
+    remaining = toSeconds(maxPageTime -(elapsedTime - startingTimes[currentPageIndex]))
+    hours = Math.floor(remaining / 3600);
+    remaining %= 3600;
+    minutes = Math.floor(remaining / 60);
+    seconds = Math.floor(remaining % 60);
+    remainingTimeCounter.innerHTML = hours + ":" + minutes + ":" + seconds;
+    
+    //console.log(maxPageTime, elapsedTime, (elapsedTime - startingTimes[currentPageIndex]));
+    if ((elapsedTime - startingTimes[currentPageIndex]) >= maxPageTime) {
+        console.log("Time Reached");
+        let btnForward = document.getElementById("btnForward");
+        if (btnForward != null) {
+            btnForward.click();
+        }
+    }
 }
