@@ -95,9 +95,9 @@
 			return true;
 		}
 
-		public function createTest($name, $codCreator) {
-			$stmt = $this->db->prepare("INSERT INTO `".$this->table_prefix."test` (`id`, `name`, `cod_creator`, `active`) VALUES (NULL, ?, ?, '1');");
-			$stmt->bind_param('si', $name, $codCreator);
+		public function createTest($name, $questionnaire, $password, $codCreator) {
+			$stmt = $this->db->prepare("INSERT INTO `".$this->table_prefix."test` (`id`, `name`, `questionnaire_link`, `password`, `cod_creator`, `active`) VALUES (NULL, ?, ?, ?, ?, '1');");
+			$stmt->bind_param('sssi', $name, $questionnaire, $password, $codCreator);
 			$stmt->execute();
 			return $this->db->insert_id;
 		}

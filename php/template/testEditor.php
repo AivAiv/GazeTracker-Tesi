@@ -23,6 +23,14 @@
                         <div id="lstPages"></div>
                     </fieldset>
                     <section>
+                        <label>Link  al questionario
+                            <input type="text" name="txtQuestionnaire"/>
+                        </label>
+                        <label>Password del test
+                            <input type="text" name="txtTestPassword"/>
+                        </label>
+                    </section>
+                    <section>
                         <input type="reset" name="btnDiscard" value="Scarta"/>
                         <input type="submit" name="btnCreate" value="Crea"/>
                     </section>
@@ -45,6 +53,14 @@
                         <legend>Pagine attuali</legend>
                         <div id="lstPages"></div>
                     </fieldset>
+                    <section>
+                        <label>Link  al questionario
+                            <input type="text" name="txtQuestionnaire"/>
+                        </label>
+                        <label>Password del test
+                            <input type="text" name="txtTestPassword"/>
+                        </label>
+                    </section>
                     <section>
                         <input type="reset" name="btnDiscard" value="Scarta le modifiche"/>
                         <input type="submit" name="btnSave" value="Salva"/>

@@ -26,11 +26,14 @@ function deleteTest(testId) {
     });
 }
 
-function createTest(testName) {//TODO: Update with all the page sending
+function createTest(testInfo) {//TODO: Update with all the page sending
     // Create empty test
     const testData = new FormData();
     var testId;
-    testData.append('testName', testName);
+    testData.append('testName', testInfo.name);
+    testData.append('testquestionnaire', testInfo.questionnaireLink);
+    testData.append('testPassword', testInfo.password);
+    console.log(testInfo.password, testInfo.questionnaireLink);
     axios.post('../api/api-create.php', testData).then(response => {
         if (response.data["testCreated"]) {
             testId = response.data["testId"];
@@ -44,7 +47,7 @@ function createTest(testName) {//TODO: Update with all the page sending
                 axios.post('../api/api-create.php', pageData).then(response => {
                     //if (response.data["addedPage"]) {
                     //}
-                    console.log("[LOG] : Created test - " + testName);
+                    console.log("[LOG] : Created test - " + testInfo.name);
                 });
             });
             updateTestList();
@@ -53,11 +56,12 @@ function createTest(testName) {//TODO: Update with all the page sending
     });
 }
 
-function modifyTest(testId, name) {
+function modifyTest(testId, testInfo) {
     const testData = new FormData();
-    var testId;
     testData.append('testId', testId);
-    testData.append('name', name);
+    testData.append('name', testInfo.name);
+    testData.append('testQuestionnaire', testInfo.questionnaireLink);
+    testData.append('testPassword', testInfo.password);
     axios.post('../api/api-edit.php', testData).then(response => {  // Update test name
         if (response.data["editSuccess"]) {
             var pagesToAdd = pagesHolder.getPages().filter(p=>{return p["id"] == null});
@@ -88,7 +92,7 @@ function modifyTest(testId, name) {
                             updateTestList();
                             openCreateTab();
                         }
-                    }); 
+                    });
                 }
             });
         }
@@ -177,14 +181,22 @@ document.querySelector("#btnOpenCreate").addEventListener("click", function (eve
 
 document.querySelector("#createTab form").addEventListener("submit", function (event) {
     event.preventDefault();
-	let name = document.querySelector("#createTab input[name=txtName]").value;
-    createTest(name);
+    let testInfo = {
+        name : document.querySelector("#createTab input[name=txtName]").value,
+        questionnaireLink : document.querySelector("#createTab input[name=txtQuestionnaire]").value,
+        password : document.querySelector("#createTab input[name=txtTestPassword]").value,
+    };
+    createTest(testInfo);
 });
 
 document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
     event.preventDefault();
-    let name = document.querySelector("#modifyTab input[name=txtName]").value;
-    modifyTest(currentSelectedTestId, name);
+    let testInfo = {
+        name : document.querySelector("#createTab input[name=txtName]").value,
+        questionnaireLink : document.querySelector("#createTab input[name=txtQuestionnaire]").value,
+        password : document.querySelector("#createTab input[name=txtTestPassword]").value,
+    };
+    modifyTest(currentSelectedTestId, testInfo);
 });
 
 document.querySelector("#createTab form").addEventListener("reset", function (event) {
