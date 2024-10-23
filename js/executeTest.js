@@ -75,7 +75,7 @@ function loadCurrentPage() {
     } else if (test["pages"][currentPageIndex] != null) {
         drawPage(test["pages"][currentPageIndex]);
     } else if (currentPageIndex == test["pages"].length) {
-        pageContainer.innerHTML = `<div>QUESTIONARIO!</div>`;//TODO: inserire pagina questionario
+        pageContainer.innerHTML = `<div>Questo test ha associato un questionario!<a href="${test['questionnaire_link']}">Vai al questionario</a></div>`;//TODO: inserire pagina questionario
         document.getElementById("tmrDuration").parentNode.style.display = "none";
     }
 }
