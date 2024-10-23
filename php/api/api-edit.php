@@ -6,7 +6,15 @@
 	$result["addedPage"] = false;
 
 	if(isset($_POST["testId"]) && isset($_POST["name"])) {
-		$result["editSuccess"] = $dbh->modifyTest($_POST["testId"], $_POST["name"]);
+		$result["editSuccess"] = $dbh->modifyTestName($_POST["testId"], $_POST["name"]);
+	}
+
+	if(isset($_POST["testId"]) && isset($_POST["testQuestionnaire"])) {
+		$result["editSuccess"] = $dbh->modifyTestQuestionnaire($_POST["testId"], $_POST["testQuestionnaire"]);
+	}
+
+	if(isset($_POST["testId"]) && isset($_POST["testPassword"])) {
+		$result["editSuccess"] = $dbh->modifyTestPassword($_POST["testId"], $_POST["testPassword"]);
 	}
 
 	if(isset($_POST["testId"]) && isset($_POST["pagesRemaining"])) {
@@ -24,6 +32,9 @@
 	if(isset($_POST["testId"]) && isset($_POST["pagesToAdd"])) {
 		$pagesToAdd = json_decode($_POST["pagesToAdd"], true);
 		foreach ($pagesToAdd as $page) {
+			if (!isset($page["maxTime"])) {
+				$page["maxTime"] = "10:00:00";
+			}
 			$result["page"] = $page;
 			if (isset($page["image"]) && isset($_FILES["imgsToAdd"])) { // Add image page
 				$result["files"] = $_FILES["imgsToAdd"];

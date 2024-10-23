@@ -102,9 +102,23 @@
 			return $this->db->insert_id;
 		}
 
-		public function modifyTest($testId, $name) {
+		public function modifyTestName($testId, $name) {
 			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `name` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
 			$stmt->bind_param('si', $name, $testId);
+            $stmt->execute();
+			return true;
+		}
+
+		public function modifyTestQuestionnaire($testId, $questionnaire) {
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `questionnaire_link` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt->bind_param('si', $questionnaire, $testId);
+            $stmt->execute();
+			return true;
+		}
+
+		public function modifyTestPassword($testId, $password) {
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `password` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt->bind_param('si', $password, $testId);
             $stmt->execute();
 			return true;
 		}
@@ -159,7 +173,7 @@
 				}
 			}
 
-			$query = "DELETE FROM `page` WHERE `page`.`id` = ?;";
+			$query = "DELETE FROM `".$this->table_prefix."page` WHERE `".$this->table_prefix."page`.`id` = ?;";
 			$stmt = $this->db->prepare($query);
 			$stmt->bind_param('i', $id);
 			$stmt->execute();

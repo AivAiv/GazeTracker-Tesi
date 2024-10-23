@@ -63,6 +63,7 @@ function modifyTest(testId, testInfo) {
     testData.append('testQuestionnaire', testInfo.questionnaireLink);
     testData.append('testPassword', testInfo.password);
     axios.post('../api/api-edit.php', testData).then(response => {  // Update test name
+        console.log(testInfo);
         if (response.data["editSuccess"]) {
             var pagesToAdd = pagesHolder.getPages().filter(p=>{return p["id"] == null});
             var pagesRemaining = pagesHolder.getPages().filter(p=>{return p["id"] != null});
@@ -116,6 +117,8 @@ function openModifyTab(test) {
 
 function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
+    document.querySelector("#modifyTab input[name=txtQuestionnaire]").value = test["questionnaire_link"];
+    document.querySelector("#modifyTab input[name=txtTestPassword]").value = test["password"];
     pagesHolder.overridePages(test["pages"]);
     modifyPagesList.updateTestPages();
 }
@@ -192,9 +195,9 @@ document.querySelector("#createTab form").addEventListener("submit", function (e
 document.querySelector("#modifyTab form").addEventListener("submit", function (event) {
     event.preventDefault();
     let testInfo = {
-        name : document.querySelector("#createTab input[name=txtName]").value,
-        questionnaireLink : document.querySelector("#createTab input[name=txtQuestionnaire]").value,
-        password : document.querySelector("#createTab input[name=txtTestPassword]").value,
+        name : document.querySelector("#modifyTab input[name=txtName]").value,
+        questionnaireLink : document.querySelector("#modifyTab input[name=txtQuestionnaire]").value,
+        password : document.querySelector("#modifyTab input[name=txtTestPassword]").value,
     };
     modifyTest(currentSelectedTestId, testInfo);
 });
