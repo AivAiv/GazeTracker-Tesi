@@ -65,6 +65,21 @@
 			return $res;
 		}
 
+		public function getTest($id) {
+			$query = "SELECT * FROM `".$this->table_prefix."test` WHERE `id` = ?;";
+			$stmt = $this->db->prepare($query);
+			$stmt->bind_param('i', $id);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$res = $result->fetch_all(MYSQLI_ASSOC);
+
+			// Retrieve pages
+			for ($i = 0; $i < count($res); $i++) {
+				$res[$i]["pages"] = $this->getTestPages($res[$i]["id"]);
+			}
+			return $res;
+		}
+
 		public function getCreatorTests($email) {
 			$query = "SELECT ".$this->table_prefix."test.* FROM `".$this->table_prefix."user`, `".$this->table_prefix."test` WHERE `email` = ? AND `cod_creator` = `".$this->table_prefix."user`.`id`;";
 			$stmt = $this->db->prepare($query);
