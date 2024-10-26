@@ -1,6 +1,5 @@
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
-console.log(searchParams.get("id"));
 if (searchParams.has("id")) {
     window.location.href = './php/redirector/executeTest-redirector.php?id=' + searchParams.get("id");
 }
