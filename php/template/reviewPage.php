@@ -4,7 +4,6 @@
             <div>Pagina: <span id="pageName"></span></div>
             <div>ID utente: <span id="userId"></span></div>
         </section>
-        <div>Tempo impiegato: <span id="tmrDuration">00:01:00</span></div>
         <button id="btnHeatmap">LINE</button>
     </section>
     <section class="pageContent">

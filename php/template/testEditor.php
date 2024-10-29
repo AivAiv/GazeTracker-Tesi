@@ -24,7 +24,7 @@
                     </fieldset>
                     <section>
                         <label>Link  al questionario
-                            <input type="text" name="txtQuestionnaire"/>
+                            <input type="url" name="txtQuestionnaire"/>
                         </label>
                         <label>Password del test
                             <input type="text" name="txtTestPassword"/>
@@ -55,7 +55,7 @@
                     </fieldset>
                     <section>
                         <label>Link  al questionario
-                            <input type="text" name="txtQuestionnaire"/>
+                            <input type="url" name="txtQuestionnaire"/>
                         </label>
                         <label>Password del test
                             <input type="text" name="txtTestPassword"/>

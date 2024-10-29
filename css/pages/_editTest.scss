@@ -116,7 +116,7 @@
                         width: 50%;
                         font-size: 10pt;
 
-                        input[type=text] { /*FIXME: "Duplicated"*/
+                        input[type=text], input[type=url] { /*FIXME: "Duplicated"*/
                             border-radius: 5px;
                             border: 1px solid colors.$shadow;
                             background-color: colors.$light-color;
