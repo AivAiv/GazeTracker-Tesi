@@ -74,7 +74,7 @@ function attachTesterEventListener(tests) {
                 event.preventDefault();
                 sessionStorage.clear();
                 sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
-                window.location.href = './executeTest-redirector.php?id=' + event.currentTarget.test["id"];
+                window.location.href = './executeTest-redirector.php';//?id=' + event.currentTarget.test["id"];
             });
         }
     }

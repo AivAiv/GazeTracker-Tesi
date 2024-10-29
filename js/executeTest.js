@@ -2,9 +2,9 @@ const buttonContainer = document.getElementById("allButtons");
 const pageContainer = document.getElementById("testStage");
 const remainingTimeCounter = document.getElementById("tmrDuration");
 let test = JSON.parse(sessionStorage.getItem("test"));
-const url = new URL(window.location.href);
-const searchParams = new URLSearchParams(url.search);
-console.log(searchParams.get("id"));
+//const url = new URL(window.location.href);
+//const searchParams = new URLSearchParams(url.search);
+//console.log(searchParams.get("id"));
 
 let calibrationButtons = Array.from(buttonContainer.children);
 calibrationButtons.splice(4,1);
@@ -23,27 +23,31 @@ var webgazer;
 
 var calibrazioneFinita= false;
 
+if (test == null) {
+    window.location.href = './home-redirector.php';
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    const formData = new FormData();
-    formData.append("id", searchParams.get("id"));
-    axios.post('../api/api-getSingleTest.php', formData).then(response => { // Send password
-        console.log(response.data);
-        if (response.data["testRetrieved"]) {
-            test = response.data["test"];
-        }
+    //const formData = new FormData();
+    //formData.append("id", searchParams.get("id"));
+    //axios.post('../api/api-getSingleTest.php', formData).then(response => { // Send password
+        //console.log(response.data);
+        //if (response.data["testRetrieved"]) {
+        //    test = response.data["test"];
+        //}
         
         console.log("CARICAMENTO utente");
         generateUUID();
         console.log(uuid);
-        if(test["pages"]) {
+        if(!!test["pages"]) {
             for(let page in test["pages"]) { startingTimes.push(0); }
             console.log("inizio webgazer");
             initWebGazer();
         }else{
             console.log("pagine non caricate");
+            window.location.href = './home-redirector.php';
         }
-    });
+    //});
 
     
 });
