@@ -50,11 +50,12 @@
                     flex-direction: column;
                     gap: 10px;
                     padding-top: 10px;
+                    color: colors.$light-color;
                 }
             }
         }
         
-        @media screen and (max-width: 600px) { /*MEDIA QUERY*/
+        @media screen and (max-width: 600px) {
             #pageContent {
                 display: block;
 

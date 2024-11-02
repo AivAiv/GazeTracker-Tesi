@@ -10,6 +10,9 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   border: 0px;
   font-weight: bold;
 }
+.base-container.edit #testsContainer #btnOpenCreate:hover, .base-container.edit #testsEdit #createTab form fieldset button:hover, .base-container.edit #testsEdit #modifyTab form fieldset button:hover, .base-container.edit #testsEdit #createTab form section input[type=submit]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=submit]:hover, .base-container.edit .scrim #popUp form section input[type=submit]:hover, .base-container.homeCreator .firstLine button:hover {
+  background-color: #d6a021;
+}
 
 .base-container.edit #testsEdit #createTab form #lstPages div .btnDelete, .base-container.edit #testsEdit #modifyTab form #lstPages div .btnDelete, .base-container.access section button, html body nav section #btnLogout, html body nav section #btnHome {
   background-color: #423E37;
@@ -17,6 +20,9 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   border-radius: 25px;
   border: 0px;
   font-weight: bold;
+}
+.base-container.edit #testsEdit #createTab form #lstPages div .btnDelete:hover, .base-container.edit #testsEdit #modifyTab form #lstPages div .btnDelete:hover, .base-container.access section button:hover, html body nav section #btnLogout:hover, html body nav section #btnHome:hover {
+  background-color: #312f2a;
 }
 
 .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward {
@@ -26,6 +32,9 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   border: 0px;
   font-weight: bold;
 }
+.base-container.test #testStage #calibrationPage #allButtons button:hover, .base-container.review-page .firstLine button:hover, .base-container.edit #testsContainer #testsList div section .btnDelete:hover, .base-container.edit #testsContainer #testsList div section .btnModify:hover, .base-container.edit #testsEdit #createTab form section input[type=reset]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=reset]:hover, .base-container.edit .scrim #popUp form section input[type=reset]:hover, .base-container.review-test #pageContent button:hover, .base-container.homeCreator #testContainer div section .btnResults:hover, .base-container.access form input[type=submit]:hover, html body nav section #btnForward:hover, html body nav section #btnBackward:hover {
+  background-color: #d3d1bd;
+}
 
 .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus {
   background-color: #23211E;
@@ -33,6 +42,9 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   border-radius: 25px;
   border: 0px;
   font-weight: bold;
+}
+.base-container.homeTester #testContainer button:hover, .base-container.homeCreator #testContainer div section .btnStatus:hover {
+  background-color: #131210;
 }
 
 * {
@@ -192,7 +204,7 @@ html body main .base-container {
   flex-wrap: wrap;
 }
 .base-container.homeTester #testContainer button {
-  flex: 0 0 15%;
+  flex: 0 0 12%;
   min-width: 100px;
   aspect-ratio: 1/1;
   margin: 10px;
@@ -205,10 +217,10 @@ html body main .base-container {
 }
 .base-container.homeCreator .firstLine {
   display: flex;
-  width: 80%;
+  width: 70%;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0px;
+  margin: 60px 0px 20px 0px;
 }
 .base-container.homeCreator .firstLine h1 {
   color: #EDEBD7;
@@ -223,7 +235,7 @@ html body main .base-container {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 80%;
+  width: 70%;
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -235,10 +247,11 @@ html body main .base-container {
   width: 100%;
   border-radius: 15px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.3);
+  min-width: 410px;
 }
 .base-container.homeCreator #testContainer div p {
   font-weight: bold;
-  margin: 10px;
+  margin: 10px 20px;
 }
 .base-container.homeCreator #testContainer div section {
   display: flex;
@@ -247,12 +260,12 @@ html body main .base-container {
 .base-container.homeCreator #testContainer div section .btnResults {
   border: 2px solid #23211E;
   box-shadow: none;
-  padding: 10px;
+  padding: 10px 15px;
   margin-left: 5px;
 }
 .base-container.homeCreator #testContainer div section .btnStatus {
   box-shadow: none;
-  padding: 10px;
+  padding: 10px 15px;
 }
 
 .base-container.review-test {
@@ -297,9 +310,9 @@ html body main .base-container {
   flex-direction: column;
   gap: 10px;
   padding-top: 10px;
+  color: #EDEBD7;
 }
 @media screen and (max-width: 600px) {
-  .base-container.review-test { /*MEDIA QUERY*/ }
   .base-container.review-test #pageContent {
     display: block;
   }
@@ -657,10 +670,12 @@ html body main .base-container {
 .base-container.test #testStage div {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #EDEBD7;
   height: inherit;
+  font-size: 16pt;
 }
 .base-container.test #testStage img {
   flex: 1;
@@ -674,8 +689,8 @@ html body main .base-container {
 #webgazerVideoContainer {
   width: 220px !important;
   height: 140px !important;
-  top: 120px !important;
-  left: -15px !important;
+  top: 220px !important;
+  left: 0px !important;
 }
 
 #webgazerVideoFeed {

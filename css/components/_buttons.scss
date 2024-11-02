@@ -19,18 +19,34 @@
 %wgPrimaryButton {
     @include wgButton;
     @extend %shadow;
+
+    &:hover {
+        background-color: colors.$primary-color-hover;
+    }
 }
 
 %wgSecondaryButton {
     @include wgButton(colors.$secondary-color, colors.$light-color);
+
+    &:hover {
+        background-color: colors.$secondary-color-hover;
+    }
 }
 
 %wgLightButton {
     @include wgButton(colors.$light-color);
     @extend %shadow;
+
+    &:hover {
+        background-color: colors.$light-color-hover;
+    }
 }
 
 %wgDarkButton {
     @include wgButton(colors.$dark-color, colors.$light-color);
     @extend %shadow;
+
+    &:hover {
+        background-color: colors.$dark-color-hover;
+    }
 }

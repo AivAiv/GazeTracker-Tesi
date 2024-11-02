@@ -70,7 +70,9 @@ calibrationButtons.forEach(btn => {
             //console.log(btnId + " - " + calibrationClicks[btnId-1]);
         } else {
             calibrationClicks[btnId-1] = "✓";
+            btn.style.background = "#009900";
             if (isCalibrationEnded()) {
+                setForwardButton();
                 loadCurrentPage();
                 calibrationEnded = true;
             }
@@ -79,7 +81,6 @@ calibrationButtons.forEach(btn => {
     });
 });
 
-setForwardButton();
 
 function isCalibrationEnded() { return calibrationClicks.every(btn => btn == "✓"); }
 
@@ -92,7 +93,7 @@ function loadCurrentPage() {
     } else if (test["pages"][currentPageIndex] != null) {
         drawPage(test["pages"][currentPageIndex]);
     } else if (currentPageIndex == test["pages"].length) {
-        pageContainer.innerHTML = `<div>Questo test ha associato un questionario!<a href="${test['questionnaire_link']}">Vai al questionario</a></div>`;
+        pageContainer.innerHTML = `<div>TEST TERMINATO!<a href="${test['questionnaire_link']}">Vai al questionario</a></div>`;
         document.getElementById("tmrDuration").parentNode.style.display = "none";
     }
 }
