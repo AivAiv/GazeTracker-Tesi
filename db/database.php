@@ -110,30 +110,37 @@
 			return true;
 		}
 
-		public function createTest($name, $questionnaire, $password, $codCreator) {
-			$stmt = $this->db->prepare("INSERT INTO `".$this->table_prefix."test` (`id`, `name`, `questionnaire_link`, `password`, `cod_creator`, `active`) VALUES (NULL, ?, ?, ?, ?, '1');");
-			$stmt->bind_param('sssi', $name, $questionnaire, $password, $codCreator);
+		public function createTest($name, $questionnaire, $password, $anonym_user, $codCreator) {
+			$stmt = $this->db->prepare("INSERT INTO `".$this->table_prefix."test` (`id`, `name`, `questionnaire_link`, `password`, `anonym_user`, `cod_creator`, `active`) VALUES (NULL, ?, ?, ?, ?, ?, '1');");
+			$stmt->bind_param('sssii', $name, $questionnaire, $password, $anonym_user, $codCreator);
 			$stmt->execute();
 			return $this->db->insert_id;
 		}
 
 		public function modifyTestName($testId, $name) {
-			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `name` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `name` = ? WHERE `".$this->table_prefix."test`.`id` = ?;");
 			$stmt->bind_param('si', $name, $testId);
             $stmt->execute();
 			return true;
 		}
 
 		public function modifyTestQuestionnaire($testId, $questionnaire) {
-			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `questionnaire_link` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `questionnaire_link` = ? WHERE `".$this->table_prefix."test`.`id` = ?;");
 			$stmt->bind_param('si', $questionnaire, $testId);
             $stmt->execute();
 			return true;
 		}
 
 		public function modifyTestPassword($testId, $password) {
-			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `password` = ?, `active` = '1' WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `password` = ? WHERE `".$this->table_prefix."test`.`id` = ?;");
 			$stmt->bind_param('si', $password, $testId);
+            $stmt->execute();
+			return true;
+		}
+
+		public function modifyTestAnonymUser($testId, $anonym_user) {
+			$stmt = $this->db->prepare("UPDATE `".$this->table_prefix."test` SET `anonym_user` = ? WHERE `".$this->table_prefix."test`.`id` = ?;");
+			$stmt->bind_param('ii', $anonym_user, $testId);
             $stmt->execute();
 			return true;
 		}

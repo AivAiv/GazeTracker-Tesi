@@ -5,8 +5,9 @@
 	$result["testCreated"] = false;
 	$result["addedPage"] = false;
 
-	if(isset($_POST["testName"])) {
-		$result["testId"] = $dbh->createTest($_POST["testName"],$_POST["testquestionnaire"], $_POST["testPassword"], $_SESSION["id"]);
+	if(isset($_POST["testName"])) { // TODO: Controlla che non passi null o dia problemi
+		$anonym = $_POST["anonymUser"] == "true" ? 1 : 0; // FIXME: C'è un modo migliore?
+		$result["testId"] = $dbh->createTest($_POST["testName"],$_POST["testquestionnaire"], $_POST["testPassword"], $anonym, $_SESSION["id"]);
 		$result["testCreated"] = true;
 	}
 

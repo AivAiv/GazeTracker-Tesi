@@ -12,9 +12,18 @@
 	if(isset($_POST["testId"]) && isset($_POST["testQuestionnaire"])) {
 		$result["editSuccess"] = $dbh->modifyTestQuestionnaire($_POST["testId"], $_POST["testQuestionnaire"]);
 	}
-
+	
 	if(isset($_POST["testId"]) && isset($_POST["testPassword"])) {
 		$result["editSuccess"] = $dbh->modifyTestPassword($_POST["testId"], $_POST["testPassword"]);
+	}
+	
+	if(isset($_POST["testId"]) && isset($_POST["anonymUser"])) {
+		$anonym = $_POST["anonymUser"] == "true" ? 1 : 0; // FIXME: C'è un modo migliore?
+		$result["editSuccess"] = $dbh->modifyTestAnonymUser($_POST["testId"], $anonym);
+	}
+
+	if(isset($_POST["testId"]) && isset($_POST["state"])) {
+		$result["editSuccess"] = $dbh->updateTestState($_POST["testId"], $_POST["state"]);
 	}
 
 	if(isset($_POST["testId"]) && isset($_POST["pagesRemaining"])) {
@@ -49,10 +58,6 @@
 			}
 		}
 		$result["addedPages"] = true;
-	}
-
-	if(isset($_POST["testId"]) && isset($_POST["state"])) {
-		$result["editSuccess"] = $dbh->updateTestState($_POST["testId"], $_POST["state"]);
 	}
 
 	header('Content-Type: application/json');

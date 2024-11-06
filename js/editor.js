@@ -33,8 +33,10 @@ function createTest(testInfo) {//TODO: Update with all the page sending
     testData.append('testName', testInfo.name);
     testData.append('testquestionnaire', testInfo.questionnaireLink);
     testData.append('testPassword', testInfo.password);
-    console.log(testInfo.password, testInfo.questionnaireLink);
+    testData.append('anonymUser', testInfo.anonymUser);
+    console.log(testInfo.password, testInfo.questionnaireLink, testInfo.anonymUser); // TODO: Delete
     axios.post('../api/api-create.php', testData).then(response => {
+        console.log(response.data);
         if (response.data["testCreated"]) {
             testId = response.data["testId"];
             console.log(pagesHolder.getPages());
@@ -62,8 +64,9 @@ function modifyTest(testId, testInfo) {
     testData.append('name', testInfo.name);
     testData.append('testQuestionnaire', testInfo.questionnaireLink);
     testData.append('testPassword', testInfo.password);
+    testData.append('anonymUser', testInfo.anonymUser);
     axios.post('../api/api-edit.php', testData).then(response => {  // Update test name
-        console.log(testInfo);
+        console.log(response.data);
         if (response.data["editSuccess"]) {
             var pagesToAdd = pagesHolder.getPages().filter(p=>{return p["id"] == null});
             var pagesRemaining = pagesHolder.getPages().filter(p=>{return p["id"] != null});
@@ -119,12 +122,16 @@ function showTestContent(test) {
     document.querySelector("#modifyTab input[name=txtName]").value = test["name"];
     document.querySelector("#modifyTab input[name=txtQuestionnaire]").value = test["questionnaire_link"];
     document.querySelector("#modifyTab input[name=txtTestPassword]").value = test["password"];
+    document.querySelector("#modifyTab input[name=chkAnonymResults]").checked = test["anonym_user"];
     pagesHolder.overridePages(test["pages"]);
     modifyPagesList.updateTestPages();
 }
 
 function resetCreateTab() {
     document.querySelector("#createTab input[name=txtName]").value = "";
+    document.querySelector("#createTab input[name=txtQuestionnaire]").value = "";
+    document.querySelector("#createTab input[name=txtTestPassword]").value = "";
+    document.querySelector("#createTab input[name=chkAnonymResults]").checked = false;
     pagesHolder.resetList();
     createPagesList.updateTestPages();
     pagesPopUp.closePopUp();
@@ -132,6 +139,9 @@ function resetCreateTab() {
 
 function resetModifyTab() {
     document.querySelector("#modifyTab input[name=txtName]").value = "";
+    document.querySelector("#modifyTab input[name=txtQuestionnaire]").value = "";
+    document.querySelector("#modifyTab input[name=txtTestPassword]").value = "";
+    document.querySelector("#modifyTab input[name=chkAnonymResults]").checked = false;
     pagesHolder.resetList();
     modifyPagesList.updateTestPages();
     pagesPopUp.closePopUp();
@@ -188,7 +198,9 @@ document.querySelector("#createTab form").addEventListener("submit", function (e
         name : document.querySelector("#createTab input[name=txtName]").value,
         questionnaireLink : document.querySelector("#createTab input[name=txtQuestionnaire]").value,
         password : document.querySelector("#createTab input[name=txtTestPassword]").value,
+        anonymUser : document.querySelector("#createTab input[name=chkAnonymResults]").checked
     };
+    console.log(testInfo);
     createTest(testInfo);
 });
 
@@ -198,6 +210,7 @@ document.querySelector("#modifyTab form").addEventListener("submit", function (e
         name : document.querySelector("#modifyTab input[name=txtName]").value,
         questionnaireLink : document.querySelector("#modifyTab input[name=txtQuestionnaire]").value,
         password : document.querySelector("#modifyTab input[name=txtTestPassword]").value,
+        anonymUser : document.querySelector("#modifyTab input[name=chkAnonymResults]").checked
     };
     modifyTest(currentSelectedTestId, testInfo);
 });

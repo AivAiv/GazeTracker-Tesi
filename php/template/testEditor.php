@@ -31,6 +31,11 @@
                         </label>
                     </section>
                     <section>
+                        <label>Risultati anonimi
+                            <input type="checkbox" name="chkAnonymResults"/>
+                        </label>
+                    </section>
+                    <section>
                         <input type="reset" name="btnDiscard" value="Scarta"/>
                         <input type="submit" name="btnCreate" value="Crea"/>
                     </section>
@@ -59,6 +64,11 @@
                         </label>
                         <label>Password del test
                             <input type="text" name="txtTestPassword"/>
+                        </label>
+                    </section>
+                    <section>
+                        <label>Risultati anonimi
+                            <input type="checkbox" name="chkAnonymResults"/>
                         </label>
                     </section>
                     <section>

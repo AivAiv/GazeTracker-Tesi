@@ -19,7 +19,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-
+            
             #testsList {
                 display: flex;
                 flex-direction: column;
@@ -28,6 +28,7 @@
                 margin-bottom: 15px;
                 overflow: auto;
                 padding: 10px;
+                color: colors.$light-color;
 
                 div {   /*TODO: Praticamente uguale a quelli della home*/
                     display: flex;
@@ -122,6 +123,19 @@
                             background-color: colors.$light-color;
                             padding: 2%;
                         }
+
+                        input[type=checkbox] {
+                            accent-color: colors.$secondary-color;
+                            padding: 15px;
+                            margin: 5px;
+                        }
+                    }
+
+                    label:has(> input[type=checkbox]) {
+                        flex-direction: row;
+                        justify-content: start;
+                        align-items: center;
+                        width: 100%;
                     }
 
                     fieldset {
@@ -166,7 +180,7 @@
                             border: 0px;
                             border-radius: 25px;
                             padding: 1% 2%;
-                            width: 96%;
+                            width: 95%;
                             
                             p {
                                 color: colors.$light-color;
@@ -185,19 +199,20 @@
                         gap: 10px;
                         width: 95%;
 
-                        input[type=submit] { /*FIXME: Simile a sotto*/
-                            @extend %wgPrimaryButton;
+                        input {
                             padding: 8px 5%;
-                            margin-left: 5px;
                             font-size: 14pt;
+                        }
+
+                        input[type=submit] {
+                            @extend %wgPrimaryButton;
+                            margin-left: 5px;
                         }
     
                         input[type=reset] {
                             @extend %wgLightButton;
                             background-color: transparent;
                             box-shadow: none;
-                            padding: 8px 5%;
-                            font-size: 14pt;
                         }
                     }
                 }
