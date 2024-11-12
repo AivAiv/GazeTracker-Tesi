@@ -17,7 +17,7 @@ function checkPassword(id, password) {
     formData.append('password', password);
     axios.post('../api/api-getSingleTest.php', formData).then(response => {
         if(response.data["testRetrieved"]) {
-            console.log(response.data["test"]);
+            console.log(response.data["test"]); //TODO: Remove
             if (response.data["test"]["password"] == password) {
                 const nickname = document.querySelector("input[name=txtNickname]").value;
                 sessionStorage.clear();

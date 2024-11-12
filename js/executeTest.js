@@ -38,12 +38,23 @@ document.addEventListener('DOMContentLoaded', function () {
         
         console.log("CARICAMENTO utente");
         generateUUID();
+        console.log(test["anonym_user"]);
+        if (test["anonym_user"] !== 1) {
+            axios.get("../api/api-getCurrentUser.php").then(response => {
+                console.log(response.data);
+                if (response.data["isUserLogged"]) {
+                    uuid = uuid.concat(":", response.data["userId"].toString());
+                } else {
+                    uuid = uuid.concat(":", sessionStorage.getItem("nickname"));
+                }
+             });
+        }
         console.log(uuid);
-        if(!!test["pages"]) {
+        if (!!test["pages"]) {
             for(let page in test["pages"]) { startingTimes.push(0); }
             console.log("inizio webgazer");
             initWebGazer();
-        }else{
+        } else {
             console.log("pagine non caricate");
             window.location.href = './home-redirector.php';
         }
@@ -173,10 +184,10 @@ function initWebGazer() {
 
             if (x >= eyeTrackerRect.left && x <= eyeTrackerRect.left + eyeTrackerRect.width &&
                 y >= eyeTrackerRect.top && y <= eyeTrackerRect.top + eyeTrackerRect.height) {
-                    coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
-                    //console.log(coords.x);
-                    console.log("SENDING: " + currentPageIndex);
-                    const formData = new FormData();
+                coords = trasformaPercentuale(x - eyeTrackerRect.left, y - eyeTrackerRect.top);
+                //console.log(coords.x);
+                console.log("SENDING: " + currentPageIndex);
+                const formData = new FormData();
                 formData.append("coord_x", coords.x);
                 formData.append("coord_y", coords.y);
                 formData.append("idPage", test["pages"][currentPageIndex]["id"]);
