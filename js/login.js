@@ -19,7 +19,8 @@ function login(email, password) {
 		if(response.data["loginSuccess"]) {
             window.location.href = './php/redirector/home-redirector.php';
 		} else {
-            console.log("Not registered or wrong password");
+            let parent = document.querySelector(".base-container");
+            showAlert(parent, "Email o password non validi.");
         }
     });
 }

@@ -1,5 +1,5 @@
 /*FIXME: Move me*/
-html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
+html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, #alert #btn-close-alert, .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,14 +25,14 @@ html body nav section #btnLogout, html body nav section #btnHome, .base-containe
   background-color: #312f2a;
 }
 
-.base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward {
+#alert #btn-close-alert, .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward {
   background-color: #EDEBD7;
   color: #23211E;
   border-radius: 25px;
   border: 0px;
   font-weight: bold;
 }
-.base-container.test #testStage #calibrationPage #allButtons button:hover, .base-container.review-page .firstLine button:hover, .base-container.edit #testsContainer #testsList div section .btnDelete:hover, .base-container.edit #testsContainer #testsList div section .btnModify:hover, .base-container.edit #testsEdit #createTab form section input[type=reset]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=reset]:hover, .base-container.edit .scrim #popUp form section input[type=reset]:hover, .base-container.review-test #pageContent button:hover, .base-container.homeCreator #testContainer div section .btnResults:hover, .base-container.access form input[type=submit]:hover, html body nav section #btnForward:hover, html body nav section #btnBackward:hover {
+#alert #btn-close-alert:hover, .base-container.test #testStage #calibrationPage #allButtons button:hover, .base-container.review-page .firstLine button:hover, .base-container.edit #testsContainer #testsList div section .btnDelete:hover, .base-container.edit #testsContainer #testsList div section .btnModify:hover, .base-container.edit #testsEdit #createTab form section input[type=reset]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=reset]:hover, .base-container.edit .scrim #popUp form section input[type=reset]:hover, .base-container.review-test #pageContent button:hover, .base-container.homeCreator #testContainer div section .btnResults:hover, .base-container.access form input[type=submit]:hover, html body nav section #btnForward:hover, html body nav section #btnBackward:hover {
   background-color: #d3d1bd;
 }
 
@@ -740,4 +740,28 @@ html body main .base-container {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #131210;
+}
+
+#alert {
+  background-color: #e86e68;
+  padding: 1vh 1.5vh;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+}
+#alert #btn-close-alert {
+  margin: 0;
+  padding: 3px;
+  padding-bottom: 0px;
+  background-color: #a53d38;
+}
+#alert #btn-close-alert .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 20;
+}
+#alert #btn-close-alert .icon {
+  font-size: 15px;
 }/*# sourceMappingURL=main.css.map */

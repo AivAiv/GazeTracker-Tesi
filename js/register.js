@@ -8,8 +8,9 @@ document.querySelector("main form").addEventListener("submit", function (event) 
 });
 
 function register(email, password, passwordRepeat, userType) {
+    const parent = document.querySelector(".base-container");
     if (password != passwordRepeat) {
-        console.log("different password");
+        showAlert(parent, "Le password inserite sono diverse.");
         return;
     }
 
@@ -21,7 +22,7 @@ function register(email, password, passwordRepeat, userType) {
         if (response.data["registrationSuccess"]) {
             window.location.href = '../../index.php';
         } else {
-            console.log("email already existent");
+            showAlert(parent, "L'email inserita esiste già.");
         }
     });
 }
