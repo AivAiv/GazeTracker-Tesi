@@ -1,34 +1,35 @@
-# Tesi: Sito Web per la Review di Immagini e Pagine Web con WebGazer
+# Thesis: Website for image and Web page review with WebGazer
 
-Questo progetto è il risultato della mia tesi e consiste in un sito web per la revisione di immagini o pagine web tramite l'uso di **WebGazer**, una tecnologia che utilizza la webcam per monitorare lo sguardo dell'utente sullo schermo. Il sito permette di condurre test mirati a raccogliere dati su dove gli utenti posano lo sguardo.
+This project is the outcome of my thesis and consists of a website for reviewing images or web pages using **WebGazer**, a technology that utilizes a webcam to monitor the user's gaze on the screen. The platform allows conducting targeted tests to gather data on where users focus their attention.
 
-## Caratteristiche Principali
+## Key Features
 
-### Due Tipi di Utenti
-1. **Creator**: Gli utenti che progettano e creano test, definendone il contenuto: immagini, pagine web, questionario finale.
-2. **Tester**: Gli utenti che svolgono i test osservando le varie immagini e fornendo dati sul loro sguardo.
+### Two types of users
+1. **Creator**: Users who design and create tests by defining their content, such as images, web pages, and final questionnaires.
+2. **Tester**: Users who perform the tests by observing various images, providing gaze tracking data.
 
-### Accesso ai Test
-I test possono essere eseguiti anche da utenti non registrati come tester, grazie a:
-  - Un **link diretto** al test, fornito da un creator.
-  - Un **nickname**, per l'identificazione del partecipante.
-  - Una **password**, anch'essa fornita dall'utente creator.
+### Test access
+Tests can also be completed by users who are not registered as testers, thanks to:
+  - A **direct link** to the test, provided by a creator.
+  - A **nickname** for participant identification.
+  - A **password**, also provided by the creator.
 
-## Funzionalità
-- **Monitoraggio dello sguardo**: Utilizzo di WebGazer per tracciare e analizzare il movimento degli occhi.
-- **Creazione dei test**: Pannello dedicato ai creator per configurare test personalizzati.
-- **Esecuzione dei test**: Interfaccia semplice e intuitiva per i tester, con raccolta di dati sullo sguardo in tempo reale.
-- **Accesso sicuro ai test**: Possibilità di condividere test tramite link protetto da password.
-- **Analisi dei risultati**: Esportazione e visualizzazione dei dati raccolti per la revisione e il miglioramento dei contenuti testati.
+## Features
+- **Gaze Tracking**: Using WebGazer to track and analyze eye movement.
+- **Test Creation**: A dedicated panel for creators to configure custom tests.
+- **Test Execution**: A simple and intuitive interface for testers, with real-time gaze data collection.
+- **Secure Test Access**: Ability to share tests via password-protected links.
+- **Results Analysis**: Export and visualization of collected data for reviewing and improving tested content.
 
-## Tecnologie Utilizzate
+## Technologies used
 - **Frontend**: HTML, SCSS, JavaScript
 - **Backend**: PHP
 - **Database**: MySQL
-- **WebGazer.js**: Libreria per il monitoraggio dello sguardo
+- **WebGazer.js**: Library for gaze tracking
 
-## Come Utilizzare il Progetto
-1. Clonare il repository:
+## How to use the project
+1. Clone the repository:
    ```bash
    git clone https://github.com/AivAiv/GazeTracker-Tesi
-2. Importare il database di esempio tramite il file fornito: `db/gazetrackerdb.sql`.
+2. Import the sample database using the provided file: `db/gazetrackerdb.sql`.
+3. Start the website.
