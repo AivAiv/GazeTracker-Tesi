@@ -2,7 +2,7 @@
 
 This project is the outcome of my thesis and consists of a website for reviewing images or web pages using **WebGazer**, a technology that utilizes a webcam to monitor the user's gaze on the screen. The platform allows conducting targeted tests to gather data on where users focus their attention.
 
-## Key Features
+## Main concepts
 
 ### Two types of users
 1. **Creator**: Users who design and create tests by defining their content, such as images, web pages, and final questionnaires.
