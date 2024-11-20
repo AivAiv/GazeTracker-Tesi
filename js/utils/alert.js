@@ -1,4 +1,8 @@
 function showAlert(parent, message) {
+    if (document.getElementById("alert")) {
+        closeAlert();
+    }
+    
     let alert = document.createElement("div");
     alert.id = "alert";
     alert.innerHTML = buildAlert(message);
@@ -17,9 +21,13 @@ function buildAlert(message) {
 function attachAlertListeners() {
     document.getElementById("btn-close-alert").addEventListener("click", function (event) {
         event.preventDefault();
-        const alert = document.getElementById("alert");
-        if (alert && alert.parentNode) {
-            alert.parentNode.removeChild(alert);
-        }
+        closeAlert();
     });
+}
+
+function closeAlert() {
+    const alert = document.getElementById("alert");
+    if (alert && alert.parentNode) {
+        alert.parentNode.removeChild(alert);
+    }
 }
