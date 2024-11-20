@@ -3,7 +3,9 @@
 
     $templateParams["title"] = "GazeTracker";
     $templateParams["pageName"] = "noAuthAccess.php";
-    $templateParams["js"] = array("https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "../../js/noAuthAccess.js");
+    $templateParams["js"] = array("https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", 
+                                    "../../js/utils/alert.js.js", //TODO: Add aletrs
+                                    "../../js/noAuthAccess.js");
     $templateParams["css"] = array("../../css/main");
 
     require '../template/accessBase.php';

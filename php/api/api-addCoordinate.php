@@ -7,5 +7,6 @@
             $result = true;
         }
     }
+    
     return $result;
 ?>

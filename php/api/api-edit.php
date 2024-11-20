@@ -1,6 +1,5 @@
 <?php
 	require_once '../../bootstrap.php';
-	$imgDir = "../../img/";
 
 	$result["editSuccess"] = false;
 	$result["addedPage"] = false;
@@ -18,7 +17,7 @@
 	}
 	
 	if(isset($_POST["testId"]) && isset($_POST["anonymUser"])) {
-		$anonym = $_POST["anonymUser"] == "true" ? 1 : 0; // FIXME: C'è un modo migliore?
+		$anonym = ($_POST["anonymUser"] == "true") ? 1 : 0;
 		$result["editSuccess"] = $dbh->modifyTestAnonymUser($_POST["testId"], $anonym);
 	}
 
@@ -26,6 +25,7 @@
 		$result["editSuccess"] = $dbh->updateTestState($_POST["testId"], $_POST["state"]);
 	}
 
+	// Remove deleted pages
 	if(isset($_POST["testId"]) && isset($_POST["pagesRemaining"])) {
 		$dbPages = $dbh->getTestPages($_POST["testId"]);
 		$remainingPages = json_decode($_POST["pagesRemaining"], true);
@@ -37,7 +37,8 @@
 		}
 		$result["editSuccess"] = true;
 	}
-		
+	
+	// Add new pages
 	if(isset($_POST["testId"]) && isset($_POST["pagesToAdd"])) {
 		$pagesToAdd = json_decode($_POST["pagesToAdd"], true);
 		foreach ($pagesToAdd as $page) {
@@ -51,7 +52,7 @@
 				$extension = strtolower(pathinfo($_FILES["imgsToAdd"]["name"][$page["listId"]], PATHINFO_EXTENSION));
 				$pageName = $_SESSION['id'] . "_" . $_POST["testId"] . "_" . $pageId . "." . $extension;
 				$dbh->updateImageName($pageId, $pageName);
-				$pathCompleta = $imgDir . $pageName;
+				$pathCompleta = UPLOAD_DIR . $pageName;
 				move_uploaded_file($_FILES["imgsToAdd"]["tmp_name"][$page["listId"]], $pathCompleta);
 			} else { // Add link or text page
 				$pageId = $dbh->addTestPage($page["name"], $_POST["testId"], $page["link"], $page["image"], $page["text"], $page["maxTime"]);

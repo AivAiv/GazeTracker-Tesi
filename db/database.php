@@ -73,7 +73,6 @@
 			$result = $stmt->get_result();
 			$res = $result->fetch_all(MYSQLI_ASSOC);
 
-			// Retrieve pages
 			for ($i = 0; $i < count($res); $i++) {
 				$res[$i]["pages"] = $this->getTestPages($res[$i]["id"]);
 			}
@@ -88,7 +87,6 @@
 			$result = $stmt->get_result();
 			$res = $result->fetch_all(MYSQLI_ASSOC);
 
-			// Retrieve pages
 			for ($i = 0; $i < count($res); $i++) {
 				$res[$i]["pages"] = $this->getTestPages($res[$i]["id"]);
 			}
@@ -96,11 +94,10 @@
 		}
 
 		public function deleteTest($testId) {
-			$imgDir = "../../img/";
 			$pages = $this->getTestPages($testId);
 			foreach($pages as $page) {
 				if ($page["image"] != null) {
-					unlink($imgDir . $page["image"]);
+					unlink(UPLOAD_DIR . $page["image"]);
 				}
 			}
 
@@ -187,11 +184,10 @@
 		}
 
 		public function removeTestPage($id) {
-			$imgDir = "../../img/";
 			$page = $this->getPage($id);
 			if ($page[0]["image"] != null) {
-				if (file_exists($imgDir . $page[0]["image"])) {
-					unlink($imgDir . $page[0]["image"]);
+				if (file_exists(UPLOAD_DIR . $page[0]["image"])) {
+					unlink(UPLOAD_DIR . $page[0]["image"]);
 				}
 			}
 
@@ -202,7 +198,6 @@
 			return true;
 		}
 
-		// Simone
 		public function getAllAnonymousUsers($id_page) {
 			if (
 				$stmt = $this->db->prepare("SELECT distinct(anonym_user_index) FROM ".$this->table_prefix."webgazer_data where cod_page = ?")
@@ -214,7 +209,6 @@
 			}
 		}
 
-		// Simone "da rivedere"
 		public function saveTest($idVisualizzation, $coor_x, $coor_y, $uuid)
 		{
 			if ($stmt = $this->db->prepare("INSERT INTO ".$this->table_prefix."webgazer_data(instant, x, y, anonym_user_index, cod_page) VALUES (CURTIME(3), ?, ?, ?, ?)")) {
@@ -223,8 +217,7 @@
 			}
 		}
 
-		// Simone
-		public function get_registrazioni_test($pageId, $userId)
+		public function getCollectedData($pageId, $userId)
 		{
 		   if ($stmt = $this->db->prepare("SELECT instant, x, y from ".$this->table_prefix."webgazer_data where cod_page = ? and anonym_user_index = ? order by instant asc")) {
 			  $stmt->bind_param('is', $pageId, $userId);
