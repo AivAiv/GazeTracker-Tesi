@@ -151,10 +151,12 @@ function attachEventListeners(tests) {
     for (i = 0; i < tests.length; i++) {
         testChildren = document.getElementById("testEditor_" + tests[i]["id"]).children;
         testChildren[1].children[0].test = tests[i];
-        testChildren[1].children[0].addEventListener("click", function (event) {
+        testChildren[1].children[0].addEventListener("click", async function (event) {
             event.preventDefault();
-            if (confirm("Stai eliminando un test, sei sicuro di voler proseguire?")) {
-                deleteTest(event.currentTarget.test["id"]);
+            let testId = event.currentTarget.test["id"];
+            const userConfirmed = await askConfirmation("Stai eliminando un test, sei sicuro di voler proseguire?");
+            if (userConfirmed) {
+                deleteTest(testId);
             }
         });
         testChildren[1].children[1].test = tests[i];

@@ -31,3 +31,36 @@ function closeAlert() {
         alert.parentNode.removeChild(alert);
     }
 }
+
+function askConfirmation(message) {
+    return new Promise((resolve) => {
+        const modal = document.createElement("div");
+        modal.id = "modal-scrim";
+
+        const alertBox = document.createElement("div");
+        alertBox.id = "modal";
+
+        const messageText = document.createElement("p");
+        messageText.textContent = message;
+        
+        const confirmButton = document.createElement("button");
+        confirmButton.textContent = "Conferma";
+        confirmButton.addEventListener("click", () => {
+            modal.remove();
+            resolve(true);
+        });
+        
+        const discardButton = document.createElement("button");
+        discardButton.textContent = "Indietro";
+        discardButton.addEventListener("click", () => {
+            modal.remove();
+            resolve(false);
+        });
+        
+        alertBox.appendChild(messageText);
+        alertBox.appendChild(discardButton);
+        alertBox.appendChild(confirmButton);
+        modal.appendChild(alertBox);
+        document.body.appendChild(modal);
+    });
+}

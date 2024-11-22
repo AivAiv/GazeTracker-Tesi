@@ -34,12 +34,15 @@ class PagesList {
             let btnDel = document.querySelector(this.#domId + " #page_" + i + " .btnDelete");
             btnDel.pHolder = this.#pagesHolder;
             btnDel.caller = this;
-            btnDel.addEventListener("click",  function (event) {
+            btnDel.addEventListener("click",  async function (event) {
                 event.preventDefault();
-                if (confirm("Stai eliminando una pagina, sei sicuro?")) {
-                    event.currentTarget.pHolder.deletePage(i);
+                let pagesHolder = event.currentTarget.pHolder;
+                let caller = event.currentTarget.caller;
+                const userConfirmed = await askConfirmation("Stai eliminando una pagina, sei sicuro?");
+                if (userConfirmed) {
+                    pagesHolder.deletePage(i);
                     console.log("[LOG] : deleted page - " + i);
-                    event.currentTarget.caller.updateTestPages();
+                    caller.updateTestPages();
                 }
             });
         }
