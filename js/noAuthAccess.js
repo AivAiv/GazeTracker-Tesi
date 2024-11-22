@@ -25,7 +25,13 @@ function checkPassword(id, password) {
                 sessionStorage.setItem("nickname", nickname);
                 window.location.href = './executeTest-redirector.php';//?id=' + searchParams.get("id")
                                                                       //  + '&nickname=' + nickname;
-            } else { console.log("Wrong password"); }
-		} else { console.log("Test not found"); }
+            } else {
+                let parent = document.querySelector(".base-container");
+                showAlert(parent, "Password non valida.");
+            }
+		} else {
+            let parent = document.querySelector(".base-container");
+            showAlert(parent, "Il test richiesto non esiste.");
+        }
     });
 }
