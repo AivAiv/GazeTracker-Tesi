@@ -8,7 +8,7 @@
                 <button class="btnConf3">5</button>
                 <button class="btnConf4">5</button>
             </section>
-            <p>Clicclare su tutti e 4 i bottoni finchè non diventano verdi per calibrare Webgazer</p>
+            <p>Cliccare su tutti e 4 i bottoni finchè non diventano verdi per calibrare Webgazer</p>
         </section>
     </section>
 </section>

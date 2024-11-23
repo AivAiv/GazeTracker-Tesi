@@ -92,7 +92,6 @@ calibrationButtons.forEach(btn => {
     });
 });
 
-
 function isCalibrationEnded() { return calibrationClicks.every(btn => btn == "✓"); }
 
 function loadCurrentPage() {
@@ -100,11 +99,15 @@ function loadCurrentPage() {
     console.log(test["pages"]);
     webgazer.pause();
     if (test["pages"].length === 0) {
-        pageContainer.innerHTML = `<div>In questo test non ci sono pagine!</div>`;//FIXME: gestire meglio con errore e/o bottone?
+        pageContainer.innerHTML = `<div id="final-page">In questo test non ci sono pagine!
+                                        <button id="final-home">Torna alla home</button>
+                                    </div>`;
+        attachFinalPageListeners();
     } else if (test["pages"][currentPageIndex] != null) {
         drawPage(test["pages"][currentPageIndex]);
     } else if (currentPageIndex == test["pages"].length) {
-        pageContainer.innerHTML = `<div>TEST TERMINATO!<a href="${test['questionnaire_link']}">Vai al questionario</a></div>`;
+        pageContainer.innerHTML = getQuestionnaireForm();
+        attachFinalPageListeners();
         document.getElementById("tmrDuration").parentNode.style.display = "none";
     }
 }
@@ -243,4 +246,24 @@ function checkMaxTimeReached(elapsedTime) {
             btnForward.click();
         }
     }
+}
+
+function getQuestionnaireForm() {
+    if (test['questionnaire_link'] && test['questionnaire_link'] != "") {
+        return `<div id="final-page">TEST TERMINATO!
+                    <a id="final-questionnaire" href="${test['questionnaire_link']}">Vai al questionario</a>
+                    <button id="final-home">Torna alla home</button>
+                </div>`;
+    } else {
+        return `<div id="final-page">TEST TERMINATO!
+                    <button id="final-home">Torna alla home</button>
+                </div>`;
+    }
+}
+
+function attachFinalPageListeners() {
+    document.querySelector("#final-page button").addEventListener("click", function (event) {
+        event.preventDefault();
+        window.location.replace('./home-redirector.php');
+    });
 }

@@ -1,16 +1,16 @@
 /*FIXME: Move me*/
-html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, #alert #btn-close-alert, #modal-scrim #modal > button:nth-child(2), .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, #modal-scrim #modal button, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
+html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, #alert #btn-close-alert, #modal-scrim #modal > button:nth-child(2), .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, #modal-scrim #modal button, .base-container.test #testStage #final-page a, .base-container.test #testStage #final-page button, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-#modal-scrim #modal button, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
+#modal-scrim #modal button, .base-container.test #testStage #final-page a, .base-container.test #testStage #final-page button, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
   background-color: #E3B23C;
   color: #23211E;
   border-radius: 25px;
   border: 0px;
   font-weight: bold;
 }
-#modal-scrim #modal button:hover, .base-container.edit #testsContainer #btnOpenCreate:hover, .base-container.edit #testsEdit #createTab form fieldset button:hover, .base-container.edit #testsEdit #modifyTab form fieldset button:hover, .base-container.edit #testsEdit #createTab form section input[type=submit]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=submit]:hover, .base-container.edit .scrim #popUp form section input[type=submit]:hover, .base-container.homeCreator .firstLine button:hover {
+#modal-scrim #modal button:hover, .base-container.test #testStage #final-page a:hover, .base-container.test #testStage #final-page button:hover, .base-container.edit #testsContainer #btnOpenCreate:hover, .base-container.edit #testsEdit #createTab form fieldset button:hover, .base-container.edit #testsEdit #modifyTab form fieldset button:hover, .base-container.edit #testsEdit #createTab form section input[type=submit]:hover, .base-container.edit #testsEdit #modifyTab form section input[type=submit]:hover, .base-container.edit .scrim #popUp form section input[type=submit]:hover, .base-container.homeCreator .firstLine button:hover {
   background-color: #d6a021;
 }
 
@@ -697,6 +697,22 @@ html body main .base-container {
   flex: 1;
   height: inherit;
 }
+.base-container.test #testStage #final-page {
+  font-size: 25px;
+  font-weight: bold;
+}
+.base-container.test #testStage #final-page a {
+  text-decoration: none;
+  font-size: 16pt;
+  padding: 5px 2vh;
+  margin: 1vh;
+  text-align: center;
+}
+.base-container.test #testStage #final-page button {
+  margin: 1vh;
+  padding: 5px 2vh;
+  font-size: 16pt;
+}
 
 #webgazerVideoContainer {
   width: 220px !important;
@@ -751,6 +767,7 @@ html body main .base-container {
   gap: 8px;
   position: absolute;
   z-index: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   top: 20px;
 }
 #alert #btn-close-alert {

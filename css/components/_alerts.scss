@@ -10,6 +10,7 @@
     gap: 8px;
     position: absolute;
     z-index: 1;
+    box-shadow: 0 2px 10px colors.$shadow;
     top: 20px;
     
     #btn-close-alert {

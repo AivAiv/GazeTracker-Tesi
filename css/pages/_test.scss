@@ -83,6 +83,28 @@
                 flex: 1;
                 height: inherit;
             }
+
+            #final-page {
+                font-size: 25px;
+                font-weight: bold;
+
+                a {
+                    @extend %wgPrimaryButton;
+                    //color: colors.$light-color;
+                    text-decoration: none;
+                    font-size: 16pt;
+                    padding: 5px 2vh;
+                    margin: 1vh;
+                    text-align: center
+                }
+
+                button {
+                    @extend %wgPrimaryButton;
+                    margin: 1vh;
+                    padding: 5px 2vh;
+                    font-size: 16pt;
+                }
+            }
         }
     }
 }
