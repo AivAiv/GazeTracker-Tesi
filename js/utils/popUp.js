@@ -150,7 +150,7 @@ class PopUp {
                 link : null,
                 image : null,
                 text : document.querySelector("#" + event.currentTarget.domId + " textarea").value,
-                maxTime : null,//document.querySelector("#" + event.currentTarget.domId + " input[name=tmeMaxTimer]").value,
+                maxTime : null,
             });
             event.currentTarget.caller.closePopUp();
             event.currentTarget.pListM.updateTestPages();
@@ -160,5 +160,4 @@ class PopUp {
         form.addEventListener("reset", function (event) { event.currentTarget.caller.closePopUp(); });
     }
     //#endregion
-
 }

@@ -43,7 +43,7 @@ function updateState(testId, state) {
     });
 }
 
-function attachCreatorEventListeners(tests) { //FIXME: Not cute, rigid
+function attachCreatorEventListeners(tests) {
     for (let i = 0; i < tests.length; i++) {
         testChildren = document.getElementById("testHome_" + tests[i]["id"]).children;
         testChildren[1].children[0].test = tests[i];
@@ -67,14 +67,14 @@ function attachCreatorEventListeners(tests) { //FIXME: Not cute, rigid
 
 function attachTesterEventListener(tests) {
     for (let i = 0; i < tests.length; i++) {
-        if (tests[i]["active"] == 1) { //FIXME: Migliorabile, checkare active in populateHome non in generateTesterTest
+        if (tests[i]["active"] == 1) {
             btnTest = document.getElementById("testHome_" + tests[i]["id"]);
             btnTest.test = tests[i];
             btnTest.addEventListener("click", function (event) {
                 event.preventDefault();
                 sessionStorage.clear();
                 sessionStorage.setItem("test", JSON.stringify(event.currentTarget.test));
-                window.location.href = './executeTest-redirector.php';//?id=' + event.currentTarget.test["id"];
+                window.location.href = './executeTest-redirector.php';
             });
         }
     }

@@ -26,7 +26,7 @@ function deleteTest(testId) {
     });
 }
 
-function createTest(testInfo) {//TODO: Update with all the page sending
+function createTest(testInfo) {
     // Create empty test
     const testData = new FormData();
     var testId;
@@ -34,21 +34,18 @@ function createTest(testInfo) {//TODO: Update with all the page sending
     testData.append('testquestionnaire', testInfo.questionnaireLink);
     testData.append('testPassword', testInfo.password);
     testData.append('anonymUser', testInfo.anonymUser);
-    console.log(testInfo.password, testInfo.questionnaireLink, testInfo.anonymUser); // TODO: Delete
     axios.post('../api/api-create.php', testData).then(response => {
         console.log(response.data);
         if (response.data["testCreated"]) {
             testId = response.data["testId"];
             console.log(pagesHolder.getPages());
-            // Fill the test with pages //TODO: Attualmente nessun controllo sul corretto upload delle pagine
+            // Fill the test with pages
             pagesHolder.getPages().forEach(page => {
                 let pageData = new FormData();
                 pageData.append('testId', testId);
                 pageData.append('page', JSON.stringify(page));
                 if (page["image"] != null) { pageData.append('imgFile', page["image"]); }
                 axios.post('../api/api-create.php', pageData).then(response => {
-                    //if (response.data["addedPage"]) {
-                    //}
                     console.log("[LOG] : Created test - " + testInfo.name);
                 });
             });
@@ -65,17 +62,11 @@ function modifyTest(testId, testInfo) {
     testData.append('testQuestionnaire', testInfo.questionnaireLink);
     testData.append('testPassword', testInfo.password);
     testData.append('anonymUser', testInfo.anonymUser);
-    axios.post('../api/api-edit.php', testData).then(response => {  // Update test name
+    axios.post('../api/api-edit.php', testData).then(response => {  // Update test informations
         console.log(response.data);
         if (response.data["editSuccess"]) {
             var pagesToAdd = pagesHolder.getPages().filter(p=>{return p["id"] == null});
             var pagesRemaining = pagesHolder.getPages().filter(p=>{return p["id"] != null});
-            //--------
-            console.log("TO ADD:");
-            console.log(pagesToAdd);
-            console.log("REMAINING:");
-            console.log(pagesRemaining);
-            //--------
             let formData = new FormData();
             formData.append('testId', testId);
             formData.append('pagesRemaining', JSON.stringify(pagesRemaining));

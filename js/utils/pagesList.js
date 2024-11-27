@@ -1,8 +1,8 @@
 class PagesList {
 
-    #domId = ""; // ID of the DOM container
+    #domId = ""; // Id of the DOM container
     #domList; // Container in DOM
-    #pagesHolder; // Pages
+    #pagesHolder; // Pages list
 
     constructor(domId, pHolder) {
       this.#domId = domId;

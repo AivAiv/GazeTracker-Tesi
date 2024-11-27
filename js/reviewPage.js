@@ -29,7 +29,6 @@ function drawPage(page) {
     if (page["image"] != null) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
     } else if (page["link"] != null) {
-        //pageContainer.innerHTML = `<iframe scrolling = 'no' onload='onloadIframeEsegui(this)' frameborder = '0' src = "` + page["link"] + `"></iframe>`;
         pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
@@ -40,7 +39,6 @@ function loadPageInformations() {
     lblPageName.innerHTML = currentPage["name"];
     lblUserId.innerHTML = executions[currentExecIndex];
     drawPage(currentPage);
-    //TODO: Update visualization time
     btnHeatmap.innerHTML = "LINE";
     loadHeatMap();
 }
@@ -66,7 +64,6 @@ function nextPage() {
         currentExecIndex ++;
     }
     console.log(currentExecIndex);
-    //loadCurrentPage();
     loadPageInformations();
 }
 
@@ -77,17 +74,14 @@ function PreviousPage() {
         currentExecIndex --;
     }
     console.log(currentExecIndex);
-    //loadCurrentPage();
     loadPageInformations();
 }
 
-// Simone
 function onloadIframeEsegui(e) {
     e.style.height = e.contentWindow.document.body.scrollHeight + 'px';
     document.getElementById("testStage").style.height = e.style.height;
 }
 
-// Simone
 function loadHeatMap() {
     linemapContainer.style.display = "none";
     heatmapContainer.style.display = "inline-block";
@@ -120,7 +114,6 @@ function loadHeatMap() {
     });
 }
 
-// Simone
 function loadLineMap() {
     heatmapContainer.style.display = "none";
     linemapContainer.style.display = "block";
@@ -154,7 +147,6 @@ function fix_dpi() {
     linemapContainer.setAttribute('width', style_width * dpi);
 }
 
-// Simone - duplicato
 function trasformaFromPercentuale(x, y, rect) {
     xReal = (x * parseFloat(rect.width)) / 100;
     yReal = (y * parseFloat(rect.height)) / 100;
