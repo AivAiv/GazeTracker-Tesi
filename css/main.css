@@ -1,4 +1,3 @@
-/*FIXME: Move me*/
 html body nav section #btnLogout, html body nav section #btnHome, .base-container.homeTester #testContainer button, .base-container.homeCreator #testContainer div section .btnStatus, #alert #btn-close-alert, #modal-scrim #modal > button:nth-child(2), .base-container.test #testStage #calibrationPage #allButtons button, .base-container.review-page .firstLine button, .base-container.edit #testsContainer #testsList div section .btnDelete, .base-container.edit #testsContainer #testsList div section .btnModify, .base-container.edit #testsEdit #createTab form section input[type=reset], .base-container.edit #testsEdit #modifyTab form section input[type=reset], .base-container.edit .scrim #popUp form section input[type=reset], .base-container.review-test #pageContent button, .base-container.homeCreator #testContainer div section .btnResults, .base-container.access form input[type=submit], html body nav section #btnForward, html body nav section #btnBackward, #modal-scrim #modal button, .base-container.test #testStage #final-page a, .base-container.test #testStage #final-page button, .base-container.edit #testsContainer #btnOpenCreate, .base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button, .base-container.edit #testsEdit #createTab form section input[type=submit], .base-container.edit #testsEdit #modifyTab form section input[type=submit], .base-container.edit .scrim #popUp form section input[type=submit], .base-container.homeCreator .firstLine button {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
 }
@@ -334,7 +333,7 @@ html body main .base-container {
   flex-wrap: wrap;
 }
 .base-container.edit #testsContainer {
-  height: 76vh; /*FIXME: meh*/
+  height: 76vh;
   margin: 3%;
   display: flex;
   flex-direction: column;
@@ -350,7 +349,7 @@ html body main .base-container {
   padding: 10px;
   color: #EDEBD7;
 }
-.base-container.edit #testsContainer #testsList div { /*TODO: Praticamente uguale a quelli della home*/
+.base-container.edit #testsContainer #testsList div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -424,7 +423,7 @@ html body main .base-container {
   width: 50%;
   font-size: 10pt;
 }
-.base-container.edit #testsEdit #createTab form label input[type=text], .base-container.edit #testsEdit #createTab form label input[type=url], .base-container.edit #testsEdit #modifyTab form label input[type=text], .base-container.edit #testsEdit #modifyTab form label input[type=url] { /*FIXME: "Duplicated"*/
+.base-container.edit #testsEdit #createTab form label input[type=text], .base-container.edit #testsEdit #createTab form label input[type=url], .base-container.edit #testsEdit #modifyTab form label input[type=text], .base-container.edit #testsEdit #modifyTab form label input[type=url] {
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: #EDEBD7;
@@ -452,14 +451,14 @@ html body main .base-container {
 .base-container.edit #testsEdit #createTab form fieldset legend, .base-container.edit #testsEdit #modifyTab form fieldset legend {
   text-align: center;
 }
-.base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button { /*FIXME: Uguale a btnDelete */
+.base-container.edit #testsEdit #createTab form fieldset button, .base-container.edit #testsEdit #modifyTab form fieldset button {
   box-shadow: none;
   flex: 1;
   padding: 5px;
 }
 .base-container.edit #testsEdit #createTab form fieldset:has(> #lstPages), .base-container.edit #testsEdit #modifyTab form fieldset:has(> #lstPages) {
   flex: 1;
-  max-height: 30vh; /*FIXME: Not cute, ha problemi*/
+  max-height: 30vh;
 }
 .base-container.edit #testsEdit #createTab form #lstPages, .base-container.edit #testsEdit #modifyTab form #lstPages {
   display: flex;
@@ -559,7 +558,7 @@ html body main .base-container {
   padding: 5px 10px;
 }
 
-@media screen and (max-width: 600px) { /*MEDIA QUERY*/
+@media screen and (max-width: 600px) {
   hr {
     display: none;
   }
@@ -738,22 +737,18 @@ html body main .base-container {
   left: 60px !important;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #37352f;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #131210;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #131210;
 }

@@ -14,7 +14,7 @@
         }
 
         #testsContainer {
-            height: 76vh; /*FIXME: meh*/
+            height: 76vh;
             margin: 3%;
             display: flex;
             flex-direction: column;
@@ -30,7 +30,7 @@
                 padding: 10px;
                 color: colors.$light-color;
 
-                div {   /*TODO: Praticamente uguale a quelli della home*/
+                div {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -117,7 +117,7 @@
                         width: 50%;
                         font-size: 10pt;
 
-                        input[type=text], input[type=url] { /*FIXME: "Duplicated"*/
+                        input[type=text], input[type=url] {
                             border-radius: 5px;
                             border: 1px solid colors.$shadow;
                             background-color: colors.$light-color;
@@ -150,7 +150,7 @@
                             text-align: center;
                         }
 
-                        button { /*FIXME: Uguale a btnDelete */
+                        button {
                             @extend %wgPrimaryButton;
                             box-shadow: none;
                             flex: 1;
@@ -160,7 +160,7 @@
 
                     fieldset:has(> #lstPages) {
                         flex: 1;
-                        max-height: 30vh; /*FIXME: Not cute, ha problemi*/
+                        max-height: 30vh;
                     }
 
                     #lstPages {
@@ -290,7 +290,7 @@
     }
 }
 
-@media screen and (max-width: 600px) { /*MEDIA QUERY*/
+@media screen and (max-width: 600px) {
     hr {
         display: none;
     }
