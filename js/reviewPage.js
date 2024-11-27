@@ -29,7 +29,7 @@ function drawPage(page) {
     if (page["image"] != null) {
         pageContainer.innerHTML = `<img src="../../img/` + page["image"] + `"/>`;
     } else if (page["link"] != null) {
-        pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
+        pageContainer.innerHTML = `<iframe scrolling='no' src = "` + page["link"] + `"></iframe>`;
     } else {
         pageContainer.innerHTML = `<div>` + page["text"] + `</div>`;
     }

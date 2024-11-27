@@ -95,7 +95,7 @@ function drawPage(page) {
         webgazer.resume();
     } else if (page["link"] != null) {
         remainingTimeCounter.parentNode.style.display = "flex";
-        pageContainer.innerHTML = `<iframe src = "` + page["link"] + `"></iframe>`;
+        pageContainer.innerHTML = `<iframe scrolling='no' src = "` + page["link"] + `"></iframe>`;
         webgazer.resume();
     } else {
         remainingTimeCounter.parentNode.style.display = "none";
